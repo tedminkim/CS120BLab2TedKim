@@ -1,6 +1,6 @@
-/*	Author: tkim094
- *  Partner(s) Name: 
- *	Lab Section: 023
+/*	Author: Ted Kim
+ *  Partner(s) Name: None
+ *	Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
  *	Assignment: Lab #2  Exercise #1
  *	Exercise Description: [optional - include for your own benefit]
  *
@@ -23,10 +23,10 @@ int main(void) {
     while (1) {
       tmpA = PINA & 0x01;
       if (tmpA == 0x01) {
-	tmpB = (tmpB & 0xFC) | 0x01;
-    }
+	       tmpB = (tmpB & 0xFC) | 0x01;
+      }
       else {
-	tmpB = (tmpB & 0xFC) | (0x02);
+	       tmpB = (tmpB & 0xFC) | (0x02);
       }
       PORTB = tmpB;
     }
