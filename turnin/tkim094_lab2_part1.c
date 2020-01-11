@@ -1,4 +1,5 @@
 /*	Author: Ted Kim
+ *  Email: tkim094@ucr.edu
  *  Partner(s) Name: None
  *	Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
  *	Assignment: Lab #2  Exercise #1
