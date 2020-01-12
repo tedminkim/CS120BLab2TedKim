@@ -14,7 +14,7 @@ int main(void) {
   DDRC = 0xFF;
   PORTA = 0xFF;
   PORTC = 0x00;
-  
+
   unsigned char tmpA = 0x00;
   unsigned char cntavail = 0xFF;
 

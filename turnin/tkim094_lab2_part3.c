@@ -37,6 +37,7 @@ int main(void) {
     if (tmpA == 0x00) {
       cntavail = cntavail + 1;
     }
+    tmpA = PINA & 0x0F; // this is BITWISE.
     if (tmpA == 0x0F) {
       cntavail = 0x80;
     }
