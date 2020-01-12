@@ -15,32 +15,37 @@ int main(void) {
   PORTA = 0xFF;
   PORTC = 0x00;
 
-  unsigned char tmpA = 0x00;
+  unsigned char tmpValA = 0x00;
+  unsigned char tmpValA1 = 0x00;
+  unsigned char tmpValA2 = 0x00;
+  unsigned char tmpValA3 = 0x00;
+  unsigned char tmpValA4 = 0x00;
   unsigned char cntavail = 0x00;
 
   while(1) {
     cntavail = 0x00;
 
-    tmpA = PINA & 0x01; // this is BITWISE.
-    if (tmpA == 0x00) {
+    tmpValA = PINA & 0x01; // this is BITWISE.
+    if (tmpValA == 0x00) {
       cntavail = cntavail + 1;
     }
-    tmpA = PINA & 0x02; // this is BITWISE.
-    if (tmpA == 0x00) {
+    tmpValA1 = PINA & 0x02; // this is BITWISE.
+    if (tmpValA1 == 0x00) {
       cntavail = cntavail + 1;
     }
-    tmpA = PINA & 0x04; // this is BITWISE.
-    if (tmpA == 0x00) {
+    tmpValA2 = PINA & 0x04; // this is BITWISE.
+    if (tmpValA2 == 0x00) {
       cntavail = cntavail + 1;
     }
-    tmpA = PINA & 0x08; // this is BITWISE.
-    if (tmpA == 0x00) {
+    tmpValA3 = PINA & 0x08; // this is BITWISE.
+    if (tmpValA3 == 0x00) {
       cntavail = cntavail + 1;
     }
-    tmpA = PINA & 0x0F; // this is BITWISE.
-    if (tmpA == 0x0F) {
+    tmpValA4 = PINA & 0x0F;
+    if (tmpValA4 == 0x0F) {
       cntavail = 0x80;
     }
     PORTC = cntavail;
   }
+  return 0;
 }
