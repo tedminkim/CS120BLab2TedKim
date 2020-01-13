@@ -8,7 +8,10 @@
  *	I acknowledge all content contained herein, excluding template or example
  *	code, is my own original work.
  */
-#include <avr/io.h>
+ #include <avr/io.h>
+ #ifdef _SIMULATE_
+ #include “simAVRHeader.h”
+ #endif	
 
 
 

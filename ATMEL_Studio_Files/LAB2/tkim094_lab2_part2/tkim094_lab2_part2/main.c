@@ -9,37 +9,44 @@
 *	code, is my own original work.
 */
 #include <avr/io.h>
+#ifdef _SIMULATE_
+#include “simAVRHeader.h”
+#endif
+
 int main(void) {
-	DDRA = 0x00;
-	DDRC = 0xFF;
-	PORTA = 0xFF;
-	PORTC = 0x00;
-	
-	unsigned char tmpA = 0x00;
-	unsigned char cntavail = 0xFF;
+  DDRA = 0x00;
+  DDRC = 0xFF;
+  PORTA = 0xFF;
+  PORTC = 0x00;
 
-	while(1) {
-		cntavail = 0x00;
+  unsigned char tmpValA = 0x00;
+  unsigned char tmpValA1 = 0x00;
+  unsigned char tmpValA2 = 0x00;
+  unsigned char tmpValA3 = 0x00;
+  unsigned char cntavail = 0x04;
 
-		tmpA = PINA & 0x01; // this is BITWISE.
-		if (tmpA == 0x00) {
-			cntavail = cntavail + 1;
-		}
-		tmpA = PINA & 0x02; // this is BITWISE.
-		if (tmpA == 0x00) {
-			cntavail = cntavail + 1;
-		}
-		tmpA = PINA & 0x04; // this is BITWISE.
-		if (tmpA == 0x00) {
-			cntavail = cntavail + 1;
-		}
-		tmpA = PINA & 0x08; // this is BITWISE.
-		if (tmpA == 0x00) {
-			cntavail = cntavail + 1;
-		}
-		PORTC = cntavail;
-	}
+  while(1) {
+    cntavail = 0x00;
+
+    tmpValA = PINA & 0x01; // this is BITWISE.
+    if (tmpValA == 0x01) {
+      cntavail = cntavail - 1;
+    }
+    tmpValA1 = PINA & 0x02; // this is BITWISE.
+    if (tmpValA1 == 0x02) {
+      cntavail = cntavail - 1;
+    }
+    tmpValA2 = PINA & 0x04; // this is BITWISE.
+    if (tmpValA2 == 0x04) {
+      cntavail = cntavail - 1;
+    }
+    tmpValA3 = PINA & 0x08; // this is BITWISE.
+    if (tmpValA3 == 0x08) {
+      cntavail = cntavail - 1;
+    }
+    PORTC = cntavail;
+  }
 
 
-	return 0;
+  return 0;
 }
