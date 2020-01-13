@@ -26,23 +26,23 @@ int main(void) {
   unsigned char cntavail = 0x04;
 
   while(1) {
-    cntavail = 0x00;
+    //cntavail = 0x00;
 
     tmpValA = PINA & 0x01; // this is BITWISE.
     if (tmpValA == 0x01) {
-      cntavail = cntavail - 1;
+      cntavail = cntavail - 0x01;
     }
     tmpValA1 = PINA & 0x02; // this is BITWISE.
     if (tmpValA1 == 0x02) {
-      cntavail = cntavail - 1;
+      cntavail = cntavail - 0x01;
     }
     tmpValA2 = PINA & 0x04; // this is BITWISE.
     if (tmpValA2 == 0x04) {
-      cntavail = cntavail - 1;
+      cntavail = cntavail - 0x01;
     }
     tmpValA3 = PINA & 0x08; // this is BITWISE.
     if (tmpValA3 == 0x08) {
-      cntavail = cntavail - 1;
+      cntavail = cntavail - 0x01;
     }
     tmpValA4 = PINA & 0x0F;
     if (tmpValA4 == 0x0F || cntavail == 0) {
