@@ -9,6 +9,10 @@
 *	code, is my own original work.
 */
 #include <avr/io.h>
+#ifdef _SIMULATE_
+#include “simAVRHeader.h”
+#endif
+
 int main(void) {
   DDRA = 0x00;
   DDRC = 0xFF;
