@@ -43,6 +43,7 @@ int main(void) {
       cntavail = cntavail - 1;
     }
     PORTC = cntavail;
+    cntavail = 0x04;
   }
 
 

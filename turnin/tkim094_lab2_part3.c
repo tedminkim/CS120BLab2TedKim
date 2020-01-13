@@ -49,6 +49,7 @@ int main(void) {
       cntavail = 0x80;
     }
     PORTC = cntavail;
+    cntavail = 0x04;
   }
   return 0;
 }
