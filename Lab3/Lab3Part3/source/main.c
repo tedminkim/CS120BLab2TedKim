@@ -41,13 +41,13 @@ int main(void) {
     else if (tempValA == 0x05 || tempValA == 0x06) {
       tempValC = 0x28;
     }
-    else if (tempValA == 0x07 || tempValA == 0x08 || tempValA == 0x09) {
+    else if (tempValA >= 0x07 && tempValA <= 0x09) {
       tempValC = 0x2C;
     }
-    else if (tempValA == 0x0A || tempValA == 0x0B || tempValA == 0x0C) {
+    else if (tempValA >= 0x0A && tempValA <= 0x0C) {
       tempValC = 0x2E;
     }
-    else if (tempValA == 0x0D || tempValA == 0x0E || tempValA == 0x0F) {
+    else if (tempValA >= 0x0D && tempValA <= 0x0F) {
       tempValC = 0x2F;
     }
 
