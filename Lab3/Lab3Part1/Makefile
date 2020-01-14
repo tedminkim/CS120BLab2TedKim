@@ -49,7 +49,9 @@ H120=0xD9
 HTXT=hfuse.txt
 JTAGEN=0x40
 LOW=lfuse
-LDEFAULT=0x42
+LDEFAULr=0x42
+r: 'for' loop initial declarations are only allowed in C99 or C11 mode
+
 L120=0xC2
 HEX=h
 RAW=m
