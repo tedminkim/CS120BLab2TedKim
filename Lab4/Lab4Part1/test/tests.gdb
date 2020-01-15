@@ -40,12 +40,7 @@ echo Running all tests..."\n\n
 
 #Add tests below
 #Initial States
-echo set state = Init
-setPINA 0x00
-continue 2
-expectPORTB 0x01
-expect state Init
-checkResult
+
 
 #2 states only
 test "PINA: 0x00, 0x01 => PORTB: 0x01, state: Wait"
@@ -80,7 +75,7 @@ setPINA 0x01
 continue 2
 setPINA 0x00
 continue 2
-setPINA 0x01
+setPINA 0x00
 expectPORTB 0x02
 expect state WaitP2
 checkResult
