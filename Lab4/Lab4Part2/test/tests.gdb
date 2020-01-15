@@ -48,7 +48,7 @@ expect state Incr
 checkResult
 
 test "PINA: 0x00 => PORTC: 0x00, state = Reset"
-set state = Start
+set TickButtonCount::state = Start
 setPINA 0x00
 continue 2
 expectPORTC 0x00
