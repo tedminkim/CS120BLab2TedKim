@@ -82,7 +82,7 @@ int main(void) {
   state = Start;
 
   while(1) {
-    Tickmachine();
+    TickMachine();
   }
   return 0;
 }

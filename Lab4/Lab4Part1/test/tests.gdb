@@ -40,16 +40,11 @@ echo Running all tests..."\n\n
 
 #Add tests below
 #Initial States
-echo set state = Init
-setPINA 0x00
-continue 2
-expectPORTB 0x01
-expect state Init
-checkResult
+
 
 #2 states only
 test "PINA: 0x00, 0x01 => PORTB: 0x01, state: Wait"
-set state = Init
+set TickMachine::state = Init
 setPINA 0x00
 continue 2
 setPINA 0x01
@@ -60,7 +55,7 @@ checkResult
 
 #3 states
 test "PINA: 0x00, 0x01, 0x00 => PORTB: 0x02, state: Light"
-set state = Init
+set TickMachine::state = Init
 setPINA 0x00
 continue 2
 setPINA 0x01
@@ -73,7 +68,7 @@ checkResult
 
 #4 states
 test "PINA: 0x00, 0x01, 0x00, 0x01 => PORTB: 0x02, state: WaitP2"
-set state = Init
+set TickMachine::state = Init
 setPINA 0x00
 continue 2
 setPINA 0x01
@@ -87,7 +82,7 @@ checkResult
 
 #5 states
 test "PINA: 0x00, 0x01, 0x00, 0x01, 0x00 => PORTB: 0x02, state: Init"
-set state = Init
+set TickMachine::state = Init
 setPINA 0x00
 continue 2
 setPINA 0x01
