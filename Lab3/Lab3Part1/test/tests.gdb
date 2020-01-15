@@ -43,61 +43,61 @@ test "PINA: 0x00, PINB: 0x00 => PORTC: 0"
 setPINA 0x00
 setPINB 0x00
 continue 5
-expectPORTC 0
+expectPORTC 0x00
 
 test "PINA: 0x01, PINB: 0x00 => PORTC: 1"
 setPINA 0x01
 setPINB 0x00
 continue 5
-expectPORTC 1
+expectPORTC 0x01
 
 test "PINA: 0x10, PINB: 0x01 => PORTC: 2"
 setPINA 0x10
 setPINB 0x01
 continue 5
-expectPORTC 2
+expectPORTC 0x02
 
 test "PINA: 0x03, PINB: 0x10 => PORTC: 3"
 setPINA 0x03
 setPINB 0x10
 continue 5
-expectPORTC 3
+expectPORTC 0x03
 
 test "PINA: 0x03, PINB: 0x03 => PORTC: 4"
 setPINA 0x03
 setPINB 0x03
 continue 5
-expectPORTC 4
+expectPORTC 0x04
 
 test "PINA: 0x0F, PINB: 0x01 => PORTC: 5"
 setPINA 0x0F
 setPINB 0x01
 continue 5
-expectPORTC 5
+expectPORTC 0x05
 
 test "PINA: 0xFF, PINB: 0x01=> PORTC: 9"
 setPINA 0xFF
 setPINB 0x01
 continue 5
-expectPORTC 9
+expectPORTC 0x09
 
 test "PINA: 0xFF, PINB: 0x03 => PORTC: 10"
 setPINA 0xFF
 setPINB 0x03
 continue 5
-expectPORTC 10
+expectPORTC 0x0A
 
 test "PINA: 0xFF, PINB: 0xFE => PORTC: 15"
 setPINA 0xFF
 setPINB 0xFE
 continue 5
-expectPORTC 15
+expectPORTC 0x0F
 
 test "PINA: 0xFF, PINB: 0xFF => PORTC: 16"
 setPINA 0xFF
 setPINB 0xFF
 continue 5
-expectPORTC 16
+expectPORTC 0x10
 
 # Report on how many tests passed/tests ran
 set $passed=$tests-$failed
