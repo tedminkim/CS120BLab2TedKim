@@ -16,7 +16,7 @@ unsigned char countHold = 0x00;
 
 
 void TickButtonCount() {
-  unsigned char tempA = 0x00;
+  unsigned char tempA = PINA;
   switch (state) {
     case Start:
       state = Init;
@@ -55,6 +55,9 @@ void TickButtonCount() {
         countHold = countHold + 1;
       }
       break;
+    case Reset:
+      countHold = 0;
+      break;
     case Decr:
       if (countHold > 0) {
         countHold = countHold - 1;
@@ -71,7 +74,7 @@ int main(void) {
   PORTC = 0x00;
 
   state = Start;
-  countHold = 7;
+  countHold = 6;
 
   while(1) {
     TickButtonCount();
