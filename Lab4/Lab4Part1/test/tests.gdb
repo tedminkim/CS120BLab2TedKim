@@ -44,7 +44,7 @@ echo Running all tests..."\n\n
 
 #2 states only
 test "PINA: 0x00, 0x01 => PORTB: 0x01, state: Wait"
-set TickMachine::state = Init
+set TickButtonLightSM::state = Init
 setPINA 0x00
 continue 2
 setPINA 0x01
@@ -55,7 +55,7 @@ checkResult
 
 #3 states
 test "PINA: 0x00, 0x01, 0x00 => PORTB: 0x02, state: Light"
-set TickMachine::state = Init
+set TickButtonLightSM::state = Init
 setPINA 0x00
 continue 2
 setPINA 0x01
@@ -68,7 +68,7 @@ checkResult
 
 #4 states
 test "PINA: 0x00, 0x01, 0x00, 0x01 => PORTB: 0x02, state: WaitP2"
-set TickMachine::state = Init
+set TickButtonLightSM::state = Init
 setPINA 0x00
 continue 2
 setPINA 0x01
@@ -82,7 +82,7 @@ checkResult
 
 #5 states
 test "PINA: 0x00, 0x01, 0x00, 0x01, 0x00 => PORTB: 0x02, state: Init"
-set TickMachine::state = Init
+set TickButtonLightSM::state = Init
 setPINA 0x00
 continue 2
 setPINA 0x01

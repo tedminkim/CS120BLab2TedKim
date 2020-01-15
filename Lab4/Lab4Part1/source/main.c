@@ -13,10 +13,11 @@
 
 enum States{Start, Init, Wait, Light, WaitP2} state;
 unsigned char stateCurr = 0x00;
-unsigned char tempA = 0x00;
 
 
-void TickMachine() {
+
+void TickButtonLightSM() {
+  unsigned char tempA = 0x00;
   tempA = PINA;
   switch(state) {
     case Start:
@@ -82,7 +83,7 @@ int main(void) {
   state = Start;
 
   while(1) {
-    TickMachine();
+    TickButtonLightSM();
   }
   return 0;
 }
