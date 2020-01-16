@@ -74,7 +74,7 @@ int main(void) {
   PORTC = 0x00;
 
   state = Start;
-  countHold = 6;
+  countHold = 7;
 
   while(1) {
     TickButtonCount();
