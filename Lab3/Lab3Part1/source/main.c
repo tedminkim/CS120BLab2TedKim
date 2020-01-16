@@ -1,11 +1,12 @@
 /* Author: Ted Kim
 *  Email: tkim094@ucr.edu
-*  Partner(s) Name: None
-*	 Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
-*	 Assignment: Lab #3  Exercise #1
-*	 Exercise Description: Count the number of 1s on ports A and B and output that number on port C.
+*  Partner(s) Name: Kevin Chen
+*  Partner's Email: kchen161@ucr.edu
+*  Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
+*  Assignment: Lab #3  Exercise #1
+*  Exercise Description: Count the number of 1s on ports A and B and output that number on port C.
 
-*	I acknowledge all content contained herein, excluding template or example
+*  I acknowledge all content contained herein, excluding template or example
 *	code, is my own original work.
 */
 #include <avr/io.h>

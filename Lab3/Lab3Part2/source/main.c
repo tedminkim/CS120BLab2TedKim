@@ -1,11 +1,13 @@
-/* Author: Ted Kim
+/*
+* Author: Ted Kim
 *  Email: tkim094@ucr.edu
-*  Partner(s) Name: None
-*	 Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
-*	 Assignment: Lab #3  Exercise #2
-*	 Exercise Description: A car has a fuel-level sensor that sets PA3..PA0 to a value between 0 (empty) and 15 (full).
+*  Partner(s) Name: Kevin Chen
+*  Partner's Email: kchen161@ucr.edu
+*  Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
+*  Assignment: Lab #3  Exercise #2
+*  Exercise Description: A car has a fuel-level sensor that sets PA3..PA0 to a value between 0 (empty) and 15 (full).
 
-*	I acknowledge all content contained herein, excluding template or example
+*  I acknowledge all content contained herein, excluding template or example
 *	code, is my own original work.
 */
 #include <avr/io.h>
