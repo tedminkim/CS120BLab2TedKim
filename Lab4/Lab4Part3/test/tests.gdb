@@ -5,7 +5,7 @@
 #   test "<message>"
 #       Where <message> is the message to print. Must call this at the beginning of every test
 #       Example: test "PINA: 0x00 => expect PORTC: 0x01"
-#   
+#
 #       Verify if the test passed or failed. Prints "passed." or "failed." accordingly,
 #       Must call this at the end of every test.
 #   expectPORTx <val>
@@ -39,6 +39,49 @@ echo Running all tests..."\n\n
 #checkResult
 
 #Add tests below
+test "PINA: 0x00 => PORTC: 0x00, state = Init"
+set state = Start
+setPINA 0x00
+continue 2
+expectPORTC 0x00
+expect state Init
+checkResult
+
+test "PINA: 0x00, 0x01 => PORTC: 0x00, state = KeyX"
+set state = Start
+setPINA 0x00
+continue 2
+setPINA 0x01
+continue 2
+expectPORTC 0x00
+expect state KeyX
+checkResult
+
+test "PINA: 0x00, 0x01, 0x00 => PORTC: 0x00, state = KeyY"
+set state = Start
+setPINA 0x00
+continue 2
+setPINA 0x01
+continue 2
+expectPORTC 0x00
+expect state KeyY
+checkResult
+
+test "PINA: 0x80 => PORTC: 0, state = Init"
+set state = Unlocked
+setPINA 0x80
+continue 2
+expectPORTC 0x00
+expect state Init
+checkResult
+
+test "PINA: 0x00 => PORTC: 0x00, state = Unlocked"
+set state = KeyHash
+setPINA 0x00
+continue 2
+expectPORTC 0x00
+expect state Unlocked
+checkResult
 
 
 
