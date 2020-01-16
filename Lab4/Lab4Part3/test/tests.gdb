@@ -5,7 +5,7 @@
 #   test "<message>"
 #       Where <message> is the message to print. Must call this at the beginning of every test
 #       Example: test "PINA: 0x00 => expect PORTC: 0x01"
-#   checkResult
+#   
 #       Verify if the test passed or failed. Prints "passed." or "failed." accordingly,
 #       Must call this at the end of every test.
 #   expectPORTx <val>
@@ -39,95 +39,10 @@ echo Running all tests..."\n\n
 #checkResult
 
 #Add tests below
-test “PINA: 0x01 => PORTC: 0x60”
-setPINA 0x01
-continue 5
-expectPORTC 0x60
-checkResult
 
-test “PINA: 0x12 => PORTC: 0x60”
-setPINA 0x12
-continue 5
-expectPORTC 0x60
-checkResult
 
-test “PINA: 0x33 => PORTC: 0x70”
-setPINA 0x33
-continue 5
-expectPORTC 0x70
-checkResult
 
-test “PINA: 0x44 => PORTC: 0x70”
-setPINA 0x44
-continue 5
-expectPORTC 0x70
-checkResult
 
-test “PINA: 0x55 => PORTC: 0x28”
-setPINA 0x55
-continue 5
-expectPORTC 0x28
-checkResult
-
-test “PINA: 0x66 => PORTC: 0x28”
-setPINA 0x66
-continue 5
-expectPORTC 0x28
-checkResult
-
-test “PINA: 0x77 => PORTC: 0x2C”
-setPINA 0x07
-continue 5
-expectPORTC 0x2C
-checkResult
-
-test “PINA: 0x08 => PORTC: 0x2C”
-setPINA 0x08
-continue 5
-expectPORTC 0x2C
-checkResult
-
-test “PINA: 0x09 => PORTC: 0x2C”
-setPINA 0x09
-continue 5
-expectPORTC 0x2C
-checkResult
-
-test “PINA: 0x0A => PORTC: 0x2E”
-setPINA 0x0A
-continue 5
-expectPORTC 0x2E
-checkResult
-
-test “PINA: 0x0B => PORTC: 0x2E”
-setPINA 0x0B
-continue 5
-expectPORTC 0x2E
-checkResult
-
-test “PINA: 0x0C => PORTC: 0x2E”
-setPINA 0x0C
-continue 5
-expectPORTC 0x2E
-checkResult
-
-test “PINA: 0x0D => PORTC: 0x2F”
-setPINA 0x0D
-continue 5
-expectPORTC 0x2F
-checkResult
-
-test “PINA: 0x0E => PORTC: 0x2F”
-setPINA 0x0E
-continue 5
-expectPORTC 0x2F
-checkResult
-
-test “PINA: 0x0F => PORTC: 0x2F”
-setPINA 0x0F
-continue 5
-expectPORTC 0x2F
-checkResult
 
 
 # Report on how many tests passed/tests ran

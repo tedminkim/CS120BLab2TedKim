@@ -50,13 +50,13 @@ void TickButtonCount() {
       break;
     case Init:
       break;
+    case Reset:
+      countHold = 0;
+      break;
     case Incr:
       if (countHold < 9) {
         countHold = countHold + 1;
       }
-      break;
-    case Reset:
-      countHold = 0;
       break;
     case Decr:
       if (countHold > 0) {
