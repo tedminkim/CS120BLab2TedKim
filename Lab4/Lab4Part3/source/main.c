@@ -39,6 +39,17 @@ void TickKeypadSM() {
       }
       break;
     case KeyY:
+      if (tempA == 0) {
+        state = KeyY;
+      }
+      else if (tempA == 2) {
+        state = KeyHash;
+      }
+      else {
+        state = Init;
+      }
+      break;
+    case KeyHash:
       if (tempA == 2) {
         state = KeyHash;
       }
@@ -65,10 +76,12 @@ void TickKeypadSM() {
       PORTC = 0x00;
       break;
     case KeyX:
+      //PORTC = 0x01;
       break;
     case KeyY:
       break;
     case KeyHash:
+      //PORTC = 0x02;
       break;
     case Unlocked:
       PORTC = 0x01;
@@ -85,7 +98,7 @@ int main(void) {
   PORTC = 0x00;
 
   while(1) {
-    state = Start;
+   // state = Start;
     TickKeypadSM();
   }
   return 0;

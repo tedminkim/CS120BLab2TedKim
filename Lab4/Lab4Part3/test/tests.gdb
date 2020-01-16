@@ -1,4 +1,4 @@
-# Test file for Lab2_introToAVR
+#Test file for Lab2_introToAVR
 
 
 # commands.gdb provides the following functions for ease:
@@ -40,7 +40,7 @@ echo Running all tests..."\n\n
 
 #Add tests below
 test "PINA: 0x00 => PORTC: 0x00, state = Init"
-set state = Start
+set TickKeypadSM::state = Init
 setPINA 0x00
 continue 2
 expectPORTC 0x00
@@ -48,7 +48,7 @@ expect state Init
 checkResult
 
 test "PINA: 0x00, 0x01 => PORTC: 0x00, state = KeyX"
-set state = Start
+set TickKeypadSM::state = Init
 setPINA 0x00
 continue 2
 setPINA 0x01
@@ -58,28 +58,30 @@ expect state KeyX
 checkResult
 
 test "PINA: 0x00, 0x01, 0x00 => PORTC: 0x00, state = KeyY"
-set state = Start
+set TickKeypadSM::state = Init
 setPINA 0x00
 continue 2
 setPINA 0x01
+continue 2
+setPINA 0x00
 continue 2
 expectPORTC 0x00
 expect state KeyY
 checkResult
 
 test "PINA: 0x80 => PORTC: 0, state = Init"
-set state = Unlocked
+set TickKeypadSM::state = Unlocked
 setPINA 0x80
 continue 2
 expectPORTC 0x00
 expect state Init
 checkResult
 
-test "PINA: 0x00 => PORTC: 0x00, state = Unlocked"
-set state = KeyHash
+test "PINA: 0x00 => PORTC: 0x01, state = Unlocked"
+set TickKeypadSM::state = KeyHash
 setPINA 0x00
 continue 2
-expectPORTC 0x00
+expectPORTC 0x01
 expect state Unlocked
 checkResult
 
