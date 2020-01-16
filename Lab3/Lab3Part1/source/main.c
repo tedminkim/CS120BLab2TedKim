@@ -35,9 +35,10 @@ int main(void) {
    unsigned char tmpB = PINB;
    unsigned char i = 0;
     for (i = 0; i < 8; i++) {
-      total = total + GetBit(tmpA, i); + GetBit(tmpB, i);
+      total = total + GetBit(tmpA, i) + GetBit(tmpB, i);
     }
     PORTC = total;
+    total = 0;
   }
   return 0;
 }

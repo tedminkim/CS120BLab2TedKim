@@ -39,65 +39,103 @@ echo Running all tests..."\n\n
 #checkResult
 
 #Add tests below
-test "PINA: 0x00, PINB: 0x00 => PORTC: 0"
+test "PINA: 0x00, PINB: 0x00 => PORTC: 0x00"
 setPINA 0x00
+continue 2
 setPINB 0x00
-continue 5
+continue 2
 expectPORTC 0x00
+checkResult
 
-test "PINA: 0x01, PINB: 0x00 => PORTC: 1"
+test "PINA: 0x01, PINB: 0x00 => PORTC: 0x01"
 setPINA 0x01
+continue 2
 setPINB 0x00
-continue 5
+continue 2
 expectPORTC 0x01
+checkResult
 
-test "PINA: 0x10, PINB: 0x01 => PORTC: 2"
-setPINA 0x10
-setPINB 0x01
-continue 5
+test "PINA: 0x01, PINB: 0x02 => PORTC: 0x02"
+setPINA 0x01
+continue 2
+setPINB 0x02
+continue 2
 expectPORTC 0x02
+checkResult
 
-test "PINA: 0x03, PINB: 0x10 => PORTC: 3"
+test "PINA: 0x03, PINB: 0x10 => PORTC: 0x03"
 setPINA 0x03
+continue 2
 setPINB 0x10
-continue 5
+continue 2
 expectPORTC 0x03
+checkResult
 
-test "PINA: 0x03, PINB: 0x03 => PORTC: 4"
+test "PINA: 0x03, PINB: 0x03 => PORTC: 0x04"
 setPINA 0x03
+continue 2
 setPINB 0x03
-continue 5
+continue 2
 expectPORTC 0x04
+checkResult
 
-test "PINA: 0x0F, PINB: 0x01 => PORTC: 5"
-setPINA 0x0F
-setPINB 0x01
-continue 5
+test "PINA: 0x03, PINB: 0x07 => PORTC: 0x05" 
+setPINA 0x03
+continue 2
+setPINB 0x07
+continue 2
 expectPORTC 0x05
+checkResult
 
-test "PINA: 0xFF, PINB: 0x01=> PORTC: 9"
-setPINA 0xFF
-setPINB 0x01
-continue 5
-expectPORTC 0x09
+test "PINA: 0x07, PINB: 0x07 => PORTC: 0x06"
+setPINA 0x07
+continue 2
+setPINA 0x07
+continue 2
+expectPORTC 0x06
+checkResult
 
-test "PINA: 0xFF, PINB: 0x03 => PORTC: 10"
+test "PINA: 0x0F, PINB: 0x07 => PORTC: 0x07"
+setPINA 0x0F
+continue 2
+setPINB 0x07
+continue 2
+expectPORTC 0x07
+checkResult
+
+test "PINA: 0xF0, PINB: 0x0F=> PORTC: 0x08"
+setPINA 0x0F
+continue 2
+setPINB 0xF0
+continue 2
+expectPORTC 0x08
+checkResult
+
+test "PINA: 0xFF, PINB: 0x03 => PORTC: 0x0A"
 setPINA 0xFF
+continue 2
 setPINB 0x03
-continue 5
+continue 2
 expectPORTC 0x0A
+checkResult
 
-test "PINA: 0xFF, PINB: 0xFE => PORTC: 15"
+test "PINA: 0xFF, PINB: 0xFE => PORTC: 0x0F"
 setPINA 0xFF
+continue 2
 setPINB 0xFE
-continue 5
+continue 2
 expectPORTC 0x0F
+checkResult
 
-test "PINA: 0xFF, PINB: 0xFF => PORTC: 16"
+
+
+test "PINA: 0xFF, PINB: 0xFF => PORTC: 0x10"
 setPINA 0xFF
+continue 2
 setPINB 0xFF
-continue 5
+continue 2
 expectPORTC 0x10
+checkResult
 
 # Report on how many tests passed/tests ran
 set $passed=$tests-$failed
