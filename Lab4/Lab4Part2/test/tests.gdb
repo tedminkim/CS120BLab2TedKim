@@ -83,6 +83,29 @@ expectPORTC 0
 expect state Reset
 checkResult
 
+test "PINA: 0x00, 0x01, 0x01 => PORTC: 0x02, state = Incr"
+set TickButtonCount::state = Start
+setPINA 0x00
+continue 2
+setPINA 0x01
+continue 2
+setPINA 0x01
+continue 2
+expectPORTC 0x02
+expect state Incr
+checkResult
+
+test "PINA: 0x00, 0x02, 0x02 => PORTC: 0x00, state = Decr"
+set TickButtonCount:: state = Start
+setPINa 0x00
+continue 2
+setPINA 0x02
+continue 2
+setPINA 0x02
+continue 2
+expectPORTC 0x00
+expect state Decr
+checkResult
 
 # Report on how many tests passed/tests ran
 set $passed=$tests-$failed
