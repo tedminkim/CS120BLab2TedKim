@@ -44,7 +44,7 @@ setPINA 0x00
 continue 2
 setPINB 0x00
 continue 2
-expectPORTC 0x00
+expectPORTC 0
 checkResult
 
 test "PINA: 0x01, PINB: 0x00 => PORTC: 0x01"
