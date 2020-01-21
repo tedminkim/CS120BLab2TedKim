@@ -22,7 +22,7 @@ void TickButtonCount() {
       state = Init;
       break;
     case Init:
-      if (tempA == 0) {
+      if (tempA == 3) {
         state = Reset;
       }
       else if (tempA == 1 && countHold < 9) {
@@ -31,15 +31,12 @@ void TickButtonCount() {
       else if (tempA == 2 && countHold > 0) {
         state = Decr;
       }
-      else {
-        state = Init;
-      }
       break;
     case Incr:
       state = Wait1;
       break;
     case Wait1:
-      if (tempA == 0) {
+      if (tempA == 3) {
         state = Reset;
       }
       if (tempA != 1) {
@@ -50,7 +47,7 @@ void TickButtonCount() {
       state = Wait2;
       break;
     case Wait2:
-      if (tempA == 0) {
+      if (tempA == 3) {
         state = Reset;
       }
       if (tempA != 2) {
