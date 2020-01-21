@@ -11,7 +11,7 @@
 #include <avr/io.h>
 #include "simAVRHeader.h"
 
-enum States{Start, Init, Incr, Decr, Reset} state;
+enum States{Start, Init, Incr, Wait1, Decr, Wait2, Reset} state;
 unsigned char countHold = 0x00;
 
 
@@ -36,10 +36,10 @@ void TickButtonCount() {
       }
       break;
     case Incr:
-      state = Init;
+      state = Wait1;
       break;
     case Decr:
-      state = Init;
+      state = Wait2;
       break;
     case Reset:
       state = Init;
@@ -57,6 +57,10 @@ void TickButtonCount() {
       if (countHold < 9) {
         countHold = countHold + 1;
       }
+      break;
+    case Wait1:
+      break;
+    case Wait2:
       break;
     case Decr:
       if (countHold > 0) {

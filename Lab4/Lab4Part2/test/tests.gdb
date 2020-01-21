@@ -42,9 +42,9 @@ echo Running all tests..."\n\n
 test "PINA: 0x01 => PORTC: 0x08, state = Incr"
 set TickButtonCount::state = Start
 setPINA 0x01
-continue 2
+continue 5
 expectPORTC 8
-expect state Incr
+expect state Wait1
 checkResult
 
 test "PINA: 0x00 => PORTC: 0x00, state = Reset"
@@ -83,7 +83,7 @@ expectPORTC 0
 expect state Reset
 checkResult
 
-test "PINA: 0x00, 0x01, 0x01 => PORTC: 0x02, state = Incr"
+test "PINA: 0x00, 0x01, 0x01 => PORTC: 0x01, state = Incr"
 set TickButtonCount::state = Start
 setPINA 0x00
 continue 2
@@ -91,8 +91,8 @@ setPINA 0x01
 continue 2
 setPINA 0x01
 continue 2
-expectPORTC 0x02
-expect state Incr
+expectPORTC 0x01
+expect state Wait1
 checkResult
 
 test "PINA: 0x00, 0x02, 0x02 => PORTC: 0x00, state = Decr"
@@ -104,7 +104,7 @@ continue 2
 setPINA 0x02
 continue 2
 expectPORTC 0x00
-expect state Decr
+expect state Wait2
 checkResult
 
 # Report on how many tests passed/tests ran
