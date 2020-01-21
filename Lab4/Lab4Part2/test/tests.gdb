@@ -86,11 +86,11 @@ checkResult
 test "PINA: 0x00, 0x01, 0x01 => PORTC: 0x01, state = Incr"
 set TickButtonCount::state = Start
 setPINA 0x00
-continue 2
+continue 5
 setPINA 0x01
-continue 2
+continue 5
 setPINA 0x01
-continue 2
+continue 5
 expectPORTC 0x01
 expect state Wait1
 checkResult
@@ -98,11 +98,11 @@ checkResult
 test "PINA: 0x00, 0x02, 0x02 => PORTC: 0x00, state = Decr"
 set TickButtonCount:: state = Start
 setPINa 0x00
-continue 2
+continue 5
 setPINA 0x02
-continue 2
+continue 5
 setPINA 0x02
-continue 2
+continue 5
 expectPORTC 0x00
 expect state Wait2
 checkResult
