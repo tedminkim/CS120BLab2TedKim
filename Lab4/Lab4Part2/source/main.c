@@ -16,42 +16,43 @@ unsigned char countHold = 0x00;
 
 
 void TickButtonCount() {
-  unsigned char tempA = PINA;
+  unsigned char tempA0 = ~PINA & 0x01;
+  unsigned char tempA1 = ~PINA & 0x02;
   switch (state) {
     case Start:
       state = Init;
       break;
     case Init:
-      if (tempA == 3) {
-        state = Reset;
-      }
-      else if (tempA == 1 && countHold < 9) {
+      if (tempA0) {
         state = Incr;
       }
-      else if (tempA == 2 && countHold > 0) {
+      else if (tempA1) {
         state = Decr;
+      }
+      else if (tempA0 && tempA1) {
+        state = Reset;
       }
       break;
     case Incr:
       state = Wait1;
       break;
     case Wait1:
-      if (tempA == 3) {
+      if (tempA0 && tempA1) {
         state = Reset;
       }
-      if (tempA != 1) {
-        state = Wait1;
+      if (!tempA0) {
+        state = Init;
       }
       break;
     case Decr:
       state = Wait2;
       break;
     case Wait2:
-      if (tempA == 3) {
+      if (tempA0 && tempA1) {
         state = Reset;
       }
-      if (tempA != 2) {
-        state = Wait2;
+      if (!tempA1) {
+        state = Init;
       }
       break;
     case Reset:
@@ -60,6 +61,7 @@ void TickButtonCount() {
   }
   switch (state) {
     case Start:
+      countHold = 7;
       break;
     case Init:
       break;
@@ -79,6 +81,8 @@ void TickButtonCount() {
       if (countHold > 0) {
         countHold = countHold - 1;
       }
+      break;
+    default:
       break;
   }
 }
