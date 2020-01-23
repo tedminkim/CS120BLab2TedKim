@@ -83,7 +83,7 @@ expectPORTC 0
 expect state Reset
 checkResult
 
-test "PINA: 0x03, 0x01, 0x01 => PORTC: 0x01, state = Incr"
+test "PINA: 0x03, 0x01, 0x01 => PORTC: 0x01, state = Wait1"
 set TickButtonCount::state = Start
 setPINA 0x03
 continue 5
@@ -95,7 +95,7 @@ expectPORTC 0x01
 expect state Wait1
 checkResult
 
-test "PINA: 0x00, 0x02, 0x02 => PORTC: 0x00, state = Decr"
+test "PINA: 0x00, 0x02, 0x02 => PORTC: 0x00, state = Wait2"
 set TickButtonCount:: state = Start
 setPINa 0x03
 continue 5
