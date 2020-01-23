@@ -1,0 +1,8 @@
+Breakpoint 1 at 0xe6: file source/main.c, line 20.
+Note: automatically using hardware breakpoints for read-only addresses.
+======================================================
+Running all tests..."
+
+"PINB: 0x00 => PORTB: 0x0F"...test/tests.gdb:45: Error in sourced command file:
+No symbol "PORTB" in current context.
+Quitting: Remote doesn't know how to detach
