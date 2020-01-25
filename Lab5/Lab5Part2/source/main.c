@@ -1,8 +1,9 @@
 /* Author: Ted Kim
 *  Email: tkim094@ucr.edu
-*  Partner(s) Name: None
+*  Partner(s) Name: Kevin Chen
+*  Partner Email: kchen161@ucr.edu
 *	 Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
-*	 Assignment: Lab #4  Exercise #2
+*	 Assignment: Lab #5  Exercise #2
 *	 Exercise Description: Buttons are connected to PA0 and PA1. Output for PORTC is initially 7. Pressing PA0 increments PORTC once (stopping at 9).
 
 *	I acknowledge all content contained herein, excluding template or example
