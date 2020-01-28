@@ -11,6 +11,7 @@
 *	code, is my own original work.
 */
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include "simAVRHeader.h"
 
 volatile unsigned char TimerFlag = 0;
@@ -73,12 +74,15 @@ void TickLED() {
       break;
     case Led0:
       out = 0x01;
+      PORTB = out;
       break;
     case Led1:
       out = 0x02;
+      PORTB = out;
       break;
     case Led2:
       out = 0x04;
+      PORTB = out;
       break;
   }
 }
@@ -94,14 +98,14 @@ int main(void) {
   //unsigned char tempValC = 0x00;
   TimerSet(1000);
   TimerOn();
-  //unsigned char tempValB = 0x00;
+  //unsigned char tempValB = PORTB;
   state = Start;
 
   while(1) {
     TickLED();
     while (!TimerFlag) {}
     TimerFlag = 0;
-    PORTB = out;
+    //tempValB = out;
   }
   return 0;
 }
