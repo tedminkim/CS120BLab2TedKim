@@ -15,7 +15,7 @@
 #include "simAVRHeader.h"
 
 volatile unsigned char TimerFlag = 0;
-enum States{Start, Led0, Led1, Led2} state;
+enum States{Start, Wait, Led0, Led1, Led2} state;
 unsigned char out = 0x00;
 
 unsigned long _avr_timer_M = 1;
@@ -52,18 +52,43 @@ void TimerSet(unsigned long M) {
 }
 
 void TickLEDButton() {
+  unsigned char A0 = PINA;
   switch(state) {
     case Start:
       state = Led0;
       break;
     case Led0:
-      state = Led1;
+      if (A0) {
+        state = Wait1;
+        break;
+      }
+      else {
+        state = Led1;
+      }
       break;
     case Led1:
-      state = Led2;
+      if (A0) {
+        state = Wait;
+      }
+      else {
+        state = Led2;
+      }
       break;
     case Led2:
-      state = Led0;
+      if (A0) {
+        state = Wait;
+      }
+      else {
+        state = Led0;
+      }
+      break;
+    case Wait:
+      if (!A0) {
+        state = Wait;
+      }
+      else {
+        state = Led0;
+      }
       break;
     default:
       state = Led0;
@@ -83,6 +108,10 @@ void TickLEDButton() {
     case Led2:
       out = 0x04;
       PORTC = out;
+      break;
+    case Wait:
+      break;
+    default:
       break;
   }
 }

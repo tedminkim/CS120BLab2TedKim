@@ -84,6 +84,8 @@ void TickLED() {
       out = 0x04;
       PORTC = out;
       break;
+    default:
+      break;
   }
 }
 
