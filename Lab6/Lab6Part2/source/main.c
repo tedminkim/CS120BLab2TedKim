@@ -1,20 +1,22 @@
-/* Author: Ted Kim
+/*
+* Author: Ted Kim
 *  Email: tkim094@ucr.edu
 *  Partner(s) Name: Kevin Chen
-*  Partner Email: kchen161@ucr.edu
-*	 Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
-*	 Assignment: Lab #5  Exercise #2
-*	 Exercise Description: Buttons are connected to PA0 and PA1. Output for PORTC is initially 7. Pressing PA0 increments PORTC once (stopping at 9).
+*  Partner's Email: kchen161@ucr.edu
+*  Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
+*  Assignment: Lab #6  Exercise #1
+*  Exercise Description: Create a synchSM to blink three LEDs connected to PB0, PB1, and PB2 in sequence, 1 second each.
 
-*	I acknowledge all content contained herein, excluding template or example
+*  I acknowledge all content contained herein, excluding template or example
 *	code, is my own original work.
 */
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include "simAVRHeader.h"
 
 volatile unsigned char TimerFlag = 0;
-//enum States{Start, Led0, Led1, Led2} state;
-//unsigned char out = 0x00;
+enum States{Start, Led0, Led1, Led2} state;
+unsigned char out = 0x00;
 
 unsigned long _avr_timer_M = 1;
 unsigned long _avr_timer_cntcurr = 0;
@@ -49,20 +51,61 @@ void TimerSet(unsigned long M) {
   _avr_timer_cntcurr = _avr_timer_M;
 }
 
+void TickLEDButton() {
+  switch(state) {
+    case Start:
+      state = Led0;
+      break;
+    case Led0:
+      state = Led1;
+      break;
+    case Led1:
+      state = Led2;
+      break;
+    case Led2:
+      state = Led0;
+      break;
+    default:
+      state = Led0;
+      break;
+  }
+  switch(state) {
+    case Start:
+      break;
+    case Led0:
+      out = 0x01;
+      PORTC = out;
+      break;
+    case Led1:
+      out = 0x02;
+      PORTC = out;
+      break;
+    case Led2:
+      out = 0x04;
+      PORTC = out;
+      break;
+  }
+}
 
 int main(void) {
-  DDRA = 0x00;
+  //DDRA = 0x00;
   DDRC = 0xFF;
 
-  PORTA = 0xFF;
+  //PORTA = 0xFF;
   PORTC = 0x00;
 
+  //unsigned char tempValA = 0x00;
+  //unsigned char tempValC = 0x00;
+  TimerSet(1000);
+  TimerOn();
+  //unsigned char tempValB = PORTB;
   state = Start;
-  countHold = 7;
 
   while(1) {
-    TickButtonCount();
-    PORTC = countHold;
+    TickLED();
+    while (!TimerFlag) {}
+    TimerFlag = 0;
+    //tempValB = out;
   }
   return 0;
 }
