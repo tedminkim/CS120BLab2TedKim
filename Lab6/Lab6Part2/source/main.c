@@ -131,7 +131,7 @@ int main(void) {
   state = Start;
 
   while(1) {
-    TickLED();
+    TickLEDButton();
     while (!TimerFlag) {}
     TimerFlag = 0;
     //tempValB = out;
