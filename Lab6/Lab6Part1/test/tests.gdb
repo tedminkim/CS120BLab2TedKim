@@ -43,7 +43,7 @@ test "Led0 Expect"
 set TickLED::state = Start
 setPINA 0xFF
 continue 1
-expectPORTB 1
+expectPORTC 1
 expect state Led0
 check Result
 
@@ -51,10 +51,10 @@ test "Led1 Expect"
 set TickLED::state = Start
 setPINA 0xFF
 continue 1
-expectPORTB 1
+expectPORTC 1
 expect state Led0
 continue 1
-expectPORTB 2
+expectPORTC 2
 expect state Led1
 check Result
 
@@ -62,10 +62,10 @@ test "Led2 Expect"
 set TickLED::state = Start
 setPINA 0xFF
 continue 1
-expectPORTB 1
+expectPORTC 1
 expect state Led0
 continue 2
-expectPORTB 4
+expectPORTC 4
 expect state Led2
 check Result
 
@@ -73,7 +73,7 @@ test "Led1 Expect"
 set TickLED::state = Start
 setPINA 0xFF
 continue 2
-expectPORTB 2
+expectPORTC 2
 expect state Led1
 check Result
 
@@ -81,9 +81,9 @@ test "Led0 Expect"
 set TickLED::state = Start
 setPINA 0xFF
 continue 2
-expectPORTB 2
+expectPORTC 2
 continue 2
-expectPORTB 1
+expectPORTC 1
 expect state Led0
 check Result
 

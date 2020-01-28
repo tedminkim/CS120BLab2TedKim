@@ -74,25 +74,25 @@ void TickLED() {
       break;
     case Led0:
       out = 0x01;
-      PORTB = out;
+      PORTC = out;
       break;
     case Led1:
       out = 0x02;
-      PORTB = out;
+      PORTC = out;
       break;
     case Led2:
       out = 0x04;
-      PORTB = out;
+      PORTC = out;
       break;
   }
 }
 
 int main(void) {
   //DDRA = 0x00;
-  DDRB = 0xFF;
+  DDRC = 0xFF;
 
   //PORTA = 0xFF;
-  PORTB = 0x00;
+  PORTC = 0x00;
 
   //unsigned char tempValA = 0x00;
   //unsigned char tempValC = 0x00;
