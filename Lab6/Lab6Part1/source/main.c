@@ -66,7 +66,7 @@ void TickLED() {
       state = Led0;
       break;
     default:
-      state = Led0;
+      state = Start;
       break;
   }
   switch(state) {
