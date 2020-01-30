@@ -45,7 +45,7 @@ setPINA 0xFF
 continue 1
 expectPORTC 1
 expect state Led0
-check Result
+checkResult
 
 test "Led1 Expect"
 set TickLEDButton::state = Start
@@ -56,36 +56,46 @@ expect state Led0
 continue 1
 expectPORTC 2
 expect state Led1
-check Result
+checkResult
+
+test "Wait Expect"
+set TickLEDButton::state = Led1
+setPINA 0xFE
+continue 1
+expectPORTC 2
+expect state Wait
+
+test "Led1 Expect"
+set TickLEDButton::state = Wait
+setPINA 0xFF
+continue 1
+expectPORTC 2
+expect state Led1
+checkResult
+
+test "Led1 Expect"
+set TickLEDButton::state = Led0
+setPINA 0xFF
+continue 1
+expectPORTC 2
+expect state Led1
+checkResult
 
 test "Led2 Expect"
-set TickLEDButton::state = Start
+set TickLEDButton::state = Led1
+setPINA 0xFF
+continue 1
+expectPORTC 4
+expect state Led2
+checkResult
+
+test "Led0 Expect"
+set TickLEDButton::state = Led2
 setPINA 0xFF
 continue 1
 expectPORTC 1
 expect state Led0
-continue 2
-expectPORTC 4
-expect state Led2
-check Result
-
-test "Led1 Expect"
-set TickLEDButton::state = Start
-setPINA 0xFF
-continue 2
-expectPORTC 2
-expect state Led1
-check Result
-
-test "Led0 Expect"
-set TickLEDButton::state = Start
-setPINA 0xFF
-continue 2
-expectPORTC 2
-continue 2
-expectPORTC 1
-expect state Led0
-check Result
+checkResult
 
 # Report on how many tests passed/tests ran
 set $passed=$tests-$failed

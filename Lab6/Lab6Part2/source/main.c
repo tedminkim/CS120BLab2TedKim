@@ -4,8 +4,8 @@
 *  Partner(s) Name: Kevin Chen
 *  Partner's Email: kchen161@ucr.edu
 *  Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
-*  Assignment: Lab #6  Exercise #1
-*  Exercise Description: Create a synchSM to blink three LEDs connected to PB0, PB1, and PB2 in sequence, 1 second each.
+*  Assignment: Lab #6  Exercise #2
+*  Exercise Description: Create a simple light game that requires pressing a button on PA0 while the middle of three LEDs on PB0, PB1, and PB2 is lit.
 
 *  I acknowledge all content contained herein, excluding template or example
 *	code, is my own original work.
@@ -20,6 +20,8 @@ unsigned char out = 0x00;
 
 unsigned long _avr_timer_M = 1;
 unsigned long _avr_timer_cntcurr = 0;
+unsigned char A0 = ~PINA & 0x01;
+unsigned char where;
 
 void TimerOn() {
   TCCR1B = 0x0B;
@@ -52,7 +54,7 @@ void TimerSet(unsigned long M) {
 }
 
 void TickLEDButton() {
-  unsigned char A0 = PINA;
+
   switch(state) {
     case Start:
       state = Led0;
@@ -84,48 +86,67 @@ void TickLEDButton() {
       break;
     case Wait:
       if (!A0) {
-        state = Wait;
+        switch(where) {
+          case 1:
+            state = Led0;
+            break;
+          case 2:
+            state = Led1;
+            break;
+          case 3:
+            state = Led2;
+            break;
+        }
+        where = 0x00;
       }
       else {
-        state = Led0;
+        state = Wait;
       }
       break;
     default:
-      state = Led0;
+      state = Start;
       break;
   }
   switch(state) {
     case Start:
       break;
     case Led0:
+      //where = 0x01;
       out = 0x01;
       PORTC = out;
+      where = 0x01;
+      //wait = 0;
       break;
     case Led1:
       out = 0x02;
       PORTC = out;
+      where = 0x02;
       break;
     case Led2:
       out = 0x04;
       PORTC = out;
+      where = 0x03;
       break;
     case Wait:
+      out = out;
+      PORTC = out;
       break;
     default:
+      state = Start;
       break;
   }
 }
 
 int main(void) {
-  //DDRA = 0x00;
+  DDRA = 0x00;
   DDRC = 0xFF;
 
-  //PORTA = 0xFF;
+  PORTA = 0xFF;
   PORTC = 0x00;
 
   //unsigned char tempValA = 0x00;
   //unsigned char tempValC = 0x00;
-  TimerSet(1000);
+  TimerSet(50);
   TimerOn();
   //unsigned char tempValB = PORTB;
   state = Start;
@@ -134,7 +155,7 @@ int main(void) {
     TickLEDButton();
     while (!TimerFlag) {}
     TimerFlag = 0;
-    //tempValB = out;
+    PORTC = out;
   }
   return 0;
 }
