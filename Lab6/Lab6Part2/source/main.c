@@ -20,7 +20,7 @@ unsigned char out = 0x00;
 
 unsigned long _avr_timer_M = 1;
 unsigned long _avr_timer_cntcurr = 0;
-unsigned char A0 = ~PINA & 0x01;
+//unsigned char A0 = ~PINA & 0x01;
 unsigned char where;
 
 void TimerOn() {
@@ -54,7 +54,7 @@ void TimerSet(unsigned long M) {
 }
 
 void TickLEDButton() {
-
+  unsigned char A0 = ~PINA & 0x01;
   switch(state) {
     case Start:
       state = Led0;
