@@ -4,8 +4,8 @@
 *  Partner(s) Name: Kevin Chen
 *  Partner's Email: kchen161@ucr.edu
 *  Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
-*  Assignment: Lab #6  Exercise #1
-*  Exercise Description: Create a synchSM to blink three LEDs connected to PB0, PB1, and PB2 in sequence, 1 second each.
+*  Assignment: Lab #6  Exercise #3
+*  Exercise Description: Buttons are connected to PA0 and PA1. Output for PORTB is initially 7. Pressing PA0 increments PORTB once (stopping at 9). Pressing PA1 decrements PORTB once (stopping at 0).
 
 *  I acknowledge all content contained herein, excluding template or example
 *	code, is my own original work.
@@ -51,65 +51,91 @@ void TimerSet(unsigned long M) {
   _avr_timer_cntcurr = _avr_timer_M;
 }
 
-void TickLEDButton() {
-  unsigned char A0 = PINA;
-  switch(state) {
+vnum States{Start, Init, Incr, Wait1, Decr, Wait2, Reset, Wait3} state;
+unsigned char countHold = 0x00;
+
+
+void TickButtonCount() {
+  unsigned char tempA0 = PINA & 0x01;
+  unsigned char tempA1 = PINA & 0x02;
+  switch (state) {
     case Start:
-      state = Led0;
+      state = Init;
       break;
-    case Led0:
-      if (A0) {
-        state = Wait;
-        break;
+    case Init:
+      if (tempA0 && tempA1) {
+        state = Wait3;
+      }
+      else if (tempA1) {
+        state = Wait2;
+      }
+      else if (tempA0) {
+        state = Wait1;
       }
       else {
-        state = Led1;
+        state = Init;
       }
       break;
-    case Led1:
-      if (A0) {
-        state = Wait;
+    case Incr:
+      state = Init;
+      break;
+    case Wait1:
+      if (tempA0) {
+        state = Incr;
       }
-      else {
-        state = Led2;
+      else if (!tempA0) {
+        state = Wait1;
       }
       break;
-    case Led2:
-      if (A0) {
-        state = Wait;
+    case Decr:
+      state = Init;
+      break;
+    case Wait2:
+      if (tempA1) {
+        state = Decr;
       }
-      else {
-        state = Led0;
+      else if (!tempA1) {
+        state = Wait2;
       }
       break;
-    case Wait:
-      if (!A0) {
-        state = Wait;
+    case Reset:
+      state = Init;
+      break;
+    case Wait3:
+      if ((tempA0) || (tempA1)) {
+        state = Reset;
       }
-      else {
-        state = Led0;
+      else if ((!tempA0) || (tempA1)) {
+        state = Wait3;
       }
       break;
     default:
-      state = Led0;
       break;
   }
-  switch(state) {
+  switch (state) {
     case Start:
+      //countHold = 7;
       break;
-    case Led0:
-      out = 0x01;
-      PORTC = out;
+    case Init:
       break;
-    case Led1:
-      out = 0x02;
-      PORTC = out;
+    case Reset:
+      countHold = 0;
       break;
-    case Led2:
-      out = 0x04;
-      PORTC = out;
+    case Incr:
+      if (countHold < 9) {
+        countHold = countHold + 1;
+      }
       break;
-    case Wait:
+    case Wait1:
+      break;
+    case Wait2:
+      break;
+    case Decr:
+      if (countHold > 0) {
+        countHold = countHold - 1;
+      }
+      break;
+    case Wait3:
       break;
     default:
       break;
@@ -117,16 +143,17 @@ void TickLEDButton() {
 }
 
 int main(void) {
-  //DDRA = 0x00;
+  DDRA = 0x00;
   DDRC = 0xFF;
 
-  //PORTA = 0xFF;
+  PORTA = 0xFF;
   PORTC = 0x00;
 
   //unsigned char tempValA = 0x00;
   //unsigned char tempValC = 0x00;
-  TimerSet(1000);
+  TimerSet(300);
   TimerOn();
+  countHold = 7;
   //unsigned char tempValB = PORTB;
   state = Start;
 
@@ -135,6 +162,7 @@ int main(void) {
     while (!TimerFlag) {}
     TimerFlag = 0;
     //tempValB = out;
+    PORTC = countHold;
   }
   return 0;
 }
