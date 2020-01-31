@@ -64,49 +64,55 @@ void TickButtonCount() {
       break;
     case Init:
       if (tempA0 && tempA1) {
-        state = Wait3;
+        state = Reset;
       }
       else if (tempA1) {
-        state = Wait2;
+        state = Decr;
       }
       else if (tempA0) {
-        state = Wait1;
+        state = Incr;
       }
       else {
         state = Init;
       }
       break;
     case Incr:
-      state = Init;
+      state = Wait1;
       break;
     case Wait1:
       if (tempA0) {
         state = Incr;
       }
-      else if (!tempA0) {
-        state = Wait1;
+      else if (tempA0 && tempA1) {
+        state = Reset;
+      }
+      else {
+        state = Init;
       }
       break;
     case Decr:
-      state = Init;
+      state = Wait2;
       break;
     case Wait2:
       if (tempA1) {
         state = Decr;
       }
-      else if (!tempA1) {
-        state = Wait2;
+      else if (tempA0 && tempA1) {
+        state = Reset;
+      }
+      else {
+        state = Init;
       }
       break;
     case Reset:
-      state = Init;
+      state = Wait3;
       break;
     case Wait3:
       if ((tempA0) || (tempA1)) {
         state = Reset;
       }
-      else if ((!tempA0) || (tempA1)) {
-        state = Wait3;
+      else {
+        state = Init;
       }
       break;
     default:
