@@ -14,6 +14,7 @@
 #include <avr/interrupt.h>
 #include <stdio.h>
 #include "simAVRHeader.h"
+#include "io.h"
 
 #define SET_BIT(p,i) ((p) |= (1 << (i)))
 #define CLR_BIT(p,i) ((p) &= ~(1 << (i)))
@@ -95,9 +96,9 @@ void delay_ms(int miliSec) //for 8 Mhz crystal
 }
 
 void TimerOn() {
-  TCCR1B = 0x0B;ilea
+  TCCR1B = 0x0B;
   OCR1A = 125;
-  TIMSK1 = 0x02;ilea
+  TIMSK1 = 0x02;
   TCNT1 = 0;
   _avr_timer_cntcurr = _avr_timer_M;
   SREG |= 0x80;
@@ -129,7 +130,7 @@ unsigned char out = 0x00;
 unsigned char where;
 unsigned char scoreCount = 0x00;
 
-vvoid TickLEDButton() {
+void TickLEDButton() {
   unsigned char A0 = ~PINA & 0x01;
   switch(state) {
     case Start:
@@ -184,7 +185,7 @@ vvoid TickLEDButton() {
       break;
     default:
       state = Start;
-      score = scoreCount - 1;
+      scoreCount = scoreCount - 1;
       break;
   }
   switch(state) {
@@ -245,8 +246,8 @@ int main(void) {
 
   while(1) {
     LCD_ClearScreen();
-    TickLED();
-    if (scoreCount <= 9) {
+    TickLEDButton();
+    if (scoreCount >= 9) {
       LCD_DisplayString(1, "Congraulations! You win!");
       break;
     }
@@ -254,7 +255,7 @@ int main(void) {
       LCD_WriteData(scoreCount + '0');
     }
 
-    LCD_WriteData(countHold + '0');
+   // LCD_WriteData(countHold + '0');
     while (!TimerFlag) {}
     TimerFlag = 0;
     PORTB = out;

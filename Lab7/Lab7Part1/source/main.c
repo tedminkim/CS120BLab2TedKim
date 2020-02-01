@@ -12,7 +12,9 @@
 */
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <stdio.h>
 #include "simAVRHeader.h"
+#include "io.h"
 
 #define SET_BIT(p,i) ((p) |= (1 << (i)))
 #define CLR_BIT(p,i) ((p) &= ~(1 << (i)))
@@ -25,7 +27,7 @@
 
 
 volatile unsigned char TimerFlag = 0;
-unsigned char countHold = 0x00;
+//unsigned char countHold = 0x00;
 
 unsigned long _avr_timer_M = 1;
 unsigned long _avr_timer_cntcurr = 0;
@@ -94,9 +96,9 @@ void delay_ms(int miliSec) //for 8 Mhz crystal
 }
 
 void TimerOn() {
-  TCCR1B = 0x0B;ilea
+  TCCR1B = 0x0B;
   OCR1A = 125;
-  TIMSK1 = 0x02;ilea
+  TIMSK1 = 0x02;
   TCNT1 = 0;
   _avr_timer_cntcurr = _avr_timer_M;
   SREG |= 0x80;
@@ -123,7 +125,7 @@ void TimerSet(unsigned long M) {
   _avr_timer_cntcurr = _avr_timer_M;
 }
 
-vnum States{Start, Init, Incr, Wait1, Decr, Wait2, Reset, Wait3} state;
+enum States{Start, Init, Incr, Wait1, Decr, Wait2, Reset, Wait3} state;
 unsigned char countHold = 0x00;
 
 
@@ -242,7 +244,7 @@ int main(void) {
 
   while(1) {
     LCD_Cursor(1);
-    TickLED();
+    TickButtonCount();
     PORTC = countHold;
     LCD_WriteData(countHold + '0');
     while (!TimerFlag) {}
