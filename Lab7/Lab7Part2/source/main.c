@@ -166,15 +166,15 @@ void TickLEDButton() {
         switch(where) {
           case 1:
             state = Led0;
-            score = scoreCount + 0x02;
+            scoreCount = scoreCount + 0x02;
             break;
           case 2:
             state = Led1;
-            score = scoreCount + 0x02;
+            scoreCount = scoreCount + 0x02;
             break;
           case 3:
             state = Led2;
-            score = scoreCount + 0x02;
+            scoreCount = scoreCount + 0x02;
             break;
         }
         where = 0x00;

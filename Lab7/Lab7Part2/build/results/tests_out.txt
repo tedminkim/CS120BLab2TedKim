@@ -1,9 +1,31 @@
-No line 246 in file "main.c".
-Make breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
-test/initDebugger.gdb:13: Error in sourced command file:
-Argument required (one or more breakpoint numbers).
+Breakpoint 1 at 0x4b4: file source/main.c, line 247.
+Note: automatically using hardware breakpoints for read-only addresses.
 ======================================================
 Running all tests..."
 
-"Led0 Expect"...test/tests.gdb:45: Error in sourced command file:
-Remote connection closed
+"Led0 Expect"...
+	Expected 1 
+	PORTC '0x800028:	0x35
+"Led1 Expect"...
+	Expected 1 
+	PORTC '0x800028:	0x35
+
+	Expected 2 
+	PORTC '0x800028:	0x35
+"Wait Expect"...
+	Expected 2 
+	PORTC '0x800028:	0x35
+"Led1 Expect"...
+	Expected 2 
+	PORTC '0x800028:	0x37
+"Led1 Expect"...
+	Expected 2 
+	PORTC '0x800028:	0x37
+"Led2 Expect"...
+	Expected 4 
+	PORTC '0x800028:	0x37
+"Led0 Expect"...
+	Expected 1 
+	PORTC '0x800028:	0x37
+======================================================
+Quitting: Remote doesn't know how to detach
