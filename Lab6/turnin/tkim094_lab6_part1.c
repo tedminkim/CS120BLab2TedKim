@@ -4,56 +4,110 @@
 *  Partner(s) Name: Kevin Chen
 *  Partner's Email: kchen161@ucr.edu
 *  Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
-*  Assignment: Lab #5  Exercise #1
-*  Exercise Description: A car has a fuel-level sensor that sets PA3..PA0 to a value between 0 (empty) and 15 (full).
+*  Assignment: Lab #6  Exercise #1
+*  Exercise Description: Create a synchSM to blink three LEDs connected to PB0, PB1, and PB2 in sequence, 1 second each.
 
 *  I acknowledge all content contained herein, excluding template or example
 *	code, is my own original work.
 */
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include "simAVRHeader.h"
 
-unsigned char SetBit(unsigned char x, unsigned char k, unsigned char b) {
-  return (b ? x | (0x01 << k) : x & ~(0x01 << k));
+volatile unsigned char TimerFlag = 0;
+enum States{Start, Led0, Led1, Led2} state;
+unsigned char out = 0x00;
+
+unsigned long _avr_timer_M = 1;
+unsigned long _avr_timer_cntcurr = 0;
+
+void TimerOn() {
+  TCCR1B = 0x0B;
+  OCR1A = 125;
+  TIMSK1 = 0x02;
+  TCNT1 = 0;
+  _avr_timer_cntcurr = _avr_timer_M;
+  SREG |= 0x80;
 }
 
-unsigned char GetBit(unsigned char x, unsigned char k) {
-  return ((x & (0x01 << k)) != 0);
+void TimerOff() {
+  TCCR1B = 0x00;
+}
+
+void TimerISR() {
+  TimerFlag = 1;
+}
+
+ISR(TIMER1_COMPA_vect) {
+  _avr_timer_cntcurr--;
+  if (_avr_timer_cntcurr == 0) {
+    TimerISR();
+    _avr_timer_cntcurr = _avr_timer_M;
+  }
+}
+
+void TimerSet(unsigned long M) {
+  _avr_timer_M = M;
+  _avr_timer_cntcurr = _avr_timer_M;
+}
+
+void TickLED() {
+  switch(state) {
+    case Start:
+      state = Led0;
+      break;
+    case Led0:
+      state = Led1;
+      break;
+    case Led1:
+      state = Led2;
+      break;
+    case Led2:
+      state = Led0;
+      break;
+    default:
+      state = Start;
+      break;
+  }
+  switch(state) {
+    case Start:
+      break;
+    case Led0:
+      out = 0x01;
+      PORTC = out;
+      break;
+    case Led1:
+      out = 0x02;
+      PORTC = out;
+      break;
+    case Led2:
+      out = 0x04;
+      PORTC = out;
+      break;
+    default:
+      break;
+  }
 }
 
 int main(void) {
-  DDRA = 0x00;
+  //DDRA = 0x00;
   DDRC = 0xFF;
 
-  PORTA = 0xFF;
+  //PORTA = 0xFF;
   PORTC = 0x00;
 
-  unsigned char tempValA = 0x00;
-  unsigned char tempValC = 0x00;
-
+  //unsigned char tempValA = 0x00;
+  //unsigned char tempValC = 0x00;
+  TimerSet(1000);
+  TimerOn();
+  //unsigned char tempValB = PORTB;
+  state = Start;
 
   while(1) {
-    tempValA = PINA;
-    if (tempValA == 0x01 || tempValA == 0x02) {
-      tempValC = 0x60;
-    }
-    else if (tempValA == 0x03 || tempValA == 0x04) {
-      tempValC = 0x70;
-    }
-    else if (tempValA == 0x05 || tempValA == 0x06) {
-      tempValC = 0x28;
-    }
-    else if (tempValA >= 0x07 &&  tempValA <= 0x09) {
-      tempValC = 0x2C;
-    }
-    else if (tempValA >= 0x0A && tempValA <= 0x0C) {
-      tempValC = 0x2E;
-    }
-    else if (tempValA >= 0x0D && tempValA <= 0x0F) {
-      tempValC = 0x2F;
-    }
-
-    PORTC = tempValC;
+    TickLED();
+    while (!TimerFlag) {}
+    TimerFlag = 0;
+    //tempValB = out;
   }
   return 0;
 }

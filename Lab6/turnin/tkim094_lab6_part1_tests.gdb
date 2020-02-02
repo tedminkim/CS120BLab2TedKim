@@ -39,96 +39,53 @@ echo Running all tests..."\n\n
 #checkResult
 
 #Add tests below
-test “PINA: 0x01 => PORTC: 0x60”
-setPINA 0x01
-continue 5
-expectPORTC 0x60
-checkResult
+test "Led0 Expect"
+set TickLED::state = Start
+setPINA 0xFF
+continue 1
+expectPORTC 1
+expect state Led0
+check Result
 
-test “PINA: 0x02 => PORTC: 0x60”
-setPINA 0x02
-continue 5
-expectPORTC 0x60
-checkResult
+test "Led1 Expect"
+set TickLED::state = Start
+setPINA 0xFF
+continue 1
+expectPORTC 1
+expect state Led0
+continue 1
+expectPORTC 2
+expect state Led1
+check Result
 
-test “PINA: 0x03 => PORTC: 0x70”
-setPINA 0x03
-continue 5
-expectPORTC 0x70
-checkResult
+test "Led2 Expect"
+set TickLED::state = Start
+setPINA 0xFF
+continue 1
+expectPORTC 1
+expect state Led0
+continue 2
+expectPORTC 4
+expect state Led2
+check Result
 
-test “PINA: 0x04 => PORTC: 0x70”
-setPINA 0x44
-continue 5
-expectPORTC 0x70
-checkResult
+test "Led1 Expect"
+set TickLED::state = Start
+setPINA 0xFF
+continue 2
+expectPORTC 2
+expect state Led1
+check Result
 
-test “PINA: 0x05 => PORTC: 0x28”
-setPINA 0x05
-continue 5
-expectPORTC 0x28
-checkResult
-
-test “PINA: 0x06 => PORTC: 0x28”
-setPINA 0x06
-continue 5
-expectPORTC 0x28
-checkResult
-
-test “PINA: 0x07 => PORTC: 0x2C”
-setPINA 0x07
-continue 5
-expectPORTC 0x2C
-checkResult
-
-test “PINA: 0x08 => PORTC: 0x2C”
-setPINA 0x08
-continue 5
-expectPORTC 0x2C
-checkResult
-
-test “PINA: 0x09 => PORTC: 0x2C”
-setPINA 0x09
-continue 5
-expectPORTC 0x2C
-checkResult
-
-test “PINA: 0x0A => PORTC: 0x2E”
-setPINA 0x0A
-continue 5
-expectPORTC 0x2E
-checkResult
-
-test “PINA: 0x0B => PORTC: 0x2E”
-setPINA 0x0B
-continue 5
-expectPORTC 0x2E
-checkResult
-
-test “PINA: 0x0C => PORTC: 0x2E”
-setPINA 0x0C
-continue 5
-expectPORTC 0x2E
-checkResult
-
-test “PINA: 0x0D => PORTC: 0x2F”
-setPINA 0x0D
-continue 5
-expectPORTC 0x2F
-checkResult
-
-test “PINA: 0x0E => PORTC: 0x2F”
-setPINA 0x0E
-continue 5
-expectPORTC 0x2F
-checkResult
-
-test “PINA: 0x0F => PORTC: 0x2F”
-setPINA 0x0F
-continue 5
-expectPORTC 0x2F
-checkResult
-
+test "Led0 Expect"
+set TickLED::state = Start
+setPINA 0xFF
+continue 2
+expectPORTC 2
+continue 2
+expectPORTC 1
+expect state Led0
+check Result
 
 # Report on how many tests passed/tests ran
 set $passed=$tests-$failed

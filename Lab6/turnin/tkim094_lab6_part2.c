@@ -1,91 +1,138 @@
-/* Author: Ted Kim
+/*
+* Author: Ted Kim
 *  Email: tkim094@ucr.edu
 *  Partner(s) Name: Kevin Chen
-*  Partner Email: kchen161@ucr.edu
-*	 Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
-*	 Assignment: Lab #5  Exercise #2
-*	 Exercise Description: Buttons are connected to PA0 and PA1. Output for PORTC is initially 7. Pressing PA0 increments PORTC once (stopping at 9).
+*  Partner's Email: kchen161@ucr.edu
+*  Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
+*  Assignment: Lab #6  Exercise #2
+*  Exercise Description: Create a simple light game that requires pressing a button on PA0 while the middle of three LEDs on PB0, PB1, and PB2 is lit.
 
-*	I acknowledge all content contained herein, excluding template or example
+*  I acknowledge all content contained herein, excluding template or example
 *	code, is my own original work.
 */
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include "simAVRHeader.h"
 
-enum States{Start, Init, Incr, Wait1, Decr, Wait2, Reset} state;
-unsigned char countHold = 0x00;
+volatile unsigned char TimerFlag = 0;
+enum States{Start, Wait, Led0, Led1, Led2} state;
+unsigned char out = 0x00;
 
+unsigned long _avr_timer_M = 1;
+unsigned long _avr_timer_cntcurr = 0;
+//unsigned char A0 = ~PINA & 0x01;
+unsigned char where;
 
-void TickButtonCount() {
-  unsigned char tempA0 = PINA & 0x01;
-  unsigned char tempA1 = PINA & 0x02;
-  switch (state) {
+void TimerOn() {
+  TCCR1B = 0x0B;
+  OCR1A = 125;
+  TIMSK1 = 0x02;
+  TCNT1 = 0;
+  _avr_timer_cntcurr = _avr_timer_M;
+  SREG |= 0x80;
+}
+
+void TimerOff() {
+  TCCR1B = 0x00;
+}
+
+void TimerISR() {
+  TimerFlag = 1;
+}
+
+ISR(TIMER1_COMPA_vect) {
+  _avr_timer_cntcurr--;
+  if (_avr_timer_cntcurr == 0) {
+    TimerISR();
+    _avr_timer_cntcurr = _avr_timer_M;
+  }
+}
+
+void TimerSet(unsigned long M) {
+  _avr_timer_M = M;
+  _avr_timer_cntcurr = _avr_timer_M;
+}
+
+void TickLEDButton() {
+  unsigned char A0 = ~PINA & 0x01;
+  switch(state) {
     case Start:
-      state = Init;
+      state = Led0;
       break;
-    case Init:
-      if (tempA0 && tempA1) {
-        state = Reset;
+    case Led0:
+      if (A0) {
+        state = Wait;
+        break;
       }
-      else if (tempA1) {
-        state = Decr;
-      }
-      else if (tempA0) {
-        state = Incr;
+      else {
+        state = Led1;
       }
       break;
-    case Incr:
-      state = Wait1;
-      break;
-    case Wait1:
-      if (tempA0 && tempA1) {
-        state = Reset;
+    case Led1:
+      if (A0) {
+        state = Wait;
       }
-      if (!tempA0) {
-        state = Init;
+      else {
+        state = Led2;
       }
       break;
-    case Decr:
-      state = Wait2;
-      break;
-    case Wait2:
-      if (tempA0 && tempA1) {
-        state = Reset;
+    case Led2:
+      if (A0) {
+        state = Wait;
       }
-      if (!tempA1) {
-        state = Init;
+      else {
+        state = Led0;
       }
       break;
-    case Reset:
-      state = Init;
+    case Wait:
+      if (!A0) {
+        switch(where) {
+          case 1:
+            state = Led0;
+            break;
+          case 2:
+            state = Led1;
+            break;
+          case 3:
+            state = Led2;
+            break;
+        }
+        where = 0x00;
+      }
+      else {
+        state = Wait;
+      }
       break;
     default:
+      state = Start;
       break;
   }
-  switch (state) {
+  switch(state) {
     case Start:
-      countHold = 7;
       break;
-    case Init:
+    case Led0:
+      //where = 0x01;
+      out = 0x01;
+      PORTC = out;
+      where = 0x01;
+      //wait = 0;
       break;
-    case Reset:
-      countHold = 0;
+    case Led1:
+      out = 0x02;
+      PORTC = out;
+      where = 0x02;
       break;
-    case Incr:
-      if (countHold < 9) {
-        countHold = countHold + 1;
-      }
+    case Led2:
+      out = 0x04;
+      PORTC = out;
+      where = 0x03;
       break;
-    case Wait1:
-      break;
-    case Wait2:
-      break;
-    case Decr:
-      if (countHold > 0) {
-        countHold = countHold - 1;
-      }
+    case Wait:
+      out = out;
+      PORTC = out;
       break;
     default:
+      state = Start;
       break;
   }
 }
@@ -97,12 +144,18 @@ int main(void) {
   PORTA = 0xFF;
   PORTC = 0x00;
 
+  //unsigned char tempValA = 0x00;
+  //unsigned char tempValC = 0x00;
+  TimerSet(50);
+  TimerOn();
+  //unsigned char tempValB = PORTB;
   state = Start;
-  countHold = 7;
 
   while(1) {
-    TickButtonCount();
-    PORTC = countHold;
+    TickLEDButton();
+    while (!TimerFlag) {}
+    TimerFlag = 0;
+    PORTC = out;
   }
   return 0;
 }

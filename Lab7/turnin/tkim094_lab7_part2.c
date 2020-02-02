@@ -5,7 +5,7 @@
 *  Partner's Email: kchen161@ucr.edu
 *  Lab Section: 023 (Tuesdays & Thursdays 2-3:20 PM)
 *  Assignment: Lab #7  Exercise #2
-*  Exercise Description: Buttons are connected to PA0 and PA1. Output for PORTB is initially 7. Pressing PA0 increments PORTB once (stopping at 9). Pressing PA1 decrements PORTB once (stopping at 0).
+*  Exercise Description:  Extend the earlier light game to maintain a score on the LCD display. The initial score is 5.
 
 *  I acknowledge all content contained herein, excluding template or example
 *	code, is my own original work.

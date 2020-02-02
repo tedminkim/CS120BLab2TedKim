@@ -15,8 +15,8 @@
 #include "simAVRHeader.h"
 
 volatile unsigned char TimerFlag = 0;
-enum States{Start, Wait, Led0, Led1, Led2} state;
-unsigned char out = 0x00;
+//enum States{Start, Wait, Led0, Led1, Led2} state;
+//unsigned char out = 0x00;
 
 unsigned long _avr_timer_M = 1;
 unsigned long _avr_timer_cntcurr = 0;
@@ -51,7 +51,7 @@ void TimerSet(unsigned long M) {
   _avr_timer_cntcurr = _avr_timer_M;
 }
 
-vnum States{Start, Init, Incr, Wait1, Decr, Wait2, Reset, Wait3} state;
+enum States{Start, Init, Incr, Wait1, Decr, Wait2, Reset, Wait3} state;
 unsigned char countHold = 0x00;
 
 
@@ -86,7 +86,7 @@ void TickButtonCount() {
       else if (tempA0 && tempA1) {
         state = Reset;
       }
-      else {
+      else if (!tempA0) {
         state = Init;
       }
       break;
@@ -97,10 +97,10 @@ void TickButtonCount() {
       if (tempA1) {
         state = Decr;
       }
-      else if (tempA0 && tempA1) {
-        state = Reset;
-      }
-      else {
+     else if (tempA0 && tempA1) {
+       state = Reset;
+     }
+      else if (!tempA1) {
         state = Init;
       }
       break;
@@ -111,7 +111,7 @@ void TickButtonCount() {
       if ((tempA0) || (tempA1)) {
         state = Reset;
       }
-      else {
+      else if ((!tempA0) || (!tempA1)) {
         state = Init;
       }
       break;
