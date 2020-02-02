@@ -39,72 +39,62 @@ echo Running all tests..."\n\n
 #checkResult
 
 #Add tests below
-test "PINA: 0x01 => PORTC: 0x08, state = Wait1"
-set TickButtonCount::state = Start
-setPINA 0x01
-continue 5
-expectPORTC 8
-expect state Wait1
-checkResult
-
-test "PINA: 0x03 => PORTC: 0x00, state = Init"
-set TickButtonCount::state = Start
-setPINA 0x03
-continue 5
-expectPORTC 0
-expect state Init
-checkResult
-
-test "PINA: 0x02 => PORTC: 0x00, state = Wait2"
-set TickButtonCount::state = Start
-setPINA 0x02
-continue 5
-expectPORTC 0
-expect state Wait2
-checkResult
-
-test "PINA: 0x03, 0x01 => PORTC: 0x01, state = Wait1"
-set TickButtonCount::state = Start
-setPINA 0x03
-continue 5
-setPINA 0x01
-continue 5
+test "Led0 Expect"
+set TickLEDButton::state = Start
+setPINA 0xFF
+continue 1
 expectPORTC 1
-expect state Wait1
+expect state Led0
 checkResult
 
-test "PINA: 0x03, 0x03 => PORTC: 0x00, state = Init"
-set TickButtonCount::state = Start
-setPINA 0x03
-continue 5
-setPINA 0x03
-continue 5
-expectPORTC 0
-expect state Reset
+test "Led1 Expect"
+set TickLEDButton::state = Start
+setPINA 0xFF
+continue 1
+expectPORTC 1
+expect state Led0
+continue 1
+expectPORTC 2
+expect state Led1
 checkResult
 
-test "PINA: 0x03, 0x01, 0x01 => PORTC: 0x01, state = Wait1"
-set TickButtonCount::state = Start
-setPINA 0x03
-continue 5
-setPINA 0x01
-continue 5
-setPINA 0x01
-continue 5
-expectPORTC 0x01
-expect state Wait1
+test "Wait Expect"
+set TickLEDButton::state = Led1
+setPINA 0xFE
+continue 1
+expectPORTC 2
+expect state Wait
+
+test "Led1 Expect"
+set TickLEDButton::state = Wait
+setPINA 0xFF
+continue 1
+expectPORTC 2
+expect state Led1
 checkResult
 
-test "PINA: 0x00, 0x02, 0x02 => PORTC: 0x00, state = Wait2"
-set TickButtonCount:: state = Start
-setPINa 0x03
-continue 5
-setPINA 0x02
-continue 5
-setPINA 0x02
-continue 5
-expectPORTC 0x00
-expect state Wait2
+test "Led1 Expect"
+set TickLEDButton::state = Led0
+setPINA 0xFF
+continue 1
+expectPORTC 2
+expect state Led1
+checkResult
+
+test "Led2 Expect"
+set TickLEDButton::state = Led1
+setPINA 0xFF
+continue 1
+expectPORTC 4
+expect state Led2
+checkResult
+
+test "Led0 Expect"
+set TickLEDButton::state = Led2
+setPINA 0xFF
+continue 1
+expectPORTC 1
+expect state Led0
 checkResult
 
 # Report on how many tests passed/tests ran

@@ -1,4 +1,4 @@
-# Test file for Lab2_introToAVR
+#Test file for Lab2_introToAVR
 
 
 # commands.gdb provides the following functions for ease:
@@ -39,72 +39,81 @@ echo Running all tests..."\n\n
 #checkResult
 
 #Add tests below
-test "PINA: 0x01 => PORTC: 0x08, state = Wait1"
-set TickButtonCount::state = Start
+#Initial States
+
+
+#2 states only
+test "PINA: 0x00, 0x01 => PORTB: 0x01, state: Wait"
+set TickButtonLightSM::state = Init
+setPINA 0x00
+continue 2
 setPINA 0x01
-continue 1
-expectPORTC 7
+continue 2
+expectPORTB 0x01
+expect state Wait
+checkResult
+
+#3 states
+test "PINA: 0x00, 0x01, 0x00 => PORTB: 0x02, state: Light"
+set TickButtonLightSM::state = Init
+setPINA 0x00
+continue 2
+setPINA 0x01
+continue 2
+setPINA 0x00
+continue 2
+expectPORTB 0x02
+expect state Light
+checkResult
+
+#4 states
+test "PINA: 0x00, 0x01, 0x00, 0x01 => PORTB: 0x02, state: WaitP2"
+set TickButtonLightSM::state = Init
+setPINA 0x00
+continue 2
+setPINA 0x01
+continue 2
+setPINA 0x00
+continue 2
+setPINA 0x01
+continue 2
+expectPORTB 0x02
+expect state WaitP2
+checkResult
+
+#5 states
+test "PINA: 0x00, 0x01, 0x00, 0x01, 0x00 => PORTB: 0x02, state: Init"
+set TickButtonLightSM::state = Init
+setPINA 0x00
+continue 2
+setPINA 0x01
+continue 2
+setPINA 0x00
+continue 2
+setPINA 0x01
+continue 2
+setPINA 0x00
+continue 2
+expectPORTB 0x01
 expect state Init
 checkResult
 
-test "PINA: 0x03 => PORTC: 0x00, state = Init"
-set TickButtonCount::state = Start
-setPINA 0x03
-continue 1
-expectPORTC 7
-expect state Init
-checkResult
-
-test "PINA: 0x02 => PORTC: 0x00, state = Wait2"
-set TickButtonCount::state = Start
-setPINA 0x02
-continue 1
-expectPORTC 7
-expect state Init
-checkResult
-
-test "PINA: 0x03, 0x01 => PORTC: 0x01, state = Wait1"
-set TickButtonCount::state = Start
-setPINA 0x03
-continue 1
+#6 States
+test "PINA: 0x00, 0x01, 0x00, 0x01, 0x00, 0x01 => PORTB: 0x01, state: Wait"
+setPINA 0x00
+continue 2
 setPINA 0x01
-continue 1
-expectPORTC 8
-expect state Incr
-checkResult
-
-test "PINA: 0x03, 0x03 => PORTC: 0x00, state = Init"
-set TickButtonCount::state = Start
-setPINA 0x03
-continue 1
-setPINA 0x03
-continue 1
-expectPORTC 0
-expect state Reset
-checkResult
-
-test "PINA: 0x03, 0x01, 0x01 => PORTC: 0x01, state = Wait1"
-set TickButtonCount::state = Start
-setPINA 0x03
-continue 1
+continue 2
+setPINA 0x00
+continue 2
 setPINA 0x01
-continue 1
+continue 2
+setPINA 0x00
+continue 2
 setPINA 0x01
-continue 1
-expectPORTC 0x01
-expect state Wait1
-checkResult
-
-test "PINA: 0x00, 0x02, 0x02 => PORTC: 0x00, state = Wait2"
-set TickButtonCount:: state = Start
-setPINa 0x03
-continue 1
-setPINA 0x02
-continue 1
-setPINA 0x02
-continue 1
-expectPORTC 0x00
-expect state Wait2
+continue 2
+expectPORTB 0x01
+expect state Wait
 checkResult
 
 # Report on how many tests passed/tests ran
