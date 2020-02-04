@@ -1,0 +1,31 @@
+Breakpoint 1 at 0x4b4: file source/main.c, line 247.
+Note: automatically using hardware breakpoints for read-only addresses.
+======================================================
+Running all tests..."
+
+"Led0 Expect"...
+	Expected 1 
+	PORTC '0x800028:	0x35
+"Led1 Expect"...
+	Expected 1 
+	PORTC '0x800028:	0x35
+
+	Expected 2 
+	PORTC '0x800028:	0x35
+"Wait Expect"...
+	Expected 2 
+	PORTC '0x800028:	0x35
+"Led1 Expect"...
+	Expected 2 
+	PORTC '0x800028:	0x37
+"Led1 Expect"...
+	Expected 2 
+	PORTC '0x800028:	0x37
+"Led2 Expect"...
+	Expected 4 
+	PORTC '0x800028:	0x37
+"Led0 Expect"...
+	Expected 1 
+	PORTC '0x800028:	0x37
+======================================================
+Quitting: Remote doesn't know how to detach
