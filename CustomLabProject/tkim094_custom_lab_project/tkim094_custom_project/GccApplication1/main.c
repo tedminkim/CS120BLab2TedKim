@@ -27,10 +27,6 @@ volatile unsigned char TimerFlag = 0;
 unsigned long _avr_timer_M = 1;
 unsigned long _avr_timer_cntcurr = 0;
 
-
-
-
-
 void TimerOn() {
 	TCCR2B = 0x0B;
 	OCR2A = 125;
@@ -80,11 +76,6 @@ void PWM_off() {
 	TCCR3A = 0x00;
 	TCCR3B = 0x00;
 }
-
-
-
-
-
 void set_PWMB(double frequency) { // PD5
 	static double current_frequency;
 	if (frequency != current_frequency) {
@@ -108,30 +99,53 @@ void PWMB_off() {
 	TCCR1A = 0x00;
 	TCCR1B = 0x00;
 }
-
-void set_PWM0(double frequency) {  //PB3???
-	static double current_frequency;
-	if (frequency != current_frequency) {
-		if (!frequency) { TCCR0B &= 0x08; TCCR0A |= 0x03;}
-		else { TCCR0B |= 0x05; }
-
-		if (frequency < 31) { OCR0A = 0xFF; }
-		else if (frequency > 3906) {OCR0A = 0x00; }
-		else {OCR0A = (char)(8000000 / (2 * 1024 * frequency)) + 0.25; }
-
-		TCNT0 = 0;
-		current_frequency = frequency;
-	}
+void play(short freqSound) {
+	//buzzerSound = 0; //dud
+	set_PWM(freqSound);
 }
-void PWM0_on() {
-	TCCR0A = (1 << COM0A0);
-	TCCR0B = (1 << WGM02) | (1 << WGM01) | (1 << WGM00) | (1 << CS02) | (1 << CS00);
+void silence() {
+	//buzzerSound = 0; //dud
+	set_PWM(0);
+}
+void playH(short freqSound) {
+	//buzzerSound = 0; //dud
+	set_PWM0(freqSound);
+}
+void silenceH() {
+	//buzzerSound = 0; //dud
 	set_PWM0(0);
 }
-void PWM0_off() {
-	TCCR0A = 0x00;
-	TCCR0B = 0x00;
+void playB(short freqSound) {
+  //buzzerSound = 0;
+  set_PWMB(freqSound);
 }
+void silenceB() {
+  //buzzerSound = 0;
+  set_PWMB(0);
+}
+// void set_PWM0(double frequency) {  //PB3???
+// 	static double current_frequency;
+// 	if (frequency != current_frequency) {
+// 		if (!frequency) { TCCR0B &= 0x08; TCCR0A |= 0x03;}
+// 		else { TCCR0B |= 0x05; }
+//
+// 		if (frequency < 31) { OCR0A = 0xFF; }
+// 		else if (frequency > 3906) {OCR0A = 0x00; }
+// 		else {OCR0A = (char)(8000000 / (2 * 1024 * frequency)) + 0.25; }
+//
+// 		TCNT0 = 0;
+// 		current_frequency = frequency;
+// 	}
+// }
+// void PWM0_on() {
+// 	TCCR0A = (1 << COM0A0);
+// 	TCCR0B = (1 << WGM02) | (1 << WGM01) | (1 << WGM00) | (1 << CS02) | (1 << CS00);
+// 	set_PWM0(0);
+// }
+// void PWM0_off() {
+// 	TCCR0A = 0x00;
+// 	TCCR0B = 0x00;
+// }
 /*
 void play(double frequencyVal) {
 	set_PWM(frequencyVal);
@@ -145,48 +159,7 @@ void playH(double frequencyVal) {
 void silenceH() {
 	set_PWMH(0);
 }*/
-void play(short freqSound) {
-	//buzzerSound = 0; //dud
-	set_PWM(freqSound);
-}
-//void rest(short arrayVal) {
-	//for (short i = 0; i < arrayVal; i++) {
-		//while(!TimerFlag) {}
-		//TimerFlag = 0;
-	//}
-//}
-void silence() {
-	//buzzerSound = 0; //dud
-	set_PWM(0);
-}
-void playH(short freqSound) {
-	//buzzerSound = 0; //dud
-	set_PWM0(freqSound);
-}
-//void restH(short arrayVal) {
-//	for (short i = 0; i < arrayVal; i++) {
-		//while(!TimerFlag) {}
-		//TimerFlag = 0;
-//	}
-//}
-void silenceH() {
-	//buzzerSound = 0; //dud
-	set_PWM0(0);
-}
-void playB(short freqSound) {
-  //buzzerSound = 0;
-  set_PWMB(freqSound);
-}
-//void restB(short arrayVal) {
-  //for (short i = 0; i < arrayVal; i++) {
-    //while(!TimerFlag) {}
-    //TimerFlag = 0;
-  //}
-//}
-void silenceB() {
-  //buzzerSound = 0;
-  set_PWMB(0);
-}
+
 
 //MUSIC NOTES
 
@@ -202,25 +175,6 @@ void silenceB() {
 #define A 220 * 2
 #define AS 233.1 * 2//ALSO KNOWN AS B FLAT
 #define B 246.9 * 2
-
-
-
-
-unsigned char GetBit(unsigned char port, unsigned char number) {
-	return (port & (0x01 << number));
-}
-//END OF MUSIC NOTES
-
-//REST LENGTHS
-
-//#define QUARTER 75/2
-//#define HALF 75
-//#define THREEFOURTHS 150
-//#define WHOLE 400
-
-//END OF REST LENGTHS
-
-//NOTE LENGTHS
 //test song mary had a little lamb
 short testSong[] = {E, D, C, D, E, E, E, D, D, D, E, G, G, E, D, C, D, E, E, E, E, D, D, E, D, C};
 short testSongNoteLengths[] = {300, 300, 300, 300, 300, 300, 600, 300, 300, 600, 300, 300, 600, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 1000};
@@ -243,59 +197,22 @@ short renCircMRL[] = {10,     25,  100,   100,  100,  100,    250,     10,      
 short renCircM2[] = {  E,  E,   FS,    G,    GS,    E,     B,    CS,     E,    E,    FS,      G,     GS,     E,    CS,    E,      CS,      E,     CS,     E,   CS,     E,   E,    A,    GS,   E,    E,    CS,     GS};
 short renCircM2NL[] = {200,200, 75,    150,  300,   150,   100,   100,  300, 200,    75,     150,    300,   150,   250,   150,    75,      250,   250,     150,  75,   250, 150,   75,  150,  200,   75,  150,     150};
 short renCircM2RL[] = {100, 100, 10,    100,  100,  200,   25,   25,   100,  100,   10,     100,    100,   300,   25,  100,      50,       150,  25,    100,     50,   150, 100,   10,  100,  100 ,   10,    100,   300     };
-	
+
 short renCircM3[] = {  E,  E,   FS,    G,    GS,    E,     B,    CS,     E,    E,    FS,      G,     GS,     E,    CS,    E,      CS,      E,     CS,     E,   CS,     E,   E,    A,    GS,   E,    E,    FS,     E};
 short renCircM3NL[] = {200,200, 75,    150,  300,   150,   100,   100,  300, 200,    75,     150,    300,   150,   250,   150,    75,      250,   250,     150,  75,   250, 150,   75,  150,  200,   75,  150,     150};
 short renCircM3RL[] = {100, 100, 10,    100,  100,  200,   25,   25,   100,  100,   10,     100,    100,   300,   25,  100,      50,       150,  25,    100,     50,   150, 100,   10,  100,  100 ,   10,    100,   300     };
 
 short renCircB[] = {  A,   B,    B,  GS, CS, CS,   FS,     B,  B,  E, CS,  GS,  GS,   A,    AS,    B,    GS,     E,    FS,     GS,    GS,    A,      AS,     B,     GS,    E,    GS,      E,      GS,     E,     GS,   E,     GS,   GS,    CS*2,    B,   GS,    GS,    E,     B,  GS,  GS,   A,    AS,    B,    GS,     E,    FS,     GS,    GS,    A,      AS,     B,     GS,    E,    GS,      E,      GS,     E,     GS,   E,     GS,   GS,    CS*2,    B,   GS,    GS,    A,     GS };
-short renCircBNL[] = {975,300, 150, 975, 300, 150, 775, 250, 300, 875, 150, 200,200, 75,    150,  300,   150,   100,   100,  300, 200,    75,     150,    300,   150,   250,   150,    75,      250,   250,     150,  75,   250, 150,   75,  150,  200,   75,  150,     150, 200,200, 75,    150,  300,   150,   100,   100,  300, 200,    75,     150,    300,   150,   250,   150,    75,      250,   250,     150,  75,   250, 150,   75,  150,  200,   75,  150,     150};	
+short renCircBNL[] = {975,300, 150, 975, 300, 150, 775, 250, 300, 875, 150, 200,200, 75,    150,  300,   150,   100,   100,  300, 200,    75,     150,    300,   150,   250,   150,    75,      250,   250,     150,  75,   250, 150,   75,  150,  200,   75,  150,     150, 200,200, 75,    150,  300,   150,   100,   100,  300, 200,    75,     150,    300,   150,   250,   150,    75,      250,   250,     150,  75,   250, 150,   75,  150,  200,   75,  150,     150};
 short renCircBRL[] = {335, 100, 475, 160, 25, 450, 285, 50, 350, 200, 550, 100, 100, 10,    100,  100,  200,   25,   25,   100,  100,   10,     100,    100,   300,   25,  100,      50,       150,  25,    100,     50,   150, 100,   10,  100,  100 ,   10,    100,   600, 100, 100, 10,    100,  100,  200,   25,   25,   100,  100,   10,     100,    100,   300,   25,  100,      50,       150,  25,    100,     50,   150,  100,   10,  100,  100 ,   10,    100,   300      };
-	
+
 short renCircB2[] = {  GS,  GS,   A,    AS,    B,    GS,     E,    FS,     GS,    GS,    A,      AS,     B,     GS,    E,    GS,      E,      GS,     E,     GS,   E,     GS,   GS,    CS*2,    B,   GS,    GS,    E,     B};
 short renCircB2NL[] = {200,200, 75,    150,  300,   150,   100,   100,  300, 200,    75,     150,    300,   150,   250,   150,    75,      250,   250,     150,  75,   250, 150,   75,  150,  200,   75,  150,     150};
 short renCircB2RL[] = {100, 100, 10,    100,  100,  200,   25,   25,   100,  100,   10,     100,    100,   300,   25,  100,      50,       150,  25,    100,     50,   150, 100,   10,  100,  100 ,   10,    100,   300     };
-	
+
 short renCircB3[] = {  GS,  GS,   A,    AS,    B,    GS,     E,    FS,     GS,    GS,    A,      AS,     B,     GS,    E,    GS,      E,      GS,     E,     GS,   E,     GS,   GS,    CS*2,    B,   GS,    GS,    A,     GS};
 short renCircB3NL[] = {200,200, 75,    150,  300,   150,   100,   100,  300, 200,    75,     150,    300,   150,   250,   150,    75,      250,   250,     150,  75,   250, 150,   75,  150,  200,   75,  150,     150};
 short renCircB3RL[] = {100, 100, 10,    100,  100,  200,   25,   25,   100,  100,   10,     100,    100,   300,   25,  100,      50,       150,  25,    100,     50,   150, 100,   10,  100,  100 ,   10,    100,   300     };
-//harmony done
-//melody done
-
-//test song mary had a little lamb
-//COMMENTED FOR KNOWN
-/*
-short testSongH[] = {G, F, E, F, G, G, G, F, F, F, G, C*2, C*2, G, F, E, F, G, G, G, G, F, F, G, F, E};
-//short testSongH[] = {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F};
-short testSongNoteLengthsH[] = {300, 300, 300, 300, 300, 300, 600, 300, 300, 600, 300, 300, 600, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 1000};
-short testSongRestLengthsH[] = {25, 25, 25, 25, 50, 50, 150, 50, 50, 150, 50, 50, 150, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 150};
-
-short testSongB[] = {C/2, B/2, A/2, B/2, C/2, C/2, C/2, B/2, B/2, B/2, C/2, E, E, C/2, B/2, A/2, B/2, C/2, C/2, C/2, C/2, B/2, B/2, C/2, A/2, G/2};
-//short testSongH[] = {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F};
-short testSongNoteLengthsB[] = {300, 300, 300, 300, 300, 300, 600, 300, 300, 600, 300, 300, 600, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 1000};
-short testSongRestLengthsB[] = {25, 25, 25, 25, 50, 50, 150, 50, 50, 150, 50, 50, 150, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 150};
-//harmony done
-
-
-*/
-
-
-//unsigned char SetBit(unsigned char pin, unsigned char number, unsigned char bin_value)
-//{
-	//return (bin_value ? pin | (0x01 << number) : pin & ~(0x01 << number));/
-//}
-
-////////////////////////////////////////////////////////////////////////////////
-//Functionality - Gets bit from a PINx
-//Parameter: Takes in a uChar for a PINx and the pin number
-//Returns: The value of the PINx
-/*unsigned char GetBit(unsigned char port, unsigned char number)
-{
-	return ( port & (0x01 << number) );
-}*/
-//unsigned char button;
-
-
 short* renCircMel[] = {renCircM};
 short* renCircMelNL[] = {renCircMNL};
 short* renCircMelRL[] = {renCircMRL};
@@ -303,7 +220,7 @@ short* renCircMelRL[] = {renCircMRL};
 short* renCircHar[] = {renCircB};
 short* renCircHarNL[] = {renCircBNL};
 short* renCircHarRL[] = {renCircBRL};
-	
+
 short* testSongMel[] = {testSong};
 short* testSongMelNL[] = {testSongNoteLengths};
 short* testSongMelRL[] = {testSongRestLengths};
@@ -315,45 +232,20 @@ short* testSong2MelRL[] = {testSongRestLengths2};
 short* testSong3Mel[] = {testSong3};
 short* testSong3MelNL[] = {testSongNoteLengths3};
 short* testSong3MelRL[] = {testSongRestLengths3};
-
-
-
-
-
-
-
-
-
 short** playlistMel[] = {renCircMel, testSong2Mel, testSong3Mel};
 short** playlistMelNL[] = {renCircMelNL, testSong2MelNL, testSong3MelNL};
 short** playlistMelRL[] = {renCircMelRL, testSong2MelRL, testSong3MelRL};
-
 short** playlistHar[] = {renCircMel, testSongMel, testSong3Mel};
 short** playlistHarNL[] = {renCircMelNL, testSongMelNL, testSong3MelNL};
 short** playlistHarRL[] = {renCircMelRL, testSongMelRL, testSong3MelRL};
-	
 short** playlistBas[] = {renCircHar, testSongMel, testSong3Mel};
 short** playlistBasNL[] = {renCircHarNL, testSongMelNL, testSong3MelNL};
 short** playlistBasRL[] = {renCircHarRL, testSongMelRL, testSong3MelRL};
-	
-	
-
-
-
-
-
-
 char numRows[] = {2, 1, 1};
 
-unsigned char prevSong;
-unsigned char nextSong;
+
 //these states below indicate that the song/mp3 player either paused or done playing music.
 unsigned char paused = 1;
-unsigned char songDone = 1;
-unsigned long playList = sizeof(playlistMel) / sizeof(playlistMel[0]);
-
-//PB6
-
 enum Pauses{Pinit, Pp, Pr};
 int pauseTick(int state) {
 	unsigned char playPause = PINA & 0x01;
@@ -385,6 +277,9 @@ int pauseTick(int state) {
 	}
 	return state;
 }
+
+unsigned char prevSong;
+unsigned char nextSong;
 
 enum nextPrevStates{Pw, backSong, forSong};
 int NextPrevTick(int state) {
@@ -431,6 +326,9 @@ int NextPrevTick(int state) {
 	return state;
 }
 
+unsigned char songDone = 1;
+unsigned long playList = sizeof(playlistMel) / sizeof(playlistMel[0]);
+
 enum MelodyStates{Minit, Mwait, Mplay, Ml, Mr, Mp};
 int melodyTick(int state) {
 	static unsigned short it1;
@@ -475,7 +373,7 @@ int melodyTick(int state) {
 					it4 = playList - 1;
 				}
 				else {
-					it4--;
+					it4 = it4 - 1;
 				}
 				state = Mplay;
 				break;
@@ -533,11 +431,12 @@ int melodyTick(int state) {
 				it4 = playList - 1;
 				}
 			else {
-				it4--;
+				it4 = it4 - 1;
 			}
 			state = Mplay;
 			break;
-    } else if (prevSong){
+    }
+    else if (prevSong){
 			it1 = 0;
 			it2 = 0;
 			it3 = 0;
@@ -579,12 +478,14 @@ int melodyTick(int state) {
 			it3 = 0;
 			if (it4 == 0) {
 				it4 = playList - 1;
-				} else {
-				it4--;
+				}
+      else {
+				it4 = it4 - 1;
 			}
 			state = Mplay;
 			break;
-    } else if (prevSong){
+    }
+    else if (prevSong){
 			it1 = 0;
 			 it2 = 0;
 			  it3 = 0;
@@ -605,7 +506,8 @@ int melodyTick(int state) {
 		if (it3 < playlistMelRL[it4][it1][it2]) {
 			it3 = it3 + 1;
 			state = Mr;
-			} else {
+			}
+    else {
 			it3 = 0;
 			it2 = it2 + 1;
 			state = Mplay;
@@ -619,8 +521,9 @@ int melodyTick(int state) {
 			it3 = 0;
 			if (it4 == 0) {
 				it4 = playList - 1;
-				} else {
-				it4--;
+				}
+      else {
+				it4 = it4 - 1;
 			}
 			paused = 0;
 			state = Mplay;
@@ -647,7 +550,8 @@ int melodyTick(int state) {
 		}
 		if (paused) {
 			state = Mp;
-			} else {
+			}
+    else {
 			if (placeHolder == Ml) {
 				play(playlistMel[it4][it1][it2]);
 			}
@@ -658,232 +562,239 @@ int melodyTick(int state) {
 	return state;
 }
 
-enum HarmonyStates{Hinit, Hwait, Hplay, Hl, Hr, Hp};
-int harmonyTick(int state) {
-	static unsigned short it1;
-	static unsigned short it2;
-	static unsigned short it3;
-	static unsigned char it4 = 0;
-	static unsigned char placeHolder;
-	switch(state) {
-		case Hinit:
-		state= Hwait;
-		it1 = 0;
-		it2 = 0;
-		it3 = 0;
-		it4 = 1;
-		prevSong = 0;
-		nextSong = 0;
-		silenceH();
-		break;
-
-		case Hwait:
-		if (!paused) {
-			state= Hplay;
-		}
-		else {
-			state= Hwait;
-		}
-		break;
-
-		case Hplay:
-		songDone = 0;
-		if (paused) {
-			silenceH();
-			placeHolder = state;
-			state = Hp;
-			break;
-		}
-		if (prevSong && (it1 == 0)) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			if (it4 == 0) {
-				it4 = playList - 1;
-			}
-			else {
-				it4--;
-			}
-			state = Hplay;
-			break;
-		}
-		else if (prevSong){
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			state = Hplay;
-			break;
-		}
-		if (nextSong) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			it4 = it4 + 1;;
-			if (it4 == playList) {
-				it4 = 0;
-			}
-			state = Hplay;
-			break;
-		}
-		if (playlistHar[it4][it1][it2] == -1) {
-			it1 = it1 + 1;
-			it2 = 0;
-		}
-		if (it1 == numRows[it4]) {
-			songDone = 1;
-			state = Hwait;
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			it4 = it4 + 1;
-			if (it4 == playList) {
-				it4 = 0;
-			}
-			break;
-		}
-		playH(playlistHar[it4][it1][it2]);
-		state = Hl;
-		break;
-
-		case Hl:
-		if (paused) {
-			silenceH();
-			placeHolder = state;
-			state = Hp;
-			break;
-		}
-		if (prevSong && (it1 == 0)) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			if (it4 == 0) {
-				it4 = playList - 1;
-			}
-			else {
-				it4--;
-			}
-			state = Hplay;
-			break;
-			} else if (prevSong){
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			state = Hplay;
-			break;
-		}
-		if (nextSong) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			it4 = it4 + 1;
-			if (it4 == playList) {
-				it4 = 0;
-			}
-			state = Hplay;
-			break;
-		}
-		if (it3 < playlistHarNL[it4][it1][it2]) {
-			it3 = it3 + 1;
-			state = Hl;
-		}
-		else {
-			it3 = 0;
-			silenceH();
-			state = Hr;
-		}
-		break;
-
-		case Hr:
-		if (paused) {
-			silenceH();
-			placeHolder = state;
-			state = Hp;
-			break;
-		}
-		if (prevSong && (it1 == 0)) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			if (it4 == 0) {
-				it4 = playList - 1;
-				} else {
-				it4--;
-			}
-			state = Hplay;
-			break;
-			} else if (prevSong){
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			state = Hplay;
-			break;
-		}
-		if (nextSong) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			it4 = it4 + 1;
-			if (it4 == playList) {
-				it4 = 0;
-			}
-			state = Hplay;
-			break;
-		}
-		if (it3 < playlistHarRL[it4][it1][it2]) {
-			it3 = it3 + 1;
-			state = Hr;
-			} else {
-			it3 = 0;
-			it2 = it2 + 1;
-			state = Hplay;
-		}
-		break;
-
-		case Hp:
-		if (prevSong && (it1 == 0)) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			if (it4 == 0) {
-				it4 = playList - 1;
-				} else {
-				it4--;
-			}
-			paused = 0;
-			state = Hplay;
-			break;
-			} else if (prevSong){
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			paused = 0;
-			state = Hplay;
-			break;
-		}
-		if (nextSong) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			it4 = it4 + 1;
-			if (it4 == playList) {
-				it4 = 0;
-			}
-			paused = 0;
-			state = Hplay;
-			break;
-		}
-		if (paused) {
-			state = Hp;
-			} else {
-			if (placeHolder == Hl) {
-				playH(playlistHar[it4][it1][it2]);
-			}
-			state = placeHolder;
-		}
-		break;
-	}
-	return state;
-}
+// enum HarmonyStates{Hinit, Hwait, Hplay, Hl, Hr, Hp};
+// int harmonyTick(int state) {
+// 	static unsigned short it1;
+// 	static unsigned short it2;
+// 	static unsigned short it3;
+// 	static unsigned char it4 = 0;
+// 	static unsigned char placeHolder;
+// 	switch(state) {
+// 		case Hinit:
+// 		state= Hwait;
+// 		it1 = 0;
+// 		it2 = 0;
+// 		it3 = 0;
+// 		it4 = 1;
+// 		prevSong = 0;
+// 		nextSong = 0;
+// 		silenceH();
+// 		break;
+//
+// 		case Hwait:
+// 		if (!paused) {
+// 			state= Hplay;
+// 		}
+// 		else {
+// 			state= Hwait;
+// 		}
+// 		break;
+//
+// 		case Hplay:
+// 		songDone = 0;
+// 		if (paused) {
+// 			silenceH();
+// 			placeHolder = state;
+// 			state = Hp;
+// 			break;
+// 		}
+// 		if (prevSong && (it1 == 0)) {
+// 			it1 = 0;
+// 			it2 = 0;
+// 			it3 = 0;
+// 			if (it4 == 0) {
+// 				it4 = playList - 1;
+// 			}
+// 			else {
+// 				it4 = it4 - 1;
+// 			}
+// 			state = Hplay;
+// 			break;
+// 		}
+// 		else if (prevSong){
+// 			it1 = 0;
+// 			it2 = 0;
+// 			it3 = 0;
+// 			state = Hplay;
+// 			break;
+// 		}
+// 		if (nextSong) {
+// 			it1 = 0;
+// 			it2 = 0;
+// 			it3 = 0;
+// 			it4 = it4 + 1;;
+// 			if (it4 == playList) {
+// 				it4 = 0;
+// 			}
+// 			state = Hplay;
+// 			break;
+// 		}
+// 		if (playlistHar[it4][it1][it2] == -1) {
+// 			it1 = it1 + 1;
+// 			it2 = 0;
+// 		}
+// 		if (it1 == numRows[it4]) {
+// 			songDone = 1;
+// 			state = Hwait;
+// 			it1 = 0;
+// 			it2 = 0;
+// 			it3 = 0;
+// 			it4 = it4 + 1;
+// 			if (it4 == playList) {
+// 				it4 = 0;
+// 			}
+// 			break;
+// 		}
+// 		playH(playlistHar[it4][it1][it2]);
+// 		state = Hl;
+// 		break;
+//
+// 		case Hl:
+// 		if (paused) {
+// 			silenceH();
+// 			placeHolder = state;
+// 			state = Hp;
+// 			break;
+// 		}
+// 		if (prevSong && (it1 == 0)) {
+// 			it1 = 0;
+// 			it2 = 0;
+// 			it3 = 0;
+// 			if (it4 == 0) {
+// 				it4 = playList - 1;
+// 			}
+// 			else {
+// 				it4 = it4 - 1;
+// 			}
+// 			state = Hplay;
+// 			break;
+// 			}
+//       else if (prevSong){
+// 			it1 = 0;
+// 			it2 = 0;
+// 			it3 = 0;
+// 			state = Hplay;
+// 			break;
+// 		}
+// 		if (nextSong) {
+// 			it1 = 0;
+// 			it2 = 0;
+// 			it3 = 0;
+// 			it4 = it4 + 1;
+// 			if (it4 == playList) {
+// 				it4 = 0;
+// 			}
+// 			state = Hplay;
+// 			break;
+// 		}
+// 		if (it3 < playlistHarNL[it4][it1][it2]) {
+// 			it3 = it3 + 1;
+// 			state = Hl;
+// 		}
+// 		else {
+// 			it3 = 0;
+// 			silenceH();
+// 			state = Hr;
+// 		}
+// 		break;
+//
+// 		case Hr:
+// 		if (paused) {
+// 			silenceH();
+// 			placeHolder = state;
+// 			state = Hp;
+// 			break;
+// 		}
+// 		if (prevSong && (it1 == 0)) {
+// 			it1 = 0;
+// 			it2 = 0;
+// 			it3 = 0;
+// 			if (it4 == 0) {
+// 				it4 = playList - 1;
+// 				}
+//        else {
+// 				it4 = it4 - 1;
+// 			}
+// 			state = Hplay;
+// 			break;
+// 			}
+//     else if (prevSong){
+// 			it1 = 0;
+// 			it2 = 0;
+// 			it3 = 0;
+// 			state = Hplay;
+// 			break;
+// 		}
+// 		if (nextSong) {
+// 			it1 = 0;
+// 			it2 = 0;
+// 			it3 = 0;
+// 			it4 = it4 + 1;
+// 			if (it4 == playList) {
+// 				it4 = 0;
+// 			}
+// 			state = Hplay;
+// 			break;
+// 		}
+// 		if (it3 < playlistHarRL[it4][it1][it2]) {
+// 			it3 = it3 + 1;
+// 			state = Hr;
+// 			}
+//      else {
+// 			it3 = 0;
+// 			it2 = it2 + 1;
+// 			state = Hplay;
+// 		}
+// 		break;
+//
+// 		case Hp:
+// 		if (prevSong && (it1 == 0)) {
+// 			it1 = 0;
+// 			it2 = 0;
+// 			it3 = 0;
+// 			if (it4 == 0) {
+// 				it4 = playList - 1;
+// 				}
+//       else {
+// 				it4 = it4 - 1;
+// 			}
+// 			paused = 0;
+// 			state = Hplay;
+// 			break;
+// 			}
+//       else if (prevSong){
+// 			     it1 = 0;
+// 			     it2 = 0;
+// 			     it3 = 0;
+// 			     paused = 0;
+// 			     state = Hplay;
+// 			     break;
+// 		}
+// 		if (nextSong) {
+// 			it1 = 0;
+// 			it2 = 0;
+// 			it3 = 0;
+// 			it4 = it4 + 1;
+// 			if (it4 == playList) {
+// 				it4 = 0;
+// 			}
+// 			paused = 0;
+// 			state = Hplay;
+// 			break;
+// 		}
+// 		if (paused) {
+// 			state = Hp;
+// 			}
+//     else {
+// 			if (placeHolder == Hl) {
+// 				playH(playlistHar[it4][it1][it2]);
+// 			}
+// 			state = placeHolder;
+// 		}
+// 		break;
+// 	}
+// 	return state;
+// }
 
 enum BassStates{Binit, Bwait, Bplay, Bl, Br, Bp};
 int bassTick(int state) {
@@ -929,7 +840,7 @@ int bassTick(int state) {
 				it4 = playList - 1;
 			}
 			else {
-				it4--;
+				it4 = it4 - 1;
 			}
 			state = Bplay;
 			break;
@@ -987,11 +898,12 @@ int bassTick(int state) {
 				it4 = playList - 1;
 			}
 			else {
-				it4--;
+				it4 = it4 - 1;
 			}
 			state = Bplay;
 			break;
-			} else if (prevSong){
+			}
+    else if (prevSong){
 			it1 = 0;
 			it2 = 0;
 			it3 = 0;
@@ -1033,12 +945,14 @@ int bassTick(int state) {
 			it3 = 0;
 			if (it4 == 0) {
 				it4 = playList - 1;
-				} else {
-				it4--;
+				}
+      else {
+				it4 = it4 - 1;
 			}
 			state = Bplay;
 			break;
-			} else if (prevSong){
+			}
+      else if (prevSong){
 			it1 = 0;
 			it2 = 0;
 			it3 = 0;
@@ -1059,7 +973,8 @@ int bassTick(int state) {
 		if (it3 < playlistBasRL[it4][it1][it2]) {
 			it3 = it3 + 1;
 			state = Br;
-			} else {
+			}
+    else {
 			it3 = 0;
 			it2 = it2 + 1;
 			state = Bplay;
@@ -1073,8 +988,9 @@ int bassTick(int state) {
 			it3 = 0;
 			if (it4 == 0) {
 				it4 = playList - 1;
-				} else {
-				it4--;
+				}
+      else {
+				it4 = it4 - 1;
 			}
 			paused = 0;
 			state = Bplay;
@@ -1101,7 +1017,8 @@ int bassTick(int state) {
 		}
 		if (paused) {
 			state = Bp;
-			} else {
+			}
+    else {
 			if (placeHolder == Bl) {
 				playB(playlistBas[it4][it1][it2]);
 			}
@@ -1132,45 +1049,30 @@ int main(void) {
 
 
   unsigned char timerPeriod = 1;
-  static task task1, task2, task3, task4, task5;
-  task *tasks[] = { &task1, &task2, &task3, &task4, &task5};
+  static task task1, task2, task3, task4;
+  task *tasks[] = { &task1, &task2, &task3, &task4};
   const unsigned short taskNum = sizeof(tasks) / sizeof(*tasks);
 
   task1.state = 0;
   task1.period = 1;
   task1.elapsedTime = task1.period;
-  task1.TickFct = &melodyTick;
-
+  task1.TickFct = &pauseTick;
+  // task2.state = 0;
+  // task2.period = 1;
+  // task2.elapsedTime = task2.period;
+  // task2.TickFct = &harmonyTick;
   task2.state = 0;
   task2.period = 1;
   task2.elapsedTime = task2.period;
-  task2.TickFct = &harmonyTick;
-
+  task2.TickFct = &NextPrevTick;
   task3.state = 0;
   task3.period = 1;
   task3.elapsedTime = task3.period;
-  task3.TickFct = &bassTick;
-
+  task3.TickFct = &melodyTick;
   task4.state = 0;
   task4.period = 1;
   task4.elapsedTime = task4.period;
-  task4.TickFct = &pauseTick;
-
-  task5.state = 0;
-  task5.period = 1;
-  task5.elapsedTime = task5.period;
-  task5.TickFct = &NextPrevTick;
-
-
-
-	//unsigned char numVals;
-	//unsigned char playButton;
-	//unsigned short i;
-	//unsigned short j;
-	//char soundBuzzer = 0;
-	//char soundBuzzerHarmony = 0;
-
-    /* Insert your solution below */
+  task4.TickFct = &bassTick;
 	TimerSet(timerPeriod);
 	TimerOn();
 
@@ -1191,7 +1093,7 @@ int main(void) {
 				}
 				tasks[i]->elapsedTime += timerPeriod;
 			}
-		
+
 		while(!TimerFlag){};
 			TimerFlag = 0;
 		}
