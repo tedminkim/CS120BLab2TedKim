@@ -168,14 +168,22 @@ short renCircB3NL[] = {200,200, 75,    150,  300,   150,   100,   100,  300, 200
 short renCircB3RL[] = {100, 100, 10,    100,  100,  200,   25,   25,   100,  100,   10,     100,    100,   300,   25,  100,      50,       150,  25,    100,     50,   150, 100,   10,  100,  100 ,   10,    100,   300     };
 
 
-short MaryHM[] = {E, D, C, D, E, E, E, D, D, D, E, G, G, E, D, C, D, E, E, E, E, D, D, E, D, C};
+/*short MaryHM[] = {E, D, C, D, E, E, E, D, D, D, E, G, G, E, D, C, D, E, E, E, E, D, D, E, D, C};
 short MaryHMN[] = {300, 300, 300, 300, 300, 300, 600, 300, 300, 600, 300, 300, 600, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 1000};
 short MaryHMR[] = {25, 25, 25, 25, 50, 50, 150, 50, 50, 150, 50, 50, 150, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 150};
 
 short MaryHB[] = {G, F, E, F, G, G, G, F, F, F, G, C*2, C*2, G, F, E, F, G, G, G, G, F, F, G, F, E};
 //short testSongH[] = {F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F, F};
 short MaryHBN[] = {300, 300, 300, 300, 300, 300, 600, 300, 300, 600, 300, 300, 600, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 1000};
-short MaryHBR[] = {25, 25, 25, 25, 50, 50, 150, 50, 50, 150, 50, 50, 150, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 150};
+short MaryHBR[] = {25, 25, 25, 25, 50, 50, 150, 50, 50, 150, 50, 50, 150, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 150};*/
+	
+short AmGrM[] = { F,    AS,     D*2,     C*2,     AS,     D*2,     C*2,     AS,     G,     F,    F,     AS,       D*2,     C*2,    AS,      D*2,     C*2,      F*2,      F*2,        D*2,     F*2,     F*2,     D*2,     C*2,      AS,       D*2,     C*2,     AS,    G,     F,    F,      AS,    D*2,    C*2,    AS,   D*2,    C*2,    AS};
+short AmGrMN[] = {500,  600,    300,      75,     75,     700,     400,     600,    350,   600,  500,   600,      300,      75,    75,      700,     300,     300,       800,        300,     300,      600,     300,      75,       75,      700,     500,     500,   300,   700,  500,    600,   300,    75,     75,   700,    550,    2000};
+short AmGrMR[] = {200,  300,    75,      5,     10,     200,     200,     300,    200,   300,  200,   300,      75,      5,    10,      200,     50,     10,       300,        50,     10,      200,     75,      5,       10,      200,     200,     300,   100,   400,  200,    300,   75,    5,     10,   300,    200,    500};	
+	
+short AmGrB[] = { AS,    D*2,     F*2,     DS*2,     D*2,     F*2,     DS*2,     D*2,     C*2,     AS,    AS,     D*2,       F*2,     DS*2,    D*2,      F*2,     DS*2,      A*2,      A*2,        F*2,     AS*2,     AS*2,     F*2,     DS*2,      D*2,       F*2,     DS*2,     D*2,    C*2,     AS,    AS,      D*2,    F*2,    DS*2,    D*2,   F*2,    DS*2,    D*2};
+short AmGrBN[] = {500,  600,    300,      75,     75,     700,     400,     600,    350,   600,  500,   600,      300,      75,    75,      700,     300,     300,       800,        300,     300,      600,     300,      75,       75,      700,     500,     500,   300,   700,  500,    600,   300,    75,     75,   700,    550,  2000};
+short AmGrBR[] = {200,  300,    75,      5,     10,     200,     200,     300,    200,   300,  200,   300,      75,      5,    10,      200,     50,     10,       300,        50,     10,      200,     75,      5,       10,      200,     200,     300,   100,   400,  200,    300,   75,    5,     10,   300,    200,    500};
 	
 short renCircM[] = {CS*2,    B,   CS*2,   CS*2, B,   E*2,   E*2,      CS*2,   B,   CS*2,  CS*2,   CS*2, B,    E*2,   GS*2,      CS*2,    B,    CS*2,    CS*2,    CS*2,   B,    E*2,   E*2,   E*2,   FS*2,    E*2,    E*2,   E*2,   CS*2,   GS*2, E,  E,   FS,    G,    GS,    E,     B,    CS,     E,    E,    FS,      G,     GS,     E,    CS,    E,      CS,      E,     CS,     E,   CS,     E,   E,    A,    GS,   E,    E,    CS,     GS,  E,  E,   FS,    G,    GS,    E,     B,    CS,     E,    E,    FS,      G,     GS,     E,    CS,    E,      CS,      E,     CS,     E,   CS,     E,   E,    A,    GS,   E,    E,    FS,     E }; //30 notes
 short renCircMNL[] = {75,    150, 300,    300,  150,  300,    150,     75,   150,    300,    150,   75,  150, 300, 150,        75,     150,   300,      150,    75,     150,  300,    150,    75,     150,   300,    150,     75,   150,  150, 200,200, 75,    150,  300,   150,   100,   100,  300, 200,    75,     150,    300,   150,   250,   150,    75,      250,   250,     150,  75,   250, 150,   75,  150,  200,   75,  150,     150, 200,200, 75,    150,  300,   150,   100,   100,  300, 200,    75,     150,    300,   150,   250,   150,    75,      250,   250,     150,  75,   250, 150,   75,  150,  200,   75,  150,     150 };
@@ -183,7 +191,7 @@ short renCircMRL[] = {10,     25,  100,   100,  100,  100,    250,     10,      
 	
 short renCircB[] = {  A,   B,    B,  GS, CS, CS,   FS,     B,  B,  E, CS,  GS,  GS,   A,    AS,    B,    GS,     E,    FS,     GS,    GS,    A,      AS,     B,     GS,    E,    GS,      E,      GS,     E,     GS,   E,     GS,   GS,    CS*2,    B,   GS,    GS,    E,     B,  GS,  GS,   A,    AS,    B,    GS,     E,    FS,     GS,    GS,    A,      AS,     B,     GS,    E,    GS,      E,      GS,     E,     GS,   E,     GS,   GS,    CS*2,    B,   GS,    GS,    A,     GS };
 short renCircBNL[] = {975,300, 150, 975, 300, 150, 775, 250, 300, 875, 150, 200,200, 75,    150,  300,   150,   100,   100,  300, 200,    75,     150,    300,   150,   250,   150,    75,      250,   250,     150,  75,   250, 150,   75,  150,  200,   75,  150,     150, 200,200, 75,    150,  300,   150,   100,   100,  300, 200,    75,     150,    300,   150,   250,   150,    75,      250,   250,     150,  75,   250, 150,   75,  150,  200,   75,  150,     150};
-short renCircBRL[] = {335, 100, 475, 160, 25, 450, 285, 50, 350, 200, 550, 100, 100, 10,    100,  100,  200,   25,   25,   100,  100,   10,     100,    100,   300,   25,  100,      50,       150,  25,    100,     50,   150, 100,   10,  100,  100 ,   10,    100,   600, 100, 100, 10,    100,  100,  200,   25,   25,   100,  100,   10,     100,    100,   300,   25,  100,      50,       150,  25,    100,     50,   150,  100,   10,  100,  100 ,   10,    100,   300      };
+short renCircBRL[] = {335, 100, 475, 160, 25, 450, 285, 50, 350, 200, 545, 100, 100, 10,    100,  100,  200,   25,   25,   100,  100,   10,     100,    100,   300,   25,  100,      50,       150,  25,    100,     50,   150, 100,   10,  100,  100 ,   10,    100,   600, 100, 100, 10,    100,  100,  200,   25,   25,   100,  100,   10,     100,    100,   300,   25,  100,      50,       150,  25,    100,     50,   150,  100,   10,  100,  100 ,   10,    100,   300      };
 
 //60 notes
 short mooHLM[] = {G,    A,      E*2,     G*2,    E*2,    E*2,    D*2,    C*2,    D*2,    E*2,    B*2,    G*2,    FS*2,    F*2,      C*4,       D*4,        C*4,      AS*2,      C*4,      AS*2,      GS*2, AS*2, GS*2, G*2, G,   D, E, F, G, C*2, A,    G,   G,    A,      E*2,     G*2,    E*2,    E*2,    D*2,    C*2,    D*2,    E*2,    B*2,    G*2,    FS*2,    F*2,      C*4,       D*4,        C*4,      AS*2,      C*4,      AS*2,      GS*2, AS*2, GS*2, G*2, G,   D, E, F, G, C*2, A,    G, E,   E,   C};
@@ -197,6 +205,12 @@ short mooHLBR[] = { 200,  200,    200,   200,    200,  100,  10,   100,  10,   3
 short* renCircMel[] = {renCircM};
 short* renCircMelNL[] = {renCircMNL};
 short* renCircMelRL[] = {renCircMRL};
+short* AmGrMel[] = {AmGrM};
+short* AmGrMelN[] = {AmGrMN};
+short* AmGrMelR[] = {AmGrMR};
+short* AmGrBas[] = {AmGrB};
+short* AmGrBasN[] = {AmGrBN};
+short* AmGrBasR[] = {AmGrBR};
 short* mooHLMel[] = {mooHLM};
 short* mooHLMelN[] = {mooHLMN};
 short* mooHLMelR[] = {mooHLMR};
@@ -206,18 +220,18 @@ short* mooHLBasR[] = {mooHLBR};
 short* renCircHar[] = {renCircB};
 short* renCircHarNL[] = {renCircBNL};
 short* renCircHarRL[] = {renCircBRL};
-short* MaryHMel[] = {MaryHM};
+/*short* MaryHMel[] = {MaryHM};
 short* MaryHMelN[] = {MaryHMN};
 short* MaryHMelR[] = {MaryHMR};
 short* MaryHBas[] = {MaryHB};
 short* MaryHBasN[] = {MaryHBN};
-short* MaryHBasR[] = {MaryHBR};
-short** playlistMel[] = {renCircMel, MaryHMel, mooHLMel};
-short** playlistMelNL[] = {renCircMelNL, MaryHMelN, mooHLMelN};
-short** playlistMelRL[] = {renCircMelRL, MaryHMelR, mooHLMelR};
-short** playlistBas[] = {renCircHar, MaryHBas, mooHLBas};
-short** playlistBasNL[] = {renCircHarNL, MaryHBasN, mooHLBasN};
-short** playlistBasRL[] = {renCircHarRL, MaryHBasR, mooHLBasR};
+short* MaryHBasR[] = {MaryHBR};*/
+short** playlistMel[] = {renCircMel, AmGrMel, mooHLMel};
+short** playlistMelNL[] = {renCircMelNL, AmGrMelN, mooHLMelN};
+short** playlistMelRL[] = {renCircMelRL, AmGrMelR, mooHLMelR};
+short** playlistBas[] = {renCircHar, AmGrBas, mooHLBas};
+short** playlistBasNL[] = {renCircHarNL, AmGrBasN, mooHLBasN};
+short** playlistBasRL[] = {renCircHarRL, AmGrBasR, mooHLBasR};
 char numRows[] = {1, 1, 1};
 
 void DisplaySong1() {
@@ -226,10 +240,16 @@ void DisplaySong1() {
 	nokia_lcd_write_string("Song Name:    Renai         Circulation", 1);
 	nokia_lcd_render();
 }
-void DisplaySong2() {
+/*void DisplaySong2() {
 	nokia_lcd_clear();
 	nokia_lcd_set_cursor(0, 0);
 	nokia_lcd_write_string("Song Name:    Mary Had A    Little Lamb", 1);
+	nokia_lcd_render();
+}*/
+void DisplaySong2() {
+	nokia_lcd_clear();
+	nokia_lcd_set_cursor(0, 0);
+	nokia_lcd_write_string("Song Name:    Amazing Grace", 1);
 	nokia_lcd_render();
 }
 void DisplaySong3() {
@@ -364,6 +384,7 @@ int melodyTick(int state) {
 		case Mwait:
 			if (!paused) {
 				state= Mplay;
+				//DisplayName(it4);
 			}
 			else {
 				state= Mwait;
@@ -379,6 +400,9 @@ int melodyTick(int state) {
 				state = Mp;
 				break;
 			}
+			//else {
+				//DisplayName(it4);
+			//}
 			if (prevSong && (it1 == 0)) {
 				it1 = 0;
 				it2 = 0;
@@ -413,7 +437,7 @@ int melodyTick(int state) {
 			it1 = 0;
 			it2 = 0;
 			it3 = 0;
-			it4 = it4 + 1;;
+			it4 = it4 + 1;
 			if (it4 == playList) {
 				it4 = 0;
 			}
@@ -447,6 +471,7 @@ int melodyTick(int state) {
 		}*/
 		//play(playlistMel[it4][it1][it2]);
 		//play(playlistMel[it4][it1][it2]);
+		//DisplayName(it4);
 		if (it4 == 0) {
 			play(playlistMel[it4][it1][it2]);
 			DisplaySong1();
@@ -468,8 +493,9 @@ int melodyTick(int state) {
 			state = Ml;
 			//state = Ms2;
 		}
-		
+		//play(playlistMel[it4][it1][it2]);
 		//state = Ml;
+		
 		break;
 
 		//case Ms0:
@@ -636,25 +662,27 @@ int melodyTick(int state) {
 				
 				if (it4 == 0) {
 					play(playlistMel[it4][it1][it2]);
-					DisplaySong1();
+					//DisplaySong1();
 					
 				}
 				else if (it4 == 1) {
 					play(playlistMel[it4][it1][it2]);
-					DisplaySong2();
+					//DisplaySong2();
 					
 				}
 				else if (it4 == 2) {
 					play(playlistMel[it4][it1][it2]);
-					DisplaySong3();
+					//DisplaySong3();
 				}
 				//play(playlistMel[it4][it1][it2]);
 					
 				}
+			//DisplayName(it4);
 			state = placeHolder;
 		}
 		break;
 	}
+	//DisplayName(it4);
 	return state;
 }
 unsigned char it42;
@@ -680,6 +708,7 @@ int bassTick(int state) {
 		case Bwait:
 		if (!paused) {
 			state= Bplay;
+			//DisplayName(it42);
 		}
 		else {
 			state= Bwait;
@@ -744,6 +773,7 @@ int bassTick(int state) {
 		}
 		//playB(playlistBas[it42][it1][it2]);
 		//playB(playlistBas[it4][it1][it2]);
+		//DisplayName(it42);
 		if (it42 == 0) {
 			playB(playlistBas[it42][it1][it2]);
 			DisplaySong1();
@@ -759,7 +789,8 @@ int bassTick(int state) {
 			DisplaySong3();
 			state = Bl;
 		}
-		
+		//
+		//playB(playlistBas[it42][it1][it2]);
 		//state = Bl;
 		break;
 
@@ -820,6 +851,7 @@ int bassTick(int state) {
 		else if (it42 == 2) {
 			DisplaySong3();
 		}*/
+		//DisplayName(it42);
 		break;
 
 		case Br:
@@ -940,15 +972,84 @@ int bassTick(int state) {
 				}
 					
 			}
+			//DisplayName(it42);
 			state = placeHolder;
 		}
 		break;
 	}
+	//DisplayName(it42);
 	return state;
 }
-/*enum NameStates{Dinit, Dplay, Dpause} state;
-void DisplayNameTick() {
-
+/*enum NameStates{Ninit, Ren, Mar, Mam};
+int DisplayName(int state) {
+	unsigned char boop = it4;
+	switch(state) {
+		case Ninit:
+		//case 0:
+		if (boop == 0) {
+			state = Ren;
+			//break;
+		}
+		//case 1:
+		else if (boop == 1) {
+			state = Mar;
+			//break;
+		}
+		//case 2:
+		else if (boop == 2) {
+			state = Mam;
+			//break;
+		}
+		break;
+		case Ren:
+		if (boop != 0) {
+			state  = Ninit;
+		}
+		else {
+			state = Ren;
+		}
+		break;
+		case Mar:
+		if (boop != 1) {
+			state = Ninit;
+		}
+		else {
+			state = Mar;
+		}
+		break;
+		case Mam:
+		if (boop != 2) {
+			state = Ninit;
+		}
+		else {
+			state = Mam;
+		}
+		break;
+	}
+		switch(state) {
+			case Ninit:
+			break;
+		case Ren:
+			nokia_lcd_clear();
+			nokia_lcd_set_cursor(0, 0);
+			nokia_lcd_write_string("Song Name:    Renai         Circulation", 1);
+			nokia_lcd_render();
+			break;
+		case Mar:
+			nokia_lcd_clear();
+			nokia_lcd_set_cursor(0, 0);
+			nokia_lcd_write_string("Song Name:    Mary Had A    Little Lamb", 1);
+			nokia_lcd_render();
+			break;
+		case Mam:
+			nokia_lcd_clear();
+			nokia_lcd_set_cursor(0, 0);
+			nokia_lcd_write_string("Song Name:    Mamamoo :     Hello", 1);
+			nokia_lcd_render();
+			break;
+		}
+			
+	return state;
 };*/
 
 
@@ -971,14 +1072,14 @@ int main(void) {
 
 
   unsigned char timerPeriod = 1;
-  static task task2, task3, task4, task5;
+  static task  task2, task3, task4, task5;
   task *tasks[] = {  &task2, &task3, &task4, &task5};
   const unsigned short taskNum = sizeof(tasks) / sizeof(*tasks);
 
-  /*task1.state = 0;
-  task1.period = 50;
-  task1.elapsedTime = task1.period;
-  task1.TickFct = &DisplayNameTick;*/
+  //task1.state = 0;
+  //task1.period = 50;
+  //task1.elapsedTime = task1.period;
+  //task1.TickFct = &DisplayName;
   task2.state = 0;
   task2.period = 1;
   task2.elapsedTime = task2.period;
