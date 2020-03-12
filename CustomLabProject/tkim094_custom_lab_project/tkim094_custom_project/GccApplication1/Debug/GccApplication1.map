@@ -70,24 +70,6 @@ Discarded input sections
                 0x00000000        0xa main.o
  .data.y        0x00000000        0x4 main.o
  .data.x        0x00000000        0x4 main.o
- .data.MaryHBasR
-                0x00000000        0x2 main.o
- .data.MaryHBasN
-                0x00000000        0x2 main.o
- .data.MaryHBas
-                0x00000000        0x2 main.o
- .data.MaryHMelR
-                0x00000000        0x2 main.o
- .data.MaryHMelN
-                0x00000000        0x2 main.o
- .data.MaryHMel
-                0x00000000        0x2 main.o
- .data.MaryHBR  0x00000000       0x34 main.o
- .data.MaryHBN  0x00000000       0x34 main.o
- .data.MaryHB   0x00000000       0x34 main.o
- .data.MaryHMR  0x00000000       0x34 main.o
- .data.MaryHMN  0x00000000       0x34 main.o
- .data.MaryHM   0x00000000       0x34 main.o
  .data.renCircB3RL
                 0x00000000       0x3a main.o
  .data.renCircB3NL
@@ -771,24 +753,24 @@ END GROUP
                 0x00800ac2                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.task5.2277
+ .bss.task5.2265
                 0x00800ac2        0xb main.o
- .bss.task4.2276
+ .bss.task4.2264
                 0x00800acd        0xb main.o
- .bss.task3.2275
+ .bss.task3.2263
                 0x00800ad8        0xb main.o
- .bss.task2.2274
+ .bss.task2.2262
                 0x00800ae3        0xb main.o
- .bss.placeHolder.2262
+ .bss.placeHolder.2250
                 0x00800aee        0x1 main.o
- .bss.it3.2261  0x00800aef        0x2 main.o
- .bss.it2.2260  0x00800af1        0x2 main.o
- .bss.it1.2259  0x00800af3        0x2 main.o
- .bss.placeHolder.2240
+ .bss.it3.2249  0x00800aef        0x2 main.o
+ .bss.it2.2248  0x00800af1        0x2 main.o
+ .bss.it1.2247  0x00800af3        0x2 main.o
+ .bss.placeHolder.2228
                 0x00800af5        0x1 main.o
- .bss.it3.2239  0x00800af6        0x2 main.o
- .bss.it2.2238  0x00800af8        0x2 main.o
- .bss.it1.2237  0x00800afa        0x2 main.o
+ .bss.it3.2227  0x00800af6        0x2 main.o
+ .bss.it2.2226  0x00800af8        0x2 main.o
+ .bss.it1.2225  0x00800afa        0x2 main.o
  .bss.current_frequency.2068
                 0x00800afc        0x4 main.o
  .bss.current_frequency.2060
@@ -891,11 +873,11 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x207e
+.debug_info     0x00000000     0x1fa6
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0x792 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega1284/avr51/crtatmega1284.o
- .debug_info    0x00000792     0x1302 main.o
- .debug_info    0x00001a94      0x5ea nokia5110.o
+ .debug_info    0x00000792     0x122a main.o
+ .debug_info    0x000019bc      0x5ea nokia5110.o
 
 .debug_abbrev   0x00000000      0xc3a
  *(.debug_abbrev)
@@ -914,12 +896,12 @@ END GROUP
  .debug_frame   0x00000000      0x244 main.o
  .debug_frame   0x00000244      0x130 nokia5110.o
 
-.debug_str      0x00000000      0xac8
+.debug_str      0x00000000      0xa60
  *(.debug_str)
  .debug_str     0x00000000      0x296 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega1284/avr51/crtatmega1284.o
- .debug_str     0x00000296      0x728 main.o
-                                0x775 (size before relaxing)
- .debug_str     0x000009be      0x10a nokia5110.o
+ .debug_str     0x00000296      0x6c0 main.o
+                                0x70d (size before relaxing)
+ .debug_str     0x00000956      0x10a nokia5110.o
                                 0x33a (size before relaxing)
 
 .debug_loc      0x00000000     0x10ff

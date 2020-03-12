@@ -15,19 +15,19 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
   5 .debug_aranges 00000158  00000000  00000000  0000273c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000207e  00000000  00000000  00002894  2**0
+  6 .debug_info   00001fa6  00000000  00000000  00002894  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000c3a  00000000  00000000  00004912  2**0
+  7 .debug_abbrev 00000c3a  00000000  00000000  0000483a  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00001361  00000000  00000000  0000554c  2**0
+  8 .debug_line   00001361  00000000  00000000  00005474  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  00000374  00000000  00000000  000068b0  2**2
+  9 .debug_frame  00000374  00000000  00000000  000067d8  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    00000ac8  00000000  00000000  00006c24  2**0
+ 10 .debug_str    00000a60  00000000  00000000  00006b4c  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000010ff  00000000  00000000  000076ec  2**0
+ 11 .debug_loc    000010ff  00000000  00000000  000075ac  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000158  00000000  00000000  000087eb  2**0
+ 12 .debug_ranges 00000158  00000000  00000000  000086ab  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -720,14 +720,14 @@ int melodyTick(int state) {
 		case Minit:
 			state= Mwait;
 			it1 = 0;
-     710:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
-     714:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
+     710:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
+     714:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
 			it2 = 0;
-     718:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
-     71c:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
+     718:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
+     71c:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
 			it3 = 0;
-     720:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
-     724:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     720:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
+     724:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
 			it4 = 1;
      728:	81 e0       	ldi	r24, 0x01	; 1
      72a:	80 93 05 0d 	sts	0x0D05, r24	; 0x800d05 <it4>
@@ -777,7 +777,7 @@ int melodyTick(int state) {
      758:	b2 df       	rcall	.-156    	; 0x6be <DisplayPaused>
 				placeHolder = state;
      75a:	82 e0       	ldi	r24, 0x02	; 2
-     75c:	80 93 f5 0a 	sts	0x0AF5, r24	; 0x800af5 <placeHolder.2240>
+     75c:	80 93 f5 0a 	sts	0x0AF5, r24	; 0x800af5 <placeHolder.2228>
 				state = Mp;
      760:	c5 e0       	ldi	r28, 0x05	; 5
      762:	d0 e0       	ldi	r29, 0x00	; 0
@@ -791,19 +791,19 @@ int melodyTick(int state) {
      766:	80 91 06 0d 	lds	r24, 0x0D06	; 0x800d06 <prevSong>
      76a:	88 23       	and	r24, r24
      76c:	69 f1       	breq	.+90     	; 0x7c8 <melodyTick+0xe8>
-     76e:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2237>
-     772:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2237+0x1>
+     76e:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2225>
+     772:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2225+0x1>
      776:	89 2b       	or	r24, r25
      778:	d1 f4       	brne	.+52     	; 0x7ae <melodyTick+0xce>
 				it1 = 0;
-     77a:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
-     77e:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
+     77a:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
+     77e:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
 				it2 = 0;
-     782:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
-     786:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
+     782:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
+     786:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
 				it3 = 0;
-     78a:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
-     78e:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     78a:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
+     78e:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
 				if (it4 == 0) {
      792:	80 91 05 0d 	lds	r24, 0x0D05	; 0x800d05 <it4>
      796:	81 11       	cpse	r24, r1
@@ -828,14 +828,14 @@ int melodyTick(int state) {
 			}
 			else if (prevSong){
 				it1 = 0;
-     7ae:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
-     7b2:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
+     7ae:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
+     7b2:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
 				it2 = 0;
-     7b6:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
-     7ba:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
+     7b6:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
+     7ba:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
 				it3 = 0;
-     7be:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
-     7c2:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     7be:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
+     7c2:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
 				state = Mplay;
 				break;
      7c6:	f7 c2       	rjmp	.+1518   	; 0xdb6 <melodyTick+0x6d6>
@@ -845,14 +845,14 @@ int melodyTick(int state) {
      7cc:	88 23       	and	r24, r24
      7ce:	29 f1       	breq	.+74     	; 0x81a <melodyTick+0x13a>
 			it1 = 0;
-     7d0:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
-     7d4:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
+     7d0:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
+     7d4:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
 			it2 = 0;
-     7d8:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
-     7dc:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
+     7d8:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
+     7dc:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
 			it3 = 0;
-     7e0:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
-     7e4:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     7e0:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
+     7e4:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
 			it4 = it4 + 1;
      7e8:	80 91 05 0d 	lds	r24, 0x0D05	; 0x800d05 <it4>
      7ec:	8f 5f       	subi	r24, 0xFF	; 255
@@ -889,15 +889,15 @@ int melodyTick(int state) {
      82a:	fe 4f       	sbci	r31, 0xFE	; 254
      82c:	40 81       	ld	r20, Z
      82e:	51 81       	ldd	r21, Z+1	; 0x01
-     830:	00 91 fa 0a 	lds	r16, 0x0AFA	; 0x800afa <it1.2237>
-     834:	10 91 fb 0a 	lds	r17, 0x0AFB	; 0x800afb <it1.2237+0x1>
+     830:	00 91 fa 0a 	lds	r16, 0x0AFA	; 0x800afa <it1.2225>
+     834:	10 91 fb 0a 	lds	r17, 0x0AFB	; 0x800afb <it1.2225+0x1>
      838:	d8 01       	movw	r26, r16
      83a:	aa 0f       	add	r26, r26
      83c:	bb 1f       	adc	r27, r27
      83e:	a4 0f       	add	r26, r20
      840:	b5 1f       	adc	r27, r21
-     842:	e0 91 f8 0a 	lds	r30, 0x0AF8	; 0x800af8 <it2.2238>
-     846:	f0 91 f9 0a 	lds	r31, 0x0AF9	; 0x800af9 <it2.2238+0x1>
+     842:	e0 91 f8 0a 	lds	r30, 0x0AF8	; 0x800af8 <it2.2226>
+     846:	f0 91 f9 0a 	lds	r31, 0x0AF9	; 0x800af9 <it2.2226+0x1>
      84a:	cf 01       	movw	r24, r30
      84c:	88 0f       	add	r24, r24
      84e:	99 1f       	adc	r25, r25
@@ -912,15 +912,15 @@ int melodyTick(int state) {
 			it1 = it1 + 1;
      860:	0f 5f       	subi	r16, 0xFF	; 255
      862:	1f 4f       	sbci	r17, 0xFF	; 255
-     864:	10 93 fb 0a 	sts	0x0AFB, r17	; 0x800afb <it1.2237+0x1>
-     868:	00 93 fa 0a 	sts	0x0AFA, r16	; 0x800afa <it1.2237>
+     864:	10 93 fb 0a 	sts	0x0AFB, r17	; 0x800afb <it1.2225+0x1>
+     868:	00 93 fa 0a 	sts	0x0AFA, r16	; 0x800afa <it1.2225>
 			it2 = 0;
-     86c:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
-     870:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
+     86c:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
+     870:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
 		}
 		if (it1 == numRows[it4]) {
-     874:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2237>
-     878:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2237+0x1>
+     874:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2225>
+     878:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2225+0x1>
      87c:	f9 01       	movw	r30, r18
      87e:	ea 5f       	subi	r30, 0xFA	; 250
      880:	fe 4f       	sbci	r31, 0xFE	; 254
@@ -934,14 +934,14 @@ int melodyTick(int state) {
      88e:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <songDone>
 			state = Mwait;
 			it1 = 0;
-     892:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
-     896:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
+     892:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
+     896:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
 			it2 = 0;
-     89a:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
-     89e:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
+     89a:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
+     89e:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
 			it3 = 0;
-     8a2:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
-     8a6:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     8a2:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
+     8a6:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
 			it4 = it4 + 1;
      8aa:	86 0f       	add	r24, r22
      8ac:	80 93 05 0d 	sts	0x0D05, r24	; 0x800d05 <it4>
@@ -984,8 +984,8 @@ int melodyTick(int state) {
      8e4:	fa 01       	movw	r30, r20
      8e6:	e8 0f       	add	r30, r24
      8e8:	f9 1f       	adc	r31, r25
-     8ea:	80 91 f8 0a 	lds	r24, 0x0AF8	; 0x800af8 <it2.2238>
-     8ee:	90 91 f9 0a 	lds	r25, 0x0AF9	; 0x800af9 <it2.2238+0x1>
+     8ea:	80 91 f8 0a 	lds	r24, 0x0AF8	; 0x800af8 <it2.2226>
+     8ee:	90 91 f9 0a 	lds	r25, 0x0AF9	; 0x800af9 <it2.2226+0x1>
      8f2:	88 0f       	add	r24, r24
      8f4:	99 1f       	adc	r25, r25
      8f6:	01 90       	ld	r0, Z+
@@ -1014,8 +1014,8 @@ int melodyTick(int state) {
      916:	fa 01       	movw	r30, r20
      918:	e8 0f       	add	r30, r24
      91a:	f9 1f       	adc	r31, r25
-     91c:	80 91 f8 0a 	lds	r24, 0x0AF8	; 0x800af8 <it2.2238>
-     920:	90 91 f9 0a 	lds	r25, 0x0AF9	; 0x800af9 <it2.2238+0x1>
+     91c:	80 91 f8 0a 	lds	r24, 0x0AF8	; 0x800af8 <it2.2226>
+     920:	90 91 f9 0a 	lds	r25, 0x0AF9	; 0x800af9 <it2.2226+0x1>
      924:	88 0f       	add	r24, r24
      926:	99 1f       	adc	r25, r25
      928:	01 90       	ld	r0, Z+
@@ -1045,8 +1045,8 @@ int melodyTick(int state) {
      94a:	fa 01       	movw	r30, r20
      94c:	e8 0f       	add	r30, r24
      94e:	f9 1f       	adc	r31, r25
-     950:	80 91 f8 0a 	lds	r24, 0x0AF8	; 0x800af8 <it2.2238>
-     954:	90 91 f9 0a 	lds	r25, 0x0AF9	; 0x800af9 <it2.2238+0x1>
+     950:	80 91 f8 0a 	lds	r24, 0x0AF8	; 0x800af8 <it2.2226>
+     954:	90 91 f9 0a 	lds	r25, 0x0AF9	; 0x800af9 <it2.2226+0x1>
      958:	88 0f       	add	r24, r24
      95a:	99 1f       	adc	r25, r25
      95c:	01 90       	ld	r0, Z+
@@ -1079,7 +1079,7 @@ int melodyTick(int state) {
      97e:	9f de       	rcall	.-706    	; 0x6be <DisplayPaused>
      980:	83 e0       	ldi	r24, 0x03	; 3
 			placeHolder = state;
-     982:	80 93 f5 0a 	sts	0x0AF5, r24	; 0x800af5 <placeHolder.2240>
+     982:	80 93 f5 0a 	sts	0x0AF5, r24	; 0x800af5 <placeHolder.2228>
      986:	c5 e0       	ldi	r28, 0x05	; 5
 			state = Mp;
      988:	d0 e0       	ldi	r29, 0x00	; 0
@@ -1090,19 +1090,19 @@ int melodyTick(int state) {
 		if (prevSong && (it1 == 0)) {
      990:	88 23       	and	r24, r24
      992:	99 f1       	breq	.+102    	; 0x9fa <melodyTick+0x31a>
-     994:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2237>
-     998:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2237+0x1>
+     994:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2225>
+     998:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2225+0x1>
      99c:	89 2b       	or	r24, r25
      99e:	f1 f4       	brne	.+60     	; 0x9dc <melodyTick+0x2fc>
-     9a0:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
+     9a0:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
 			it1 = 0;
-     9a4:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
-     9a8:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
+     9a4:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
+     9a8:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
 			it2 = 0;
-     9ac:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
-     9b0:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
+     9ac:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
+     9b0:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
 			it3 = 0;
-     9b4:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     9b4:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
      9b8:	80 91 05 0d 	lds	r24, 0x0D05	; 0x800d05 <it4>
 			if (it4 == 0) {
      9bc:	81 11       	cpse	r24, r1
@@ -1132,18 +1132,18 @@ int melodyTick(int state) {
 			state = Mplay;
      9d8:	d0 e0       	ldi	r29, 0x00	; 0
      9da:	ed c1       	rjmp	.+986    	; 0xdb6 <melodyTick+0x6d6>
-     9dc:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
+     9dc:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
 			break;
     }
     else if (prevSong){
 			it1 = 0;
-     9e0:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
-     9e4:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
+     9e0:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
+     9e4:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
 			it2 = 0;
-     9e8:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
-     9ec:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
+     9e8:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
+     9ec:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
 			it3 = 0;
-     9f0:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     9f0:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
      9f4:	c2 e0       	ldi	r28, 0x02	; 2
 			state = Mplay;
      9f6:	d0 e0       	ldi	r29, 0x00	; 0
@@ -1154,15 +1154,15 @@ int melodyTick(int state) {
 		if (nextSong) {
      9fe:	88 23       	and	r24, r24
      a00:	39 f1       	breq	.+78     	; 0xa50 <melodyTick+0x370>
-     a02:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
+     a02:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
 			it1 = 0;
-     a06:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
-     a0a:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
+     a06:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
+     a0a:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
 			it2 = 0;
-     a0e:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
-     a12:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
+     a0e:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
+     a12:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
 			it3 = 0;
-     a16:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     a16:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
      a1a:	80 91 05 0d 	lds	r24, 0x0D05	; 0x800d05 <it4>
 			it4 = it4 + 1;
      a1e:	8f 5f       	subi	r24, 0xFF	; 255
@@ -1188,19 +1188,19 @@ int melodyTick(int state) {
 			state = Mplay;
      a4c:	d0 e0       	ldi	r29, 0x00	; 0
      a4e:	b3 c1       	rjmp	.+870    	; 0xdb6 <melodyTick+0x6d6>
-     a50:	20 91 f6 0a 	lds	r18, 0x0AF6	; 0x800af6 <it3.2239>
+     a50:	20 91 f6 0a 	lds	r18, 0x0AF6	; 0x800af6 <it3.2227>
 			break;
 		}
 		if (it3 < playlistMelNL[it4][it1][it2]) {
-     a54:	30 91 f7 0a 	lds	r19, 0x0AF7	; 0x800af7 <it3.2239+0x1>
+     a54:	30 91 f7 0a 	lds	r19, 0x0AF7	; 0x800af7 <it3.2227+0x1>
      a58:	e0 91 05 0d 	lds	r30, 0x0D05	; 0x800d05 <it4>
      a5c:	f0 e0       	ldi	r31, 0x00	; 0
      a5e:	ee 0f       	add	r30, r30
      a60:	ff 1f       	adc	r31, r31
      a62:	ef 5d       	subi	r30, 0xDF	; 223
      a64:	fe 4f       	sbci	r31, 0xFE	; 254
-     a66:	a0 91 fa 0a 	lds	r26, 0x0AFA	; 0x800afa <it1.2237>
-     a6a:	b0 91 fb 0a 	lds	r27, 0x0AFB	; 0x800afb <it1.2237+0x1>
+     a66:	a0 91 fa 0a 	lds	r26, 0x0AFA	; 0x800afa <it1.2225>
+     a6a:	b0 91 fb 0a 	lds	r27, 0x0AFB	; 0x800afb <it1.2225+0x1>
      a6e:	cd 01       	movw	r24, r26
      a70:	88 0f       	add	r24, r24
      a72:	99 1f       	adc	r25, r25
@@ -1208,8 +1208,8 @@ int melodyTick(int state) {
      a76:	b1 81       	ldd	r27, Z+1	; 0x01
      a78:	a8 0f       	add	r26, r24
      a7a:	b9 1f       	adc	r27, r25
-     a7c:	e0 91 f8 0a 	lds	r30, 0x0AF8	; 0x800af8 <it2.2238>
-     a80:	f0 91 f9 0a 	lds	r31, 0x0AF9	; 0x800af9 <it2.2238+0x1>
+     a7c:	e0 91 f8 0a 	lds	r30, 0x0AF8	; 0x800af8 <it2.2226>
+     a80:	f0 91 f9 0a 	lds	r31, 0x0AF9	; 0x800af9 <it2.2226+0x1>
      a84:	cf 01       	movw	r24, r30
      a86:	88 0f       	add	r24, r24
      a88:	99 1f       	adc	r25, r25
@@ -1225,16 +1225,16 @@ int melodyTick(int state) {
      a9c:	2f 5f       	subi	r18, 0xFF	; 255
 			it3 = it3 + 1;
      a9e:	3f 4f       	sbci	r19, 0xFF	; 255
-     aa0:	30 93 f7 0a 	sts	0x0AF7, r19	; 0x800af7 <it3.2239+0x1>
-     aa4:	20 93 f6 0a 	sts	0x0AF6, r18	; 0x800af6 <it3.2239>
+     aa0:	30 93 f7 0a 	sts	0x0AF7, r19	; 0x800af7 <it3.2227+0x1>
+     aa4:	20 93 f6 0a 	sts	0x0AF6, r18	; 0x800af6 <it3.2227>
      aa8:	86 c1       	rjmp	.+780    	; 0xdb6 <melodyTick+0x6d6>
 			state = Ml;
 			}
 			else {
 				it3 = 0;
-     aaa:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
+     aaa:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
 				silence();
-     aae:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     aae:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
 				state = Mr;
      ab2:	c0 dd       	rcall	.-1152   	; 0x634 <silence>
      ab4:	c4 e0       	ldi	r28, 0x04	; 4
@@ -1255,7 +1255,7 @@ int melodyTick(int state) {
      ac4:	b7 dd       	rcall	.-1170   	; 0x634 <silence>
      ac6:	84 e0       	ldi	r24, 0x04	; 4
 			placeHolder = state;
-     ac8:	80 93 f5 0a 	sts	0x0AF5, r24	; 0x800af5 <placeHolder.2240>
+     ac8:	80 93 f5 0a 	sts	0x0AF5, r24	; 0x800af5 <placeHolder.2228>
      acc:	c5 e0       	ldi	r28, 0x05	; 5
 			state = Mp;
      ace:	d0 e0       	ldi	r29, 0x00	; 0
@@ -1266,19 +1266,19 @@ int melodyTick(int state) {
 		if (prevSong && (it1 == 0)) {
      ad6:	88 23       	and	r24, r24
      ad8:	99 f1       	breq	.+102    	; 0xb40 <melodyTick+0x460>
-     ada:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2237>
-     ade:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2237+0x1>
+     ada:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2225>
+     ade:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2225+0x1>
      ae2:	89 2b       	or	r24, r25
      ae4:	f1 f4       	brne	.+60     	; 0xb22 <melodyTick+0x442>
-     ae6:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
+     ae6:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
 			it1 = 0;
-     aea:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
-     aee:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
+     aea:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
+     aee:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
 			it2 = 0;
-     af2:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
-     af6:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
+     af2:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
+     af6:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
 			it3 = 0;
-     afa:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     afa:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
      afe:	80 91 05 0d 	lds	r24, 0x0D05	; 0x800d05 <it4>
 			if (it4 == 0) {
      b02:	81 11       	cpse	r24, r1
@@ -1308,18 +1308,18 @@ int melodyTick(int state) {
 			state = Mplay;
      b1e:	d0 e0       	ldi	r29, 0x00	; 0
      b20:	4a c1       	rjmp	.+660    	; 0xdb6 <melodyTick+0x6d6>
-     b22:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
+     b22:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
 			break;
     }
     else if (prevSong){
 			it1 = 0;
-     b26:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
-     b2a:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
+     b26:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
+     b2a:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
 			 it2 = 0;
-     b2e:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
-     b32:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
+     b2e:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
+     b32:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
 			  it3 = 0;
-     b36:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     b36:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
      b3a:	c2 e0       	ldi	r28, 0x02	; 2
 			state = Mplay;
      b3c:	d0 e0       	ldi	r29, 0x00	; 0
@@ -1330,15 +1330,15 @@ int melodyTick(int state) {
 		if (nextSong) {
      b44:	88 23       	and	r24, r24
      b46:	39 f1       	breq	.+78     	; 0xb96 <melodyTick+0x4b6>
-     b48:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
+     b48:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
 			it1 = 0;
-     b4c:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
-     b50:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
+     b4c:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
+     b50:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
 			 it2 = 0;
-     b54:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
-     b58:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
+     b54:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
+     b58:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
 			 it3 = 0;
-     b5c:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     b5c:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
      b60:	80 91 05 0d 	lds	r24, 0x0D05	; 0x800d05 <it4>
 			it4 = it4 + 1;
      b64:	8f 5f       	subi	r24, 0xFF	; 255
@@ -1364,21 +1364,21 @@ int melodyTick(int state) {
 			state = Mplay;
      b92:	d0 e0       	ldi	r29, 0x00	; 0
      b94:	10 c1       	rjmp	.+544    	; 0xdb6 <melodyTick+0x6d6>
-     b96:	20 91 f8 0a 	lds	r18, 0x0AF8	; 0x800af8 <it2.2238>
+     b96:	20 91 f8 0a 	lds	r18, 0x0AF8	; 0x800af8 <it2.2226>
 			break;
 		}
 		if (it3 < playlistMelRL[it4][it1][it2]) {
-     b9a:	30 91 f9 0a 	lds	r19, 0x0AF9	; 0x800af9 <it2.2238+0x1>
-     b9e:	40 91 f6 0a 	lds	r20, 0x0AF6	; 0x800af6 <it3.2239>
-     ba2:	50 91 f7 0a 	lds	r21, 0x0AF7	; 0x800af7 <it3.2239+0x1>
+     b9a:	30 91 f9 0a 	lds	r19, 0x0AF9	; 0x800af9 <it2.2226+0x1>
+     b9e:	40 91 f6 0a 	lds	r20, 0x0AF6	; 0x800af6 <it3.2227>
+     ba2:	50 91 f7 0a 	lds	r21, 0x0AF7	; 0x800af7 <it3.2227+0x1>
      ba6:	e0 91 05 0d 	lds	r30, 0x0D05	; 0x800d05 <it4>
      baa:	f0 e0       	ldi	r31, 0x00	; 0
      bac:	ee 0f       	add	r30, r30
      bae:	ff 1f       	adc	r31, r31
      bb0:	e5 5e       	subi	r30, 0xE5	; 229
      bb2:	fe 4f       	sbci	r31, 0xFE	; 254
-     bb4:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2237>
-     bb8:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2237+0x1>
+     bb4:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2225>
+     bb8:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2225+0x1>
      bbc:	88 0f       	add	r24, r24
      bbe:	99 1f       	adc	r25, r25
      bc0:	01 90       	ld	r0, Z+
@@ -1402,20 +1402,20 @@ int melodyTick(int state) {
      be4:	4f 5f       	subi	r20, 0xFF	; 255
 			it3 = it3 + 1;
      be6:	5f 4f       	sbci	r21, 0xFF	; 255
-     be8:	50 93 f7 0a 	sts	0x0AF7, r21	; 0x800af7 <it3.2239+0x1>
-     bec:	40 93 f6 0a 	sts	0x0AF6, r20	; 0x800af6 <it3.2239>
+     be8:	50 93 f7 0a 	sts	0x0AF7, r21	; 0x800af7 <it3.2227+0x1>
+     bec:	40 93 f6 0a 	sts	0x0AF6, r20	; 0x800af6 <it3.2227>
      bf0:	e2 c0       	rjmp	.+452    	; 0xdb6 <melodyTick+0x6d6>
-     bf2:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
+     bf2:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
 			state = Mr;
 			}
     else {
 			it3 = 0;
-     bf6:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     bf6:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
      bfa:	2f 5f       	subi	r18, 0xFF	; 255
 			it2 = it2 + 1;
      bfc:	3f 4f       	sbci	r19, 0xFF	; 255
-     bfe:	30 93 f9 0a 	sts	0x0AF9, r19	; 0x800af9 <it2.2238+0x1>
-     c02:	20 93 f8 0a 	sts	0x0AF8, r18	; 0x800af8 <it2.2238>
+     bfe:	30 93 f9 0a 	sts	0x0AF9, r19	; 0x800af9 <it2.2226+0x1>
+     c02:	20 93 f8 0a 	sts	0x0AF8, r18	; 0x800af8 <it2.2226>
      c06:	c2 e0       	ldi	r28, 0x02	; 2
 			state = Mplay;
      c08:	d0 e0       	ldi	r29, 0x00	; 0
@@ -1428,19 +1428,19 @@ int melodyTick(int state) {
 		if (prevSong && (it1 == 0)) {
      c10:	88 23       	and	r24, r24
      c12:	a9 f1       	breq	.+106    	; 0xc7e <melodyTick+0x59e>
-     c14:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2237>
-     c18:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2237+0x1>
+     c14:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2225>
+     c18:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2225+0x1>
      c1c:	89 2b       	or	r24, r25
      c1e:	f1 f4       	brne	.+60     	; 0xc5c <melodyTick+0x57c>
-     c20:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
+     c20:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
 			it1 = 0;
-     c24:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
-     c28:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
+     c24:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
+     c28:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
 			it2 = 0;
-     c2c:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
-     c30:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
+     c2c:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
+     c30:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
 			it3 = 0;
-     c34:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     c34:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
      c38:	80 91 05 0d 	lds	r24, 0x0D05	; 0x800d05 <it4>
 			if (it4 == 0) {
      c3c:	81 11       	cpse	r24, r1
@@ -1463,16 +1463,16 @@ int melodyTick(int state) {
      c58:	d0 e0       	ldi	r29, 0x00	; 0
      c5a:	ad c0       	rjmp	.+346    	; 0xdb6 <melodyTick+0x6d6>
 			break;
-     c5c:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
+     c5c:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
     } else if (prevSong){
 			it1 = 0;
-     c60:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
-     c64:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
+     c60:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
+     c64:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
 			it2 = 0;
-     c68:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
-     c6c:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
+     c68:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
+     c6c:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
 			it3 = 0;
-     c70:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     c70:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
      c74:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <paused>
 			paused = 0;
      c78:	c2 e0       	ldi	r28, 0x02	; 2
@@ -1485,15 +1485,15 @@ int melodyTick(int state) {
 		if (nextSong) {
      c82:	88 23       	and	r24, r24
      c84:	41 f1       	breq	.+80     	; 0xcd6 <melodyTick+0x5f6>
-     c86:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2237+0x1>
+     c86:	10 92 fb 0a 	sts	0x0AFB, r1	; 0x800afb <it1.2225+0x1>
 			it1 = 0;
-     c8a:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2237>
-     c8e:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2238+0x1>
+     c8a:	10 92 fa 0a 	sts	0x0AFA, r1	; 0x800afa <it1.2225>
+     c8e:	10 92 f9 0a 	sts	0x0AF9, r1	; 0x800af9 <it2.2226+0x1>
 			it2 = 0;
-     c92:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2238>
-     c96:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2239+0x1>
+     c92:	10 92 f8 0a 	sts	0x0AF8, r1	; 0x800af8 <it2.2226>
+     c96:	10 92 f7 0a 	sts	0x0AF7, r1	; 0x800af7 <it3.2227+0x1>
 			it3 = 0;
-     c9a:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2239>
+     c9a:	10 92 f6 0a 	sts	0x0AF6, r1	; 0x800af6 <it3.2227>
      c9e:	80 91 05 0d 	lds	r24, 0x0D05	; 0x800d05 <it4>
 			it4 = it4 + 1;
      ca2:	8f 5f       	subi	r24, 0xFF	; 255
@@ -1529,7 +1529,7 @@ int melodyTick(int state) {
 			DisplayPaused();
      cde:	ef dc       	rcall	.-1570   	; 0x6be <DisplayPaused>
      ce0:	6a c0       	rjmp	.+212    	; 0xdb6 <melodyTick+0x6d6>
-     ce2:	c0 91 f5 0a 	lds	r28, 0x0AF5	; 0x800af5 <placeHolder.2240>
+     ce2:	c0 91 f5 0a 	lds	r28, 0x0AF5	; 0x800af5 <placeHolder.2228>
 			state = Mp;
 			}
     else {
@@ -1546,17 +1546,17 @@ int melodyTick(int state) {
 				if (it4 == 0) {
      cf0:	81 11       	cpse	r24, r1
      cf2:	1b c0       	rjmp	.+54     	; 0xd2a <melodyTick+0x64a>
-     cf4:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2237>
+     cf4:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2225>
 					play(playlistMel[it4][it1][it2]);
-     cf8:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2237+0x1>
+     cf8:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2225+0x1>
      cfc:	88 0f       	add	r24, r24
      cfe:	99 1f       	adc	r25, r25
      d00:	e0 91 27 01 	lds	r30, 0x0127	; 0x800127 <playlistMel>
      d04:	f0 91 28 01 	lds	r31, 0x0128	; 0x800128 <playlistMel+0x1>
      d08:	e8 0f       	add	r30, r24
      d0a:	f9 1f       	adc	r31, r25
-     d0c:	80 91 f8 0a 	lds	r24, 0x0AF8	; 0x800af8 <it2.2238>
-     d10:	90 91 f9 0a 	lds	r25, 0x0AF9	; 0x800af9 <it2.2238+0x1>
+     d0c:	80 91 f8 0a 	lds	r24, 0x0AF8	; 0x800af8 <it2.2226>
+     d10:	90 91 f9 0a 	lds	r25, 0x0AF9	; 0x800af9 <it2.2226+0x1>
      d14:	88 0f       	add	r24, r24
      d16:	99 1f       	adc	r25, r25
      d18:	01 90       	ld	r0, Z+
@@ -1574,17 +1574,17 @@ int melodyTick(int state) {
 				}
 				else if (it4 == 1) {
      d2c:	d9 f4       	brne	.+54     	; 0xd64 <melodyTick+0x684>
-     d2e:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2237>
+     d2e:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2225>
 					play(playlistMel[it4][it1][it2]);
-     d32:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2237+0x1>
+     d32:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2225+0x1>
      d36:	88 0f       	add	r24, r24
      d38:	99 1f       	adc	r25, r25
      d3a:	e0 91 29 01 	lds	r30, 0x0129	; 0x800129 <playlistMel+0x2>
      d3e:	f0 91 2a 01 	lds	r31, 0x012A	; 0x80012a <playlistMel+0x3>
      d42:	e8 0f       	add	r30, r24
      d44:	f9 1f       	adc	r31, r25
-     d46:	80 91 f8 0a 	lds	r24, 0x0AF8	; 0x800af8 <it2.2238>
-     d4a:	90 91 f9 0a 	lds	r25, 0x0AF9	; 0x800af9 <it2.2238+0x1>
+     d46:	80 91 f8 0a 	lds	r24, 0x0AF8	; 0x800af8 <it2.2226>
+     d4a:	90 91 f9 0a 	lds	r25, 0x0AF9	; 0x800af9 <it2.2226+0x1>
      d4e:	88 0f       	add	r24, r24
      d50:	99 1f       	adc	r25, r25
      d52:	01 90       	ld	r0, Z+
@@ -1602,17 +1602,17 @@ int melodyTick(int state) {
 				}
 				else if (it4 == 2) {
      d66:	d1 f4       	brne	.+52     	; 0xd9c <melodyTick+0x6bc>
-     d68:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2237>
+     d68:	80 91 fa 0a 	lds	r24, 0x0AFA	; 0x800afa <it1.2225>
 					play(playlistMel[it4][it1][it2]);
-     d6c:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2237+0x1>
+     d6c:	90 91 fb 0a 	lds	r25, 0x0AFB	; 0x800afb <it1.2225+0x1>
      d70:	88 0f       	add	r24, r24
      d72:	99 1f       	adc	r25, r25
      d74:	e0 91 2b 01 	lds	r30, 0x012B	; 0x80012b <playlistMel+0x4>
      d78:	f0 91 2c 01 	lds	r31, 0x012C	; 0x80012c <playlistMel+0x5>
      d7c:	e8 0f       	add	r30, r24
      d7e:	f9 1f       	adc	r31, r25
-     d80:	80 91 f8 0a 	lds	r24, 0x0AF8	; 0x800af8 <it2.2238>
-     d84:	90 91 f9 0a 	lds	r25, 0x0AF9	; 0x800af9 <it2.2238+0x1>
+     d80:	80 91 f8 0a 	lds	r24, 0x0AF8	; 0x800af8 <it2.2226>
+     d84:	90 91 f9 0a 	lds	r25, 0x0AF9	; 0x800af9 <it2.2226+0x1>
      d88:	88 0f       	add	r24, r24
      d8a:	99 1f       	adc	r25, r25
      d8c:	01 90       	ld	r0, Z+
@@ -1716,14 +1716,14 @@ int bassTick(int state) {
 		case Binit:
 		state= Bwait;
 		it1 = 0;
-     df2:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
-     df6:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
+     df2:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
+     df6:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
 		it2 = 0;
-     dfa:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
-     dfe:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
+     dfa:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
+     dfe:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
 		it3 = 0;
-     e02:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
-     e06:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+     e02:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
+     e06:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
 		it42 = 1;
      e0a:	81 e0       	ldi	r24, 0x01	; 1
      e0c:	80 93 04 0d 	sts	0x0D04, r24	; 0x800d04 <it42>
@@ -1773,7 +1773,7 @@ int bassTick(int state) {
      e3a:	41 dc       	rcall	.-1918   	; 0x6be <DisplayPaused>
 			placeHolder = state;
      e3c:	82 e0       	ldi	r24, 0x02	; 2
-     e3e:	80 93 ee 0a 	sts	0x0AEE, r24	; 0x800aee <placeHolder.2262>
+     e3e:	80 93 ee 0a 	sts	0x0AEE, r24	; 0x800aee <placeHolder.2250>
 			state = Bp;
      e42:	c5 e0       	ldi	r28, 0x05	; 5
      e44:	d0 e0       	ldi	r29, 0x00	; 0
@@ -1784,19 +1784,19 @@ int bassTick(int state) {
      e48:	80 91 06 0d 	lds	r24, 0x0D06	; 0x800d06 <prevSong>
      e4c:	88 23       	and	r24, r24
      e4e:	69 f1       	breq	.+90     	; 0xeaa <bassTick+0xe8>
-     e50:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2259>
-     e54:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2259+0x1>
+     e50:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2247>
+     e54:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2247+0x1>
      e58:	89 2b       	or	r24, r25
      e5a:	d1 f4       	brne	.+52     	; 0xe90 <bassTick+0xce>
 			it1 = 0;
-     e5c:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
-     e60:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
+     e5c:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
+     e60:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
 			it2 = 0;
-     e64:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
-     e68:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
+     e64:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
+     e68:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
 			it3 = 0;
-     e6c:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
-     e70:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+     e6c:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
+     e70:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
 			if (it42 == 0) {
      e74:	80 91 04 0d 	lds	r24, 0x0D04	; 0x800d04 <it42>
      e78:	81 11       	cpse	r24, r1
@@ -1818,14 +1818,14 @@ int bassTick(int state) {
 		}
 		else if (prevSong){
 			it1 = 0;
-     e90:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
-     e94:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
+     e90:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
+     e94:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
 			it2 = 0;
-     e98:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
-     e9c:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
+     e98:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
+     e9c:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
 			it3 = 0;
-     ea0:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
-     ea4:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+     ea0:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
+     ea4:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
 			state = Bplay;
 			break;
      ea8:	f7 c2       	rjmp	.+1518   	; 0x1498 <bassTick+0x6d6>
@@ -1835,14 +1835,14 @@ int bassTick(int state) {
      eae:	88 23       	and	r24, r24
      eb0:	29 f1       	breq	.+74     	; 0xefc <bassTick+0x13a>
 			it1 = 0;
-     eb2:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
-     eb6:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
+     eb2:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
+     eb6:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
 			it2 = 0;
-     eba:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
-     ebe:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
+     eba:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
+     ebe:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
 			it3 = 0;
-     ec2:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
-     ec6:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+     ec2:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
+     ec6:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
 			it42 = it42 + 1;;
      eca:	80 91 04 0d 	lds	r24, 0x0D04	; 0x800d04 <it42>
      ece:	8f 5f       	subi	r24, 0xFF	; 255
@@ -1879,15 +1879,15 @@ int bassTick(int state) {
      f0c:	fe 4f       	sbci	r31, 0xFE	; 254
      f0e:	40 81       	ld	r20, Z
      f10:	51 81       	ldd	r21, Z+1	; 0x01
-     f12:	00 91 f3 0a 	lds	r16, 0x0AF3	; 0x800af3 <it1.2259>
-     f16:	10 91 f4 0a 	lds	r17, 0x0AF4	; 0x800af4 <it1.2259+0x1>
+     f12:	00 91 f3 0a 	lds	r16, 0x0AF3	; 0x800af3 <it1.2247>
+     f16:	10 91 f4 0a 	lds	r17, 0x0AF4	; 0x800af4 <it1.2247+0x1>
      f1a:	d8 01       	movw	r26, r16
      f1c:	aa 0f       	add	r26, r26
      f1e:	bb 1f       	adc	r27, r27
      f20:	a4 0f       	add	r26, r20
      f22:	b5 1f       	adc	r27, r21
-     f24:	e0 91 f1 0a 	lds	r30, 0x0AF1	; 0x800af1 <it2.2260>
-     f28:	f0 91 f2 0a 	lds	r31, 0x0AF2	; 0x800af2 <it2.2260+0x1>
+     f24:	e0 91 f1 0a 	lds	r30, 0x0AF1	; 0x800af1 <it2.2248>
+     f28:	f0 91 f2 0a 	lds	r31, 0x0AF2	; 0x800af2 <it2.2248+0x1>
      f2c:	cf 01       	movw	r24, r30
      f2e:	88 0f       	add	r24, r24
      f30:	99 1f       	adc	r25, r25
@@ -1902,15 +1902,15 @@ int bassTick(int state) {
 			it1 = it1 + 1;
      f42:	0f 5f       	subi	r16, 0xFF	; 255
      f44:	1f 4f       	sbci	r17, 0xFF	; 255
-     f46:	10 93 f4 0a 	sts	0x0AF4, r17	; 0x800af4 <it1.2259+0x1>
-     f4a:	00 93 f3 0a 	sts	0x0AF3, r16	; 0x800af3 <it1.2259>
+     f46:	10 93 f4 0a 	sts	0x0AF4, r17	; 0x800af4 <it1.2247+0x1>
+     f4a:	00 93 f3 0a 	sts	0x0AF3, r16	; 0x800af3 <it1.2247>
 			it2 = 0;
-     f4e:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
-     f52:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
+     f4e:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
+     f52:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
 		}
 		if (it1 == numRows[it42]) {
-     f56:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2259>
-     f5a:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2259+0x1>
+     f56:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2247>
+     f5a:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2247+0x1>
      f5e:	f9 01       	movw	r30, r18
      f60:	ea 5f       	subi	r30, 0xFA	; 250
      f62:	fe 4f       	sbci	r31, 0xFE	; 254
@@ -1924,14 +1924,14 @@ int bassTick(int state) {
      f70:	80 93 04 01 	sts	0x0104, r24	; 0x800104 <songDone>
 			state = Bwait;
 			it1 = 0;
-     f74:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
-     f78:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
+     f74:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
+     f78:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
 			it2 = 0;
-     f7c:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
-     f80:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
+     f7c:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
+     f80:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
 			it3 = 0;
-     f84:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
-     f88:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+     f84:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
+     f88:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
 			it42 = it42 + 1;
      f8c:	86 0f       	add	r24, r22
      f8e:	80 93 04 0d 	sts	0x0D04, r24	; 0x800d04 <it42>
@@ -1974,8 +1974,8 @@ int bassTick(int state) {
      fc6:	fa 01       	movw	r30, r20
      fc8:	e8 0f       	add	r30, r24
      fca:	f9 1f       	adc	r31, r25
-     fcc:	80 91 f1 0a 	lds	r24, 0x0AF1	; 0x800af1 <it2.2260>
-     fd0:	90 91 f2 0a 	lds	r25, 0x0AF2	; 0x800af2 <it2.2260+0x1>
+     fcc:	80 91 f1 0a 	lds	r24, 0x0AF1	; 0x800af1 <it2.2248>
+     fd0:	90 91 f2 0a 	lds	r25, 0x0AF2	; 0x800af2 <it2.2248+0x1>
      fd4:	88 0f       	add	r24, r24
      fd6:	99 1f       	adc	r25, r25
      fd8:	01 90       	ld	r0, Z+
@@ -2002,8 +2002,8 @@ int bassTick(int state) {
      ff8:	fa 01       	movw	r30, r20
      ffa:	e8 0f       	add	r30, r24
      ffc:	f9 1f       	adc	r31, r25
-     ffe:	80 91 f1 0a 	lds	r24, 0x0AF1	; 0x800af1 <it2.2260>
-    1002:	90 91 f2 0a 	lds	r25, 0x0AF2	; 0x800af2 <it2.2260+0x1>
+     ffe:	80 91 f1 0a 	lds	r24, 0x0AF1	; 0x800af1 <it2.2248>
+    1002:	90 91 f2 0a 	lds	r25, 0x0AF2	; 0x800af2 <it2.2248+0x1>
     1006:	88 0f       	add	r24, r24
     1008:	99 1f       	adc	r25, r25
     100a:	01 90       	ld	r0, Z+
@@ -2031,8 +2031,8 @@ int bassTick(int state) {
     102c:	fa 01       	movw	r30, r20
     102e:	e8 0f       	add	r30, r24
     1030:	f9 1f       	adc	r31, r25
-    1032:	80 91 f1 0a 	lds	r24, 0x0AF1	; 0x800af1 <it2.2260>
-    1036:	90 91 f2 0a 	lds	r25, 0x0AF2	; 0x800af2 <it2.2260+0x1>
+    1032:	80 91 f1 0a 	lds	r24, 0x0AF1	; 0x800af1 <it2.2248>
+    1036:	90 91 f2 0a 	lds	r25, 0x0AF2	; 0x800af2 <it2.2248+0x1>
     103a:	88 0f       	add	r24, r24
     103c:	99 1f       	adc	r25, r25
     103e:	01 90       	ld	r0, Z+
@@ -2064,7 +2064,7 @@ int bassTick(int state) {
     1060:	2e db       	rcall	.-2468   	; 0x6be <DisplayPaused>
     1062:	83 e0       	ldi	r24, 0x03	; 3
 			placeHolder = state;
-    1064:	80 93 ee 0a 	sts	0x0AEE, r24	; 0x800aee <placeHolder.2262>
+    1064:	80 93 ee 0a 	sts	0x0AEE, r24	; 0x800aee <placeHolder.2250>
     1068:	c5 e0       	ldi	r28, 0x05	; 5
 			state = Bp;
     106a:	d0 e0       	ldi	r29, 0x00	; 0
@@ -2075,19 +2075,19 @@ int bassTick(int state) {
 		if (prevSong && (it1 == 0)) {
     1072:	88 23       	and	r24, r24
     1074:	99 f1       	breq	.+102    	; 0x10dc <bassTick+0x31a>
-    1076:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2259>
-    107a:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2259+0x1>
+    1076:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2247>
+    107a:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2247+0x1>
     107e:	89 2b       	or	r24, r25
     1080:	f1 f4       	brne	.+60     	; 0x10be <bassTick+0x2fc>
-    1082:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
+    1082:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
 			it1 = 0;
-    1086:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
-    108a:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
+    1086:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
+    108a:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
 			it2 = 0;
-    108e:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
-    1092:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
+    108e:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
+    1092:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
 			it3 = 0;
-    1096:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+    1096:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
     109a:	80 91 04 0d 	lds	r24, 0x0D04	; 0x800d04 <it42>
 			if (it42 == 0) {
     109e:	81 11       	cpse	r24, r1
@@ -2117,18 +2117,18 @@ int bassTick(int state) {
 			state = Bplay;
     10ba:	d0 e0       	ldi	r29, 0x00	; 0
     10bc:	ed c1       	rjmp	.+986    	; 0x1498 <bassTick+0x6d6>
-    10be:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
+    10be:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
 			break;
 			}
     else if (prevSong){
 			it1 = 0;
-    10c2:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
-    10c6:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
+    10c2:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
+    10c6:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
 			it2 = 0;
-    10ca:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
-    10ce:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
+    10ca:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
+    10ce:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
 			it3 = 0;
-    10d2:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+    10d2:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
     10d6:	c2 e0       	ldi	r28, 0x02	; 2
 			state = Bplay;
     10d8:	d0 e0       	ldi	r29, 0x00	; 0
@@ -2139,15 +2139,15 @@ int bassTick(int state) {
 		if (nextSong) {
     10e0:	88 23       	and	r24, r24
     10e2:	39 f1       	breq	.+78     	; 0x1132 <bassTick+0x370>
-    10e4:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
+    10e4:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
 			it1 = 0;
-    10e8:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
-    10ec:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
+    10e8:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
+    10ec:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
 			it2 = 0;
-    10f0:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
-    10f4:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
+    10f0:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
+    10f4:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
 			it3 = 0;
-    10f8:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+    10f8:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
     10fc:	80 91 04 0d 	lds	r24, 0x0D04	; 0x800d04 <it42>
 			it42 = it42 + 1;
     1100:	8f 5f       	subi	r24, 0xFF	; 255
@@ -2173,19 +2173,19 @@ int bassTick(int state) {
 			state = Bplay;
     112e:	d0 e0       	ldi	r29, 0x00	; 0
     1130:	b3 c1       	rjmp	.+870    	; 0x1498 <bassTick+0x6d6>
-    1132:	20 91 ef 0a 	lds	r18, 0x0AEF	; 0x800aef <it3.2261>
+    1132:	20 91 ef 0a 	lds	r18, 0x0AEF	; 0x800aef <it3.2249>
 			break;
 		}
 		if (it3 < playlistBasNL[it42][it1][it2]) {
-    1136:	30 91 f0 0a 	lds	r19, 0x0AF0	; 0x800af0 <it3.2261+0x1>
+    1136:	30 91 f0 0a 	lds	r19, 0x0AF0	; 0x800af0 <it3.2249+0x1>
     113a:	e0 91 04 0d 	lds	r30, 0x0D04	; 0x800d04 <it42>
     113e:	f0 e0       	ldi	r31, 0x00	; 0
     1140:	ee 0f       	add	r30, r30
     1142:	ff 1f       	adc	r31, r31
     1144:	e1 5f       	subi	r30, 0xF1	; 241
     1146:	fe 4f       	sbci	r31, 0xFE	; 254
-    1148:	a0 91 f3 0a 	lds	r26, 0x0AF3	; 0x800af3 <it1.2259>
-    114c:	b0 91 f4 0a 	lds	r27, 0x0AF4	; 0x800af4 <it1.2259+0x1>
+    1148:	a0 91 f3 0a 	lds	r26, 0x0AF3	; 0x800af3 <it1.2247>
+    114c:	b0 91 f4 0a 	lds	r27, 0x0AF4	; 0x800af4 <it1.2247+0x1>
     1150:	cd 01       	movw	r24, r26
     1152:	88 0f       	add	r24, r24
     1154:	99 1f       	adc	r25, r25
@@ -2193,8 +2193,8 @@ int bassTick(int state) {
     1158:	b1 81       	ldd	r27, Z+1	; 0x01
     115a:	a8 0f       	add	r26, r24
     115c:	b9 1f       	adc	r27, r25
-    115e:	e0 91 f1 0a 	lds	r30, 0x0AF1	; 0x800af1 <it2.2260>
-    1162:	f0 91 f2 0a 	lds	r31, 0x0AF2	; 0x800af2 <it2.2260+0x1>
+    115e:	e0 91 f1 0a 	lds	r30, 0x0AF1	; 0x800af1 <it2.2248>
+    1162:	f0 91 f2 0a 	lds	r31, 0x0AF2	; 0x800af2 <it2.2248+0x1>
     1166:	cf 01       	movw	r24, r30
     1168:	88 0f       	add	r24, r24
     116a:	99 1f       	adc	r25, r25
@@ -2210,16 +2210,16 @@ int bassTick(int state) {
     117e:	2f 5f       	subi	r18, 0xFF	; 255
 			it3 = it3 + 1;
     1180:	3f 4f       	sbci	r19, 0xFF	; 255
-    1182:	30 93 f0 0a 	sts	0x0AF0, r19	; 0x800af0 <it3.2261+0x1>
-    1186:	20 93 ef 0a 	sts	0x0AEF, r18	; 0x800aef <it3.2261>
+    1182:	30 93 f0 0a 	sts	0x0AF0, r19	; 0x800af0 <it3.2249+0x1>
+    1186:	20 93 ef 0a 	sts	0x0AEF, r18	; 0x800aef <it3.2249>
     118a:	86 c1       	rjmp	.+780    	; 0x1498 <bassTick+0x6d6>
 			state = Bl;
 		}
 		else {
 			it3 = 0;
-    118c:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
+    118c:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
 			silenceB();
-    1190:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+    1190:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
 			state = Br;
     1194:	5c da       	rcall	.-2888   	; 0x64e <silenceB>
     1196:	c4 e0       	ldi	r28, 0x04	; 4
@@ -2240,7 +2240,7 @@ int bassTick(int state) {
     11a6:	8b da       	rcall	.-2794   	; 0x6be <DisplayPaused>
     11a8:	84 e0       	ldi	r24, 0x04	; 4
 			placeHolder = state;
-    11aa:	80 93 ee 0a 	sts	0x0AEE, r24	; 0x800aee <placeHolder.2262>
+    11aa:	80 93 ee 0a 	sts	0x0AEE, r24	; 0x800aee <placeHolder.2250>
     11ae:	c5 e0       	ldi	r28, 0x05	; 5
 			state = Bp;
     11b0:	d0 e0       	ldi	r29, 0x00	; 0
@@ -2251,19 +2251,19 @@ int bassTick(int state) {
 		if (prevSong && (it1 == 0)) {
     11b8:	88 23       	and	r24, r24
     11ba:	99 f1       	breq	.+102    	; 0x1222 <bassTick+0x460>
-    11bc:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2259>
-    11c0:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2259+0x1>
+    11bc:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2247>
+    11c0:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2247+0x1>
     11c4:	89 2b       	or	r24, r25
     11c6:	f1 f4       	brne	.+60     	; 0x1204 <bassTick+0x442>
-    11c8:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
+    11c8:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
 			it1 = 0;
-    11cc:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
-    11d0:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
+    11cc:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
+    11d0:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
 			it2 = 0;
-    11d4:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
-    11d8:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
+    11d4:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
+    11d8:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
 			it3 = 0;
-    11dc:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+    11dc:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
     11e0:	80 91 04 0d 	lds	r24, 0x0D04	; 0x800d04 <it42>
 			if (it42 == 0) {
     11e4:	81 11       	cpse	r24, r1
@@ -2293,18 +2293,18 @@ int bassTick(int state) {
 			state = Bplay;
     1200:	d0 e0       	ldi	r29, 0x00	; 0
     1202:	4a c1       	rjmp	.+660    	; 0x1498 <bassTick+0x6d6>
-    1204:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
+    1204:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
 			break;
 			}
       else if (prevSong){
 			it1 = 0;
-    1208:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
-    120c:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
+    1208:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
+    120c:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
 			it2 = 0;
-    1210:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
-    1214:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
+    1210:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
+    1214:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
 			it3 = 0;
-    1218:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+    1218:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
     121c:	c2 e0       	ldi	r28, 0x02	; 2
 			state = Bplay;
     121e:	d0 e0       	ldi	r29, 0x00	; 0
@@ -2315,15 +2315,15 @@ int bassTick(int state) {
 		if (nextSong) {
     1226:	88 23       	and	r24, r24
     1228:	39 f1       	breq	.+78     	; 0x1278 <bassTick+0x4b6>
-    122a:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
+    122a:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
 			it1 = 0;
-    122e:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
-    1232:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
+    122e:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
+    1232:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
 			it2 = 0;
-    1236:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
-    123a:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
+    1236:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
+    123a:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
 			it3 = 0;
-    123e:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+    123e:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
     1242:	80 91 04 0d 	lds	r24, 0x0D04	; 0x800d04 <it42>
 			it42 = it42 + 1;
     1246:	8f 5f       	subi	r24, 0xFF	; 255
@@ -2349,21 +2349,21 @@ int bassTick(int state) {
 			state = Bplay;
     1274:	d0 e0       	ldi	r29, 0x00	; 0
     1276:	10 c1       	rjmp	.+544    	; 0x1498 <bassTick+0x6d6>
-    1278:	20 91 f1 0a 	lds	r18, 0x0AF1	; 0x800af1 <it2.2260>
+    1278:	20 91 f1 0a 	lds	r18, 0x0AF1	; 0x800af1 <it2.2248>
 			break;
 		}
 		if (it3 < playlistBasRL[it42][it1][it2]) {
-    127c:	30 91 f2 0a 	lds	r19, 0x0AF2	; 0x800af2 <it2.2260+0x1>
-    1280:	40 91 ef 0a 	lds	r20, 0x0AEF	; 0x800aef <it3.2261>
-    1284:	50 91 f0 0a 	lds	r21, 0x0AF0	; 0x800af0 <it3.2261+0x1>
+    127c:	30 91 f2 0a 	lds	r19, 0x0AF2	; 0x800af2 <it2.2248+0x1>
+    1280:	40 91 ef 0a 	lds	r20, 0x0AEF	; 0x800aef <it3.2249>
+    1284:	50 91 f0 0a 	lds	r21, 0x0AF0	; 0x800af0 <it3.2249+0x1>
     1288:	e0 91 04 0d 	lds	r30, 0x0D04	; 0x800d04 <it42>
     128c:	f0 e0       	ldi	r31, 0x00	; 0
     128e:	ee 0f       	add	r30, r30
     1290:	ff 1f       	adc	r31, r31
     1292:	e7 5f       	subi	r30, 0xF7	; 247
     1294:	fe 4f       	sbci	r31, 0xFE	; 254
-    1296:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2259>
-    129a:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2259+0x1>
+    1296:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2247>
+    129a:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2247+0x1>
     129e:	88 0f       	add	r24, r24
     12a0:	99 1f       	adc	r25, r25
     12a2:	01 90       	ld	r0, Z+
@@ -2387,20 +2387,20 @@ int bassTick(int state) {
     12c6:	4f 5f       	subi	r20, 0xFF	; 255
 			it3 = it3 + 1;
     12c8:	5f 4f       	sbci	r21, 0xFF	; 255
-    12ca:	50 93 f0 0a 	sts	0x0AF0, r21	; 0x800af0 <it3.2261+0x1>
-    12ce:	40 93 ef 0a 	sts	0x0AEF, r20	; 0x800aef <it3.2261>
+    12ca:	50 93 f0 0a 	sts	0x0AF0, r21	; 0x800af0 <it3.2249+0x1>
+    12ce:	40 93 ef 0a 	sts	0x0AEF, r20	; 0x800aef <it3.2249>
     12d2:	e2 c0       	rjmp	.+452    	; 0x1498 <bassTick+0x6d6>
-    12d4:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
+    12d4:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
 			state = Br;
 			}
     else {
 			it3 = 0;
-    12d8:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+    12d8:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
     12dc:	2f 5f       	subi	r18, 0xFF	; 255
 			it2 = it2 + 1;
     12de:	3f 4f       	sbci	r19, 0xFF	; 255
-    12e0:	30 93 f2 0a 	sts	0x0AF2, r19	; 0x800af2 <it2.2260+0x1>
-    12e4:	20 93 f1 0a 	sts	0x0AF1, r18	; 0x800af1 <it2.2260>
+    12e0:	30 93 f2 0a 	sts	0x0AF2, r19	; 0x800af2 <it2.2248+0x1>
+    12e4:	20 93 f1 0a 	sts	0x0AF1, r18	; 0x800af1 <it2.2248>
     12e8:	c2 e0       	ldi	r28, 0x02	; 2
 			state = Bplay;
     12ea:	d0 e0       	ldi	r29, 0x00	; 0
@@ -2413,19 +2413,19 @@ int bassTick(int state) {
 		if (prevSong && (it1 == 0)) {
     12f2:	88 23       	and	r24, r24
     12f4:	a9 f1       	breq	.+106    	; 0x1360 <bassTick+0x59e>
-    12f6:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2259>
-    12fa:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2259+0x1>
+    12f6:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2247>
+    12fa:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2247+0x1>
     12fe:	89 2b       	or	r24, r25
     1300:	f1 f4       	brne	.+60     	; 0x133e <bassTick+0x57c>
-    1302:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
+    1302:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
 			it1 = 0;
-    1306:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
-    130a:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
+    1306:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
+    130a:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
 			it2 = 0;
-    130e:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
-    1312:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
+    130e:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
+    1312:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
 			it3 = 0;
-    1316:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+    1316:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
     131a:	80 91 04 0d 	lds	r24, 0x0D04	; 0x800d04 <it42>
 			if (it42 == 0) {
     131e:	81 11       	cpse	r24, r1
@@ -2448,16 +2448,16 @@ int bassTick(int state) {
     133a:	d0 e0       	ldi	r29, 0x00	; 0
     133c:	ad c0       	rjmp	.+346    	; 0x1498 <bassTick+0x6d6>
 			break;
-    133e:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
+    133e:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
 			} else if (prevSong){
 			it1 = 0;
-    1342:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
-    1346:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
+    1342:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
+    1346:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
 			it2 = 0;
-    134a:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
-    134e:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
+    134a:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
+    134e:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
 			it3 = 0;
-    1352:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+    1352:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
     1356:	10 92 05 01 	sts	0x0105, r1	; 0x800105 <paused>
 			paused = 0;
     135a:	c2 e0       	ldi	r28, 0x02	; 2
@@ -2470,15 +2470,15 @@ int bassTick(int state) {
 		if (nextSong) {
     1364:	88 23       	and	r24, r24
     1366:	41 f1       	breq	.+80     	; 0x13b8 <bassTick+0x5f6>
-    1368:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2259+0x1>
+    1368:	10 92 f4 0a 	sts	0x0AF4, r1	; 0x800af4 <it1.2247+0x1>
 			it1 = 0;
-    136c:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2259>
-    1370:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2260+0x1>
+    136c:	10 92 f3 0a 	sts	0x0AF3, r1	; 0x800af3 <it1.2247>
+    1370:	10 92 f2 0a 	sts	0x0AF2, r1	; 0x800af2 <it2.2248+0x1>
 			it2 = 0;
-    1374:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2260>
-    1378:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2261+0x1>
+    1374:	10 92 f1 0a 	sts	0x0AF1, r1	; 0x800af1 <it2.2248>
+    1378:	10 92 f0 0a 	sts	0x0AF0, r1	; 0x800af0 <it3.2249+0x1>
 			it3 = 0;
-    137c:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2261>
+    137c:	10 92 ef 0a 	sts	0x0AEF, r1	; 0x800aef <it3.2249>
     1380:	80 91 04 0d 	lds	r24, 0x0D04	; 0x800d04 <it42>
 			it42 = it42 + 1;
     1384:	8f 5f       	subi	r24, 0xFF	; 255
@@ -2516,7 +2516,7 @@ int bassTick(int state) {
 			DisplayPaused();
     13c0:	7e d9       	rcall	.-3332   	; 0x6be <DisplayPaused>
     13c2:	6a c0       	rjmp	.+212    	; 0x1498 <bassTick+0x6d6>
-    13c4:	c0 91 ee 0a 	lds	r28, 0x0AEE	; 0x800aee <placeHolder.2262>
+    13c4:	c0 91 ee 0a 	lds	r28, 0x0AEE	; 0x800aee <placeHolder.2250>
 			}
     else {
 			if (placeHolder == Bl) {
@@ -2532,17 +2532,17 @@ int bassTick(int state) {
 				if (it42 == 0) {
     13d2:	81 11       	cpse	r24, r1
     13d4:	1b c0       	rjmp	.+54     	; 0x140c <bassTick+0x64a>
-    13d6:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2259>
+    13d6:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2247>
 					playB(playlistBas[it42][it1][it2]);
-    13da:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2259+0x1>
+    13da:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2247+0x1>
     13de:	88 0f       	add	r24, r24
     13e0:	99 1f       	adc	r25, r25
     13e2:	e0 91 15 01 	lds	r30, 0x0115	; 0x800115 <playlistBas>
     13e6:	f0 91 16 01 	lds	r31, 0x0116	; 0x800116 <playlistBas+0x1>
     13ea:	e8 0f       	add	r30, r24
     13ec:	f9 1f       	adc	r31, r25
-    13ee:	80 91 f1 0a 	lds	r24, 0x0AF1	; 0x800af1 <it2.2260>
-    13f2:	90 91 f2 0a 	lds	r25, 0x0AF2	; 0x800af2 <it2.2260+0x1>
+    13ee:	80 91 f1 0a 	lds	r24, 0x0AF1	; 0x800af1 <it2.2248>
+    13f2:	90 91 f2 0a 	lds	r25, 0x0AF2	; 0x800af2 <it2.2248+0x1>
     13f6:	88 0f       	add	r24, r24
     13f8:	99 1f       	adc	r25, r25
     13fa:	01 90       	ld	r0, Z+
@@ -2560,17 +2560,17 @@ int bassTick(int state) {
 				}
 				else if (it42 == 1) {
     140e:	d9 f4       	brne	.+54     	; 0x1446 <bassTick+0x684>
-    1410:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2259>
+    1410:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2247>
 					playB(playlistBas[it42][it1][it2]);
-    1414:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2259+0x1>
+    1414:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2247+0x1>
     1418:	88 0f       	add	r24, r24
     141a:	99 1f       	adc	r25, r25
     141c:	e0 91 17 01 	lds	r30, 0x0117	; 0x800117 <playlistBas+0x2>
     1420:	f0 91 18 01 	lds	r31, 0x0118	; 0x800118 <playlistBas+0x3>
     1424:	e8 0f       	add	r30, r24
     1426:	f9 1f       	adc	r31, r25
-    1428:	80 91 f1 0a 	lds	r24, 0x0AF1	; 0x800af1 <it2.2260>
-    142c:	90 91 f2 0a 	lds	r25, 0x0AF2	; 0x800af2 <it2.2260+0x1>
+    1428:	80 91 f1 0a 	lds	r24, 0x0AF1	; 0x800af1 <it2.2248>
+    142c:	90 91 f2 0a 	lds	r25, 0x0AF2	; 0x800af2 <it2.2248+0x1>
     1430:	88 0f       	add	r24, r24
     1432:	99 1f       	adc	r25, r25
     1434:	01 90       	ld	r0, Z+
@@ -2588,17 +2588,17 @@ int bassTick(int state) {
 				}
 				else if (it42 == 2) {
     1448:	d1 f4       	brne	.+52     	; 0x147e <bassTick+0x6bc>
-    144a:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2259>
+    144a:	80 91 f3 0a 	lds	r24, 0x0AF3	; 0x800af3 <it1.2247>
 					playB(playlistBas[it42][it1][it2]);
-    144e:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2259+0x1>
+    144e:	90 91 f4 0a 	lds	r25, 0x0AF4	; 0x800af4 <it1.2247+0x1>
     1452:	88 0f       	add	r24, r24
     1454:	99 1f       	adc	r25, r25
     1456:	e0 91 19 01 	lds	r30, 0x0119	; 0x800119 <playlistBas+0x4>
     145a:	f0 91 1a 01 	lds	r31, 0x011A	; 0x80011a <playlistBas+0x5>
     145e:	e8 0f       	add	r30, r24
     1460:	f9 1f       	adc	r31, r25
-    1462:	80 91 f1 0a 	lds	r24, 0x0AF1	; 0x800af1 <it2.2260>
-    1466:	90 91 f2 0a 	lds	r25, 0x0AF2	; 0x800af2 <it2.2260+0x1>
+    1462:	80 91 f1 0a 	lds	r24, 0x0AF1	; 0x800af1 <it2.2248>
+    1466:	90 91 f2 0a 	lds	r25, 0x0AF2	; 0x800af2 <it2.2248+0x1>
     146a:	88 0f       	add	r24, r24
     146c:	99 1f       	adc	r25, r25
     146e:	01 90       	ld	r0, Z+
