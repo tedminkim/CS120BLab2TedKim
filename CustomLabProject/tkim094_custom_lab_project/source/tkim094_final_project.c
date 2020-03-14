@@ -19,6 +19,10 @@
 #include <math.h>
 
 //Nokia LCD 5110 Public Library Credit Goes to LittleBuster on Github
+//https://github.com/LittleBuster/avr-nokia5110
+//Link to the source code^
+
+//ATmega1284 Programming, Synchronous SM Timer, Task Scheduler, and PWM code credited to lecture and IEEE
 
  typedef struct _task {
 	signed char state;
