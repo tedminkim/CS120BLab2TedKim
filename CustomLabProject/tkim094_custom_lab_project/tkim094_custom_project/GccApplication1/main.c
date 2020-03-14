@@ -103,30 +103,12 @@ void PWMB_off() {
 	TCCR1A = 0x00;
 	TCCR1B = 0x00;
 }
-void play(short freqSound) {
-	//buzzerSound = 0; 
-	set_PWM(freqSound);
-}
-void silence() {
-	//buzzerSound = 0; 
-	set_PWM(0);
-}
-void playH(short freqSound) {
-	//buzzerSound = 0; 
-	set_PWM0(freqSound);
-}
-void silenceH() {
-	//buzzerSound = 0; 
-	set_PWM0(0);
-}
-void playB(short freqSound) {
-  //buzzerSound = 0;
-  set_PWMB(freqSound);
-}
-void silenceB() {
-  //buzzerSound = 0;
-  set_PWMB(0);
-}
+void play(short freqSound) {set_PWM(freqSound);}
+void silence() {set_PWM(0);}
+void playH(short freqSound) {set_PWM0(freqSound);}
+void silenceH() { set_PWM0(0);}
+void playB(short freqSound) { set_PWMB(freqSound);}
+void silenceB() {  set_PWMB(0); }
 
 
 //MUSIC NOTES
@@ -234,7 +216,6 @@ short** playlistMelRL[] = {renCircMelRL, AmGrMelR, mooHLMelR};
 short** playlistBas[] = {renCircHar, AmGrBas, mooHLBas};
 short** playlistBasNL[] = {renCircHarNL, AmGrBasN, mooHLBasN};
 short** playlistBasRL[] = {renCircHarRL, AmGrBasR, mooHLBasR};
-char numRows[] = {1, 1, 1};
 
 void DisplaySong1() {
 	nokia_lcd_clear();
@@ -280,16 +261,16 @@ int pauseTick(int state) {
 	unsigned char playPause = PINA & 0x01;
 	switch(state) {
 		case Pinit:
-		paused = 1;
-		state = Pp;
+			paused = 1;
+			state = Pp;
 		break;
 		case Pp:
-		if (playPause) {
-			state = Pr;
-			paused = !paused;
+		if (!playPause) {
+			state = Pp;
 		}
 		else {
-			state = Pp;
+			state = Pr;
+			paused = !paused;
 		}
 		break;
 		case Pr:
@@ -302,7 +283,7 @@ int pauseTick(int state) {
 		}
 		break;
 		default:
-		state = Pinit;
+			state = Pinit;
 		break;
 	}
 	return state;
@@ -313,47 +294,37 @@ unsigned char nextSong;
 
 enum nextPrevStates{Pw, backSong, forSong};
 int NextPrevTick(int state) {
-	//unsigned char NextPrevButton = 0;
 	unsigned char nextButton = PINA & 0x02;
 	unsigned char prevButton = PINA & 0x04;
 	switch(state) {
 		case Pw:
-		if (prevButton) {
-			prevSong = 1;
-			nextSong = 0;
-			state = backSong;
-		}
-		else if (nextButton) {
-			nextSong = 1;
-			prevSong = 0;
-			state = forSong;
-		}
-		else {
-			prevSong = 0;
-			nextSong = 0;
-			state = Pw;
-		}
-		break;
+			if (prevButton) {
+				prevSong = 1;
+				nextSong = 0;
+				state = backSong;
+			}
+			else if (nextButton) {
+				nextSong = 1;
+				prevSong = 0;
+				state = forSong;
+			}
+			else {
+				prevSong = 0;
+				nextSong = 0;
+				state = Pw;
+			}
+			break;
 		case backSong:
-		if (prevButton) {
-			state = backSong;
-		}
-		else {
-			state = Pw;
-		}
-		break;
-
+			if (prevButton) {state = backSong;}
+			else {state = Pw;}
+			break;
 		case forSong:
-		if (nextButton) {
-			state = forSong;
-		}
-		else {
-			state = Pw;
-		}
-		break;
+			if (nextButton) {state = forSong;}
+			else {state = Pw;}
+			break;
 		default:
-		state = Pw;
-		break;
+			state = Pw;
+			break;
 	}
 	return state;
 }
@@ -362,7 +333,7 @@ unsigned char songDone = 1;
 unsigned long x = sizeof(playlistMel);
 unsigned long y = sizeof(playlistMel[0]);
 unsigned long playList = sizeof(playlistMel) / sizeof(playlistMel[0]);
-
+char numRows[] = {1, 1, 1};
 unsigned char it4;
 enum MelodyStates{Minit, Mwait, Mplay, Ml, Mr, Mp};
 int melodyTick(int state) {
@@ -382,17 +353,10 @@ int melodyTick(int state) {
 			nextSong = 0;
 			silence();
 			break;
-
 		case Mwait:
-			if (!paused) {
-				state= Mplay;
-				//DisplayName(it4);
-			}
-			else {
-				state= Mwait;
-			}
+			if (!paused) {state= Mplay;}
+			else {state= Mwait;}
 			break;
-
 		case Mplay:
 			songDone = 0;
 			if (paused) {
@@ -409,47 +373,37 @@ int melodyTick(int state) {
 				it1 = 0;
 				it2 = 0;
 				it3 = 0;
-				if (it4 == 0) {
-					it4 = playList - 1;
-					
-					//if (it4 == 2) {
-						//DisplaySong3();
-					//}
-					//else if (it4 == 1) {
-						//DisplaySong2();
-					//}
-					//else if (it4 == 0) {
-						//DisplaySong1();
-					//}
-				}
-				else {
-					it4 = it4 - 1;
-				}
+				if (it4 == 0) {it4 = playList - 1;}
+				else {it4 = it4 - 1;}
 				state = Mplay;
 				break;
 			}
+												//if (it4 == 2) {
+												//DisplaySong3();
+												//}
+												//else if (it4 == 1) {
+												//DisplaySong2();
+												//}
+												//else if (it4 == 0) {
+												//DisplaySong1();
+												//}
 			else if (prevSong){
 				it1 = 0;
 				it2 = 0;
 				it3 = 0;
 				state = Mplay;
 				break;
-		}
+			}
 		if (nextSong) {
 			it1 = 0;
 			it2 = 0;
 			it3 = 0;
 			it4 = it4 + 1;
-			if (it4 == playList) {
-				it4 = 0;
-			}
+			if (it4 == playList) {it4 = 0;}
 			state = Mplay;
 			break;
 		}
-		if (playlistMel[it4][it1][it2] == -1) {
-			it1 = it1 + 1;
-			it2 = 0;
-		}
+		if (playlistMel[it4][it1][it2] == -1) {it1 = it1 + 1; it2 = 0;}
 		if (it1 == numRows[it4]) {
 			songDone = 1;
 			state = Mwait;
@@ -457,9 +411,7 @@ int melodyTick(int state) {
 			it2 = 0;
 			it3 = 0;
 			it4 = it4 + 1;
-			if (it4 == playList) {
-				it4 = 0;
-			}
+			if (it4 == playList) {it4 = 0;}
 			break;
 		}
 		/*if (it4 == 0) {
@@ -499,10 +451,6 @@ int melodyTick(int state) {
 		//state = Ml;
 		
 		break;
-
-		//case Ms0:
-					
-
 		case Ml:
 		if (paused) {
 			silence();
@@ -515,37 +463,37 @@ int melodyTick(int state) {
 			it1 = 0;
 			it2 = 0;
 			it3 = 0;
-			if (it4 == 0) {
-				it4 = playList - 1;
-				}
-			else {
-				it4 = it4 - 1;
-			}
+			if (it4 == 0) {it4 = playList - 1;}
+			else {it4 = it4 - 1;}
 			state = Mplay;
 			break;
-    }
-    else if (prevSong){
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			state = Mplay;
-			break;
+		}
+											//if (it4 == 2) {
+											//DisplaySong3();
+											//}
+											//else if (it4 == 1) {
+											//DisplaySong2();
+											//}
+											//else if (it4 == 0) {
+											//DisplaySong1();
+											//}
+		else if (prevSong){
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				state = Mplay;
+				break;
 		}
 		if (nextSong) {
 			it1 = 0;
 			it2 = 0;
 			it3 = 0;
 			it4 = it4 + 1;
-			if (it4 == playList) {
-				it4 = 0;
-			}
+			if (it4 == playList) {it4 = 0;}
 			state = Mplay;
 			break;
 		}
-		if (it3 < playlistMelNL[it4][it1][it2]) {
-			it3 = it3 + 1;
-			state = Ml;
-			}
+		if (it3 < playlistMelNL[it4][it1][it2]) {it3 = it3 + 1; state = Ml;}
 			else {
 				it3 = 0;
 				silence();
@@ -560,8 +508,7 @@ int melodyTick(int state) {
 		else if (it4 == 2) {
 			DisplaySong3();
 		}*/
-		break;
-
+			break;
 		case Mr:
 		if (paused) {
 			DisplayPaused();
@@ -574,59 +521,46 @@ int melodyTick(int state) {
 			it1 = 0;
 			it2 = 0;
 			it3 = 0;
-			if (it4 == 0) {
-				it4 = playList - 1;
-				}
-      else {
-				it4 = it4 - 1;
-			}
+			if (it4 == 0) {it4 = playList - 1;}
+			else {it4 = it4 - 1;}
 			state = Mplay;
 			break;
-    }
-    else if (prevSong){
-			it1 = 0;
-			 it2 = 0;
-			  it3 = 0;
-			state = Mplay;
-			break;
+		}
+		else if (prevSong){
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				state = Mplay;
+				break;
 		}
 		if (nextSong) {
 			it1 = 0;
 			 it2 = 0;
 			 it3 = 0;
-			it4 = it4 + 1;
-			if (it4 == playList) {
-				it4 = 0;
-			}
+				it4 = it4 + 1;
+			if (it4 == playList) {it4 = 0;}
 			state = Mplay;
 			break;
 		}
-		if (it3 < playlistMelRL[it4][it1][it2]) {
-			it3 = it3 + 1;
-			state = Mr;
-			}
-    else {
+		if (it3 < playlistMelRL[it4][it1][it2]) {it3 = it3 + 1; state = Mr;}
+		else {
 			it3 = 0;
 			it2 = it2 + 1;
 			state = Mplay;
 		}
 		break;
-
 		case Mp:
 		if (prevSong && (it1 == 0)) {
 			it1 = 0;
 			it2 = 0;
 			it3 = 0;
-			if (it4 == 0) {
-				it4 = playList - 1;
-				}
-      else {
-				it4 = it4 - 1;
-			}
+			if (it4 == 0) {it4 = playList - 1;}
+		else {it4 = it4 - 1;}
 			paused = 0;
 			state = Mplay;
 			break;
-    } else if (prevSong){
+		} 
+		else if (prevSong){
 			it1 = 0;
 			it2 = 0;
 			it3 = 0;
@@ -639,20 +573,13 @@ int melodyTick(int state) {
 			it2 = 0;
 			it3 = 0;
 			it4 = it4 + 1;
-			if (it4 == playList) {
-				it4 = 0;
-			}
+			if (it4 == playList) {it4 = 0;}
 			paused = 0;
 			state = Mplay;
 			break;
 		}
-		if (paused) {
-			DisplayPaused();
-			state = Mp;
-			}
-    else {
-			if (placeHolder == Ml) {
-				/*if (it4 == 0) {
+		if (paused) {DisplayPaused(); state = Mp;}
+		/*if (it4 == 0) {
 					DisplaySong1();
 				}
 				else if (it4 == 1) {
@@ -661,7 +588,26 @@ int melodyTick(int state) {
 				else if (it4 == 2) {
 					DisplaySong3();
 				}*/
-				
+		/*if (it4 == 0) {
+					DisplaySong1();
+				}
+				else if (it4 == 1) {
+					DisplaySong2();
+				}
+				else if (it4 == 2) {
+					DisplaySong3();
+				}*/
+		else {
+			if (placeHolder == Ml) {
+				if (it4 == 0) {
+					DisplaySong1();
+				}
+				else if (it4 == 1) {
+					DisplaySong2();
+				}
+				else if (it4 == 2) {
+					DisplaySong3();
+				}
 				if (it4 == 0) {
 					play(playlistMel[it4][it1][it2]);
 					//DisplaySong1();
@@ -697,85 +643,85 @@ int bassTick(int state) {
 	static unsigned char placeHolder;
 	switch(state) {
 		case Binit:
-		state= Bwait;
-		it1 = 0;
-		it2 = 0;
-		it3 = 0;
-		it42 = 1;
-		prevSong = 0;
-		nextSong = 0;
-		silenceB();
-		break;
-
-		case Bwait:
-		if (!paused) {
-			state= Bplay;
-			//DisplayName(it42);
-		}
-		else {
 			state= Bwait;
-		}
-		break;
-
+			it1 = 0;
+			it2 = 0;
+			it3 = 0;
+			it42 = 1;
+			prevSong = 0;
+			nextSong = 0;
+			silenceB();
+			break;
+		case Bwait:
+			if (!paused) {state= Bplay;}
+			else {state= Bwait;}
+			break;
 		case Bplay:
-		songDone = 0;
-		if (paused) {
+			songDone = 0;
+			if (paused) {
 			silenceB();
 			DisplayPaused();
 			placeHolder = state;
 			state = Bp;
 			break;
-		}
-		if (prevSong && (it1 == 0)) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			if (it42 == 0) {
-				it42 = playList - 1;
 			}
-			else {
-				it42 = it42 - 1;
+			/*if (it4 == 0) {
+					DisplaySong1();
+				}
+				else if (it4 == 1) {
+					DisplaySong2();
+				}
+				else if (it4 == 2) {
+					DisplaySong3();
+				}*/
+			if (prevSong && (it1 == 0)) {
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				if (it42 == 0) {it42 = playList - 1;}
+				else {it42 = it42 - 1;}
+				state = Bplay;
+				break;
 			}
-			state = Bplay;
-			break;
-		}
-		else if (prevSong){
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			state = Bplay;
-			break;
-		}
-		if (nextSong) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			it42 = it42 + 1;;
-			if (it42 == playList) {
-				it42 = 0;
+			else if (prevSong){
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				state = Bplay;
+				break;
 			}
-			state = Bplay;
-			break;
-		}
-		if (playlistBas[it42][it1][it2] == -1) {
-			it1 = it1 + 1;
-			it2 = 0;
-		}
-		if (it1 == numRows[it42]) {
-			songDone = 1;
-			state = Bwait;
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			it42 = it42 + 1;
-			if (it42 == playList) {
-				it42 = 0;
+			if (nextSong) {
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				it42 = it42 + 1;;
+			if (it42 == playList) {it42 = 0;}
+				state = Bplay;
+				break;
 			}
-			break;
+			if (playlistBas[it42][it1][it2] == -1) {it1 = it1 + 1; it2 = 0;}
+			if (it1 == numRows[it42]) {
+				songDone = 1;
+				state = Bwait;
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				it42 = it42 + 1;
+				if (it42 == playList) {it42 = 0;}
+				break;
 		}
 		//playB(playlistBas[it42][it1][it2]);
 		//playB(playlistBas[it4][it1][it2]);
 		//DisplayName(it42);
+		/*if (it4 == 0) {
+					DisplaySong1();
+				}
+				else if (it4 == 1) {
+					DisplaySong2();
+				}
+				else if (it4 == 2) {
+					DisplaySong3();
+				}*/
 		if (it42 == 0) {
 			playB(playlistBas[it42][it1][it2]);
 			DisplaySong1();
@@ -795,55 +741,45 @@ int bassTick(int state) {
 		//playB(playlistBas[it42][it1][it2]);
 		//state = Bl;
 		break;
-
 		case Bl:
-		if (paused) {
-			silenceB();
-			DisplayPaused();
-			placeHolder = state;
-			state = Bp;
-			break;
-		}
-		if (prevSong && (it1 == 0)) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			if (it42 == 0) {
-				it42 = playList - 1;
+			if (paused) {
+				silenceB();
+				DisplayPaused();
+				placeHolder = state;
+				state = Bp;
+				break;
 			}
+			if (prevSong && (it1 == 0)) {
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				if (it42 == 0) {it42 = playList - 1;}
+			else {it42 = it42 - 1;}
+			state = Bplay;
+			break;
+			}
+			else if (prevSong){
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				state = Bplay;
+				break;
+			}
+			if (nextSong) {
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				it42 = it42 + 1;
+				if (it42 == playList) {it42 = 0;}
+				state = Bplay;
+				break;
+			}
+			if (it3 < playlistBasNL[it42][it1][it2]) {it3 = it3 + 1; state = Bl;}
 			else {
-				it42 = it42 - 1;
+				it3 = 0;
+				silenceB();
+				state = Br;
 			}
-			state = Bplay;
-			break;
-			}
-    else if (prevSong){
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			state = Bplay;
-			break;
-		}
-		if (nextSong) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			it42 = it42 + 1;
-			if (it42 == playList) {
-				it42 = 0;
-			}
-			state = Bplay;
-			break;
-		}
-		if (it3 < playlistBasNL[it42][it1][it2]) {
-			it3 = it3 + 1;
-			state = Bl;
-		}
-		else {
-			it3 = 0;
-			silenceB();
-			state = Br;
-		}
 		/*if (it42 == 0) {
 			DisplaySong1();
 		}
@@ -855,96 +791,94 @@ int bassTick(int state) {
 		}*/
 		//DisplayName(it42);
 		break;
-
 		case Br:
-		if (paused) {
-			silenceB();
-			DisplayPaused();
-			placeHolder = state;
-			state = Bp;
+			if (paused) {
+				silenceB();
+				DisplayPaused();
+				placeHolder = state;
+				state = Bp;
+				break;
+			}
+			if (prevSong && (it1 == 0)) {
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				if (it42 == 0) {it42 = playList - 1;}
+				else {it42 = it42 - 1;}
+			state = Bplay;
 			break;
-		}
-		if (prevSong && (it1 == 0)) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			if (it42 == 0) {
-				it42 = playList - 1;
+			}
+			else if (prevSong){
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				state = Bplay;
+				break;
+			}
+			if (nextSong) {
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				it42 = it42 + 1;
+				if (it42 == playList) {it42 = 0;}
+				state = Bplay;
+				break;
+			}
+			if (it3 < playlistBasRL[it42][it1][it2]) {it3 = it3 + 1; state = Br;}
+			else {
+				it3 = 0;
+				it2 = it2 + 1;
+				state = Bplay;
+			}
+			break;
+			/*if (it4 == 0) {
+					DisplaySong1();
 				}
-      else {
-				it42 = it42 - 1;
-			}
-			state = Bplay;
-			break;
-			}
-      else if (prevSong){
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			state = Bplay;
-			break;
-		}
-		if (nextSong) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			it42 = it42 + 1;
-			if (it42 == playList) {
-				it42 = 0;
-			}
-			state = Bplay;
-			break;
-		}
-		if (it3 < playlistBasRL[it42][it1][it2]) {
-			it3 = it3 + 1;
-			state = Br;
-			}
-    else {
-			it3 = 0;
-			it2 = it2 + 1;
-			state = Bplay;
-		}
-		break;
-
+				else if (it4 == 1) {
+					DisplaySong2();
+				}
+				else if (it4 == 2) {
+					DisplaySong3();
+				}*/
 		case Bp:
-		if (prevSong && (it1 == 0)) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			if (it42 == 0) {
-				it42 = playList - 1;
+			if (prevSong && (it1 == 0)) {
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				if (it42 == 0) {it42 = playList - 1;}
+				else {it42 = it42 - 1;}
+				paused = 0;
+				state = Bplay;
+				break;
+			} 
+			else if (prevSong){
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				paused = 0;
+				state = Bplay;
+				break;
+			}
+			if (nextSong) {
+				it1 = 0;
+				it2 = 0;
+				it3 = 0;
+				it42 = it42 + 1;
+				if (it42 == playList) {it42 = 0;}
+				paused = 0;
+				state = Bplay;
+				break;
+			}
+			if (paused) {state = Bp; DisplayPaused();}
+				/*if (it4 == 0) {
+					DisplaySong1();
 				}
-      else {
-				it42 = it42 - 1;
-			}
-			paused = 0;
-			state = Bplay;
-			break;
-			} else if (prevSong){
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			paused = 0;
-			state = Bplay;
-			break;
-		}
-		if (nextSong) {
-			it1 = 0;
-			it2 = 0;
-			it3 = 0;
-			it42 = it42 + 1;
-			if (it42 == playList) {
-				it42 = 0;
-			}
-			paused = 0;
-			state = Bplay;
-			break;
-		}
-		if (paused) {
-			
-			state = Bp;
-			DisplayPaused();
-			}
+				else if (it4 == 1) {
+					DisplaySong2();
+				}
+				else if (it4 == 2) {
+					DisplaySong3();
+				}*/
     else {
 			if (placeHolder == Bl) {
 				/*if (it4 == 0) {
