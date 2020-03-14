@@ -269,23 +269,16 @@ int pauseTick(int state) {
 			state = Pp;
 		break;
 		case Pp:
-		if (!playPause) {
-			state = Pp;
-		}
-		else {
-			state = Pr;
-			paused = !paused;
-		}
-		break;
+		    if (!playPause) { state = Pp; }
+		    else {
+			      state = Pr;
+			      paused = !paused;
+		    }
+		      break;
 		case Pr:
-		if (playPause) {
-			//DisplayPaused();
-			state = Pr;
-		}
-		else {
-			state = Pp;
-		}
-		break;
+		    if (playPause) {state = Pr;}
+		    else {state = Pp;}
+		      break;
 		default:
 			state = Pinit;
 		break;
