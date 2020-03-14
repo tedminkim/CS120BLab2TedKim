@@ -1002,13 +1002,10 @@ int main(void) {
 	PORTC = 0x00;
 	DDRD = 0xF0;
 	PORTD = 0x00;
-
-
   unsigned char timerPeriod = 1;
   static task  task2, task3, task4, task5;
   task *tasks[] = {  &task2, &task3, &task4, &task5};
   const unsigned short taskNum = sizeof(tasks) / sizeof(*tasks);
-
   //task1.state = 0;
   //task1.period = 50;
   //task1.elapsedTime = task1.period;
@@ -1031,8 +1028,7 @@ int main(void) {
   task5.TickFct = &bassTick;
 	TimerSet(timerPeriod);
 	TimerOn();
-
-	nokia_lcd_init();
+  nokia_lcd_init();
 	PressPlay();
 	//if (paused) {
 		//DisplayPaused();
@@ -1056,8 +1052,7 @@ int main(void) {
 	PWM_on();
 	//PWM0_on();
 	PWMB_on();
-
-    while (1) {
+  while (1) {
 			for (unsigned char i = 0; i < taskNum; i++) {
 				if ( tasks[i]->elapsedTime == tasks[i]->period) {
 					tasks[i]->state = tasks[i]->TickFct(tasks[i]->state);
@@ -1065,8 +1060,7 @@ int main(void) {
 				}
 				tasks[i]->elapsedTime += timerPeriod;
 			}
-
-		while(!TimerFlag){};
+    while(!TimerFlag){};
 			TimerFlag = 0;
 		}
     return 1;
