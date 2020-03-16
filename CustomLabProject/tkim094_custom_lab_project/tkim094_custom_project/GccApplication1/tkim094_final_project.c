@@ -326,7 +326,7 @@ int NextPrevTick(int state) {
 	return state;
 }
 
-unsigned char songDone = 1;
+unsigned char songOver = 1;
 unsigned long x = sizeof(playlistMel);
 unsigned long y = sizeof(playlistMel[0]);
 unsigned long playList = sizeof(playlistMel) / sizeof(playlistMel[0]);
@@ -355,7 +355,7 @@ int melodyTick(int state) {
 			else {state= Mwait;}
 			break;
 		case Mplay:
-			songDone = 0;
+			songOver = 0;
 			if (paused) {
 				silence();
 				DisplayPaused();
@@ -402,7 +402,7 @@ int melodyTick(int state) {
 		}
 		if (playlistMel[it4][it1][it2] == -1) {it1 = it1 + 1; it2 = 0;}
 		if (it1 == numRows[it4]) {
-			songDone = 1;
+			songOver = 1;
 			state = Mwait;
 			it1 = 0;
 			it2 = 0;
@@ -654,7 +654,7 @@ int bassTick(int state) {
 			else {state= Bwait;}
 			break;
 		case Bplay:
-			songDone = 0;
+			songOver = 0;
 			if (paused) {
 			silenceB();
 			DisplayPaused();
@@ -698,7 +698,7 @@ int bassTick(int state) {
 			}
 			if (playlistBas[it42][it1][it2] == -1) {it1 = it1 + 1; it2 = 0;}
 			if (it1 == numRows[it42]) {
-				songDone = 1;
+				songOver = 1;
 				state = Bwait;
 				it1 = 0;
 				it2 = 0;
