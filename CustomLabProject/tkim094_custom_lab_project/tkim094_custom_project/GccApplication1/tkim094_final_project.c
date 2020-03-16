@@ -1004,10 +1004,6 @@ int main(void) {
   static task  task2, task3, task4, task5;
   task *tasks[] = {  &task2, &task3, &task4, &task5};
   const unsigned short taskNum = sizeof(tasks) / sizeof(*tasks);
-  //task1.state = 0;
-  //task1.period = 50;
-  //task1.elapsedTime = task1.period;
-  //task1.TickFct = &DisplayName;
   task2.state = 0;
   task2.period = 1;
   task2.elapsedTime = task2.period;
