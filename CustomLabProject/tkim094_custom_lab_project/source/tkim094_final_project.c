@@ -109,8 +109,6 @@ void PWMB_off() {
 }
 void play(short freqSound) {set_PWM(freqSound);}
 void silence() {set_PWM(0);}
-void playH(short freqSound) {set_PWM0(freqSound);}
-void silenceH() { set_PWM0(0);}
 void playB(short freqSound) { set_PWMB(freqSound);}
 void silenceB() {  set_PWMB(0); }
 
